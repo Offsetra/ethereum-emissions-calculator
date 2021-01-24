@@ -1,6 +1,6 @@
 {
   "name": "ethereum-emissions-calculator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript utils to calculate the CO2 emissions of an Ethereum wallet. Powered by the Etherscan.io API.",
   "main": "./lib/index.js",
   "directories": {
