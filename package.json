@@ -22,7 +22,8 @@
     "lib/**/*"
   ],
   "scripts": {
-    "test": "tsc --noEmit && jest --watch",
+    "test:watch": "npm run jest --watch",
+    "test": "tsc --noEmit && jest",
     "build": "tsc",
     "prepare": "npm run build",
     "prepublishOnly": "npm run test"
