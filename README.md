@@ -14,7 +14,7 @@ License: MIT
 Provide an address and a transaction type, and the calculator will tell you how many emissions this represents in KG CO2e.
 To calculate the sum total of your addresses' lifetime emissions, you must combine the sum of `eth`, `erc20`, and `erc721` emissions.
 
-```javascript
+```typescript
 const emissions = calculateAddressEmissions({
   /** The type of transactions you wish to query */
   transactionType: "eth" | "erc20" | "erc721";
