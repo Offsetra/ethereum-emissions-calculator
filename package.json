@@ -22,7 +22,7 @@
     "lib/index.js"
   ],
   "scripts": {
-    "test": "tsc --noEmit && jest",
+    "test": "tsc --noEmit && jest --watch",
     "build": "tsc"
   },
   "repository": {

@@ -1,6 +1,6 @@
 import { CalculatorOptions } from "..";
 
-const ETHERSCAN_API_URL = "https://api.etherscan.io/api";
+export const ETHERSCAN_API_URL = "https://api.etherscan.io/api";
 
 type ValidEtherscanParam =
   | "address"

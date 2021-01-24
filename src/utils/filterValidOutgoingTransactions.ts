@@ -1,6 +1,7 @@
 import { TransactionData } from "..";
 
-/** Returns an array of transactions where;
+/**
+ * Returns an array of transactions where;
  * `txn.from` matches the provided address (sender) and the txn.isError is not true
  */
 const filterValidOutgoingTransactions = (
