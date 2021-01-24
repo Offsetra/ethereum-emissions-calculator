@@ -19,11 +19,13 @@
     "prettier": "2.2.1"
   },
   "files": [
-    "lib/index.js"
+    "lib/**/*"
   ],
   "scripts": {
     "test": "tsc --noEmit && jest --watch",
-    "build": "tsc"
+    "build": "tsc",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "repository": {
     "type": "git",
