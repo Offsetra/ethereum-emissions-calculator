@@ -78,8 +78,18 @@ export const calculateAddressEmissions = async (
   const response = await fetchJSON<EtherscanResponse>(
     constructEtherscanURL(options)
   );
+  if (response.status === "0" && response.message === "No transactions found") {
+    return {
+      transactionType: options.transactionType,
+      kgCO2: 0,
+      transactionsCount: 0,
+      gasUsed: 0,
+    };
+  }
   if (response.status !== "1") {
-    throw new Error("Error from Etherscan API: " + response.message);
+    throw new Error(
+      `Failed to calculate address emissions: ${response.message}`
+    );
   }
   const txns = filterValidOutgoingTransactions(
     response.result,
