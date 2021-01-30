@@ -11,6 +11,10 @@ License: MIT
 
 ## Usage
 
+```
+npm install ethereum-emissions-calculator
+```
+
 Provide an address and a transaction type, and the calculator will tell you how many emissions this represents in KG CO2e.
 To calculate the sum total of your addresses' lifetime emissions, you must combine the sum of `eth`, `erc20`, and `erc721` emissions.
 
