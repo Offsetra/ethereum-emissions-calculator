@@ -1,7 +1,6 @@
 # Useful real-world wallets
 
-## 0xe51b6569c10936d2127db72124441b72ad178b98
-
+0xe51b6569c10936d2127db72124441b72ad178b98
 39txns, trading cryptokitties
 https://etherscan.io/token/0x06012c8cf97bead5deae237070f9587f8e7a266d?a=0xe51b6569c10936d2127db72124441b72ad178b98
 

@@ -67,6 +67,8 @@ export interface AddressEmissionsResult {
   kgCO2: number;
   /** The total number of transactions included for this query. Maximum: 1000 */
   transactionsCount: number;
+  /** Total sum of Gas Used for all transactions */
+  gasUsed: number;
 }
 
 export const calculateAddressEmissions = async (
@@ -88,5 +90,6 @@ export const calculateAddressEmissions = async (
     transactionType: options.transactionType,
     kgCO2: Math.round(totalGasUsed * KG_CO2_PER_GAS),
     transactionsCount: txns.length,
+    gasUsed: totalGasUsed,
   };
 };

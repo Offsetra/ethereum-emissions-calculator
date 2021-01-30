@@ -19,18 +19,22 @@ Provide an address and a transaction type, and the calculator will tell you how 
 To calculate the sum total of your addresses' lifetime emissions, you must combine the sum of `eth`, `erc20`, and `erc721` emissions.
 
 ```typescript
-const emissions = calculateAddressEmissions({
-  /** The type of transactions you wish to query */
-  transactionType: "eth" | "erc20" | "erc721";
-  /** Eth address for which you would like to calculate */
-  address: string;
-  /** Your Etherscan.io API Key */
-  etherscanAPIKey: string;
-  /** Optional. Query a specific range of blocks by providing a start block number. Default 0. */
-  startBlock?: number;
-  /** Optional. Query a specific range of blocks by providing an end block number. Default 99999999 (most recent block available). */
-  endBlock?: number;
-})
+import { calculateAddressEmissions } from "ethereum-emissions-calculator";
+import { address, etherscanAPIKey } from "data";
+
+const emissions = await calculateAddressEmissions({
+  transactionType: "eth", // "eth" | "erc20" | "erc721"
+  address, // 0x12345[...]
+  etherscanAPIKey,
+});
+
+console.log(emissions);
+// {
+//   transactionType: "eth",
+//   kgCO2: 12345`,
+//   transactionsCount: 69,
+//   gasUsed: 420,
+// }
 ```
 
 ## Methodology
