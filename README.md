@@ -1,5 +1,7 @@
 # Ethereum Carbon Emissions Calculator
 
+Offsetra.com + Carbon.fyi
+
 JavaScript utility to calculate the CO2 emissions of any Ethereum address.
 
 The tool is written in TypeScript and powered by the the Etherscan.io API & an open-source carbon accounting methodology under development by Offsetra.
