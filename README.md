@@ -17,7 +17,8 @@ Questions, comments, forks and PRs all very much appreciated!
 
 ## Usage
 
-NOTE: Currently this calculator can only tally emissions for wallets with <10,000 transactions, which is the API page limit from Etherscan.io.
+NOTE: Currently this calculator can only tally emissions for <10k transactions, which is the API page limit from Etherscan.io.
+If the address has >10k transactions of the specified transaction type (eth/erc20/erc721), the function will throw an error.
 
 ```
 npm install ethereum-emissions-calculator

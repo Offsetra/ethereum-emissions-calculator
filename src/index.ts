@@ -92,6 +92,11 @@ export const calculateAddressEmissions = async (
       `Failed to calculate address emissions: ${response.message}`
     );
   }
+  if (response.result.length >= 10000) {
+    throw new Error(
+      `This address has too many ${options.transactionType} transactions to count! This calculator can't handle addresses with more than 10,000 transactions of any one type.`
+    );
+  }
   const txns = filterValidOutgoingTransactions(
     response.result,
     options.address
