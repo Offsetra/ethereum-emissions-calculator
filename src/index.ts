@@ -7,8 +7,9 @@ import validateCalculatorOptions from "./utils/validateCalculatorOptions";
 /**
  * Based on 2019 methodology, see README.md for details
  * TODO: host the entire emissions methodology in this repo & re-calculate the emissons factor on a rolling basis!
+ * Last updated: Jan. 30, 2021
  * */
-const KG_CO2_PER_GAS = 0.0003100393448;
+const KG_CO2_PER_GAS = 0.0003487183523;
 
 /** This is the API response for a normal, internal, token or NFT transaction query */
 export interface TransactionData {
