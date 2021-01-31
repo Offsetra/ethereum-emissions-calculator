@@ -6,7 +6,7 @@ License: MIT.
 
 Please cite Offsetra if you use this in your project, we really appreciate it! 🙏
 
-# Description
+## Summary
 
 JavaScript utility to calculate the CO2 emissions of any Ethereum address.
 
