@@ -2,7 +2,11 @@
 
 Made with ♥ by [Offsetra.com](https://offsetra.com/about) for [carbon.fyi](https://carbon.fyi).
 
-License: MIT. Please cite Offsetra.com or carbon.fyi if you use this in your project, we really appreciate it! 🙏
+License: MIT.
+
+Please cite Offsetra if you use this in your project, we really appreciate it! 🙏
+
+# Description
 
 JavaScript utility to calculate the CO2 emissions of any Ethereum address.
 
