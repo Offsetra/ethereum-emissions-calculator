@@ -1,6 +1,8 @@
 # Ethereum Carbon Emissions Calculator
 
-Made with ♥ by [Offsetra.com](https://offsetra.com/about) for [carbon.fyi](https://carbon.fyi). License: MIT.
+Made with ♥ by [Offsetra.com](https://offsetra.com/about) for [carbon.fyi](https://carbon.fyi).
+
+License: MIT. Please cite Offsetra.com or carbon.fyi if you use this in your project, we really appreciate it! 🙏
 
 JavaScript utility to calculate the CO2 emissions of any Ethereum address.
 
