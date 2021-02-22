@@ -1,6 +1,7 @@
 import constructEtherscanURL from "./utils/constructEtherscanURL";
 import fetchJSON from "./utils/fetchJSON";
 import filterValidOutgoingTransactions from "./utils/filterValidOutgoingTransactions";
+import filterValidTransactions from "./utils/filterValidTransactions";
 import getSumGasUsed from "./utils/getSumGasUsed";
 import validateCalculatorOptions from "./utils/validateCalculatorOptions";
 
@@ -72,6 +73,9 @@ export interface AddressEmissionsResult {
   gasUsed: number;
 }
 
+/**
+ * Calculate emissions of an address. Emissions are allocated for SENT (outgoing) transactions only.
+ */
 export const calculateAddressEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
@@ -101,6 +105,44 @@ export const calculateAddressEmissions = async (
     response.result,
     options.address
   );
+  const totalGasUsed = getSumGasUsed(txns);
+  return {
+    transactionType: options.transactionType,
+    kgCO2: Math.round(totalGasUsed * KG_CO2_PER_GAS),
+    transactionsCount: txns.length,
+    gasUsed: totalGasUsed,
+  };
+};
+
+/**
+ * Calculate emissions of a contract address. Emissions are allocated for BOTH outgoing AND incoming transactions.
+ */
+export const calculateContractEmissions = async (
+  options: CalculatorOptions
+): Promise<AddressEmissionsResult> => {
+  validateCalculatorOptions(options);
+  const response = await fetchJSON<EtherscanResponse>(
+    constructEtherscanURL(options)
+  );
+  if (response.status === "0" && response.message === "No transactions found") {
+    return {
+      transactionType: options.transactionType,
+      kgCO2: 0,
+      transactionsCount: 0,
+      gasUsed: 0,
+    };
+  }
+  if (response.status !== "1") {
+    throw new Error(
+      `Failed to calculate contract emissions: ${response.message}`
+    );
+  }
+  if (response.result.length >= 10000) {
+    throw new Error(
+      `This contract has too many ${options.transactionType} transactions to count! This calculator can't handle addresses with more than 10,000 transactions of any one type.`
+    );
+  }
+  const txns = filterValidTransactions(response.result);
   const totalGasUsed = getSumGasUsed(txns);
   return {
     transactionType: options.transactionType,
