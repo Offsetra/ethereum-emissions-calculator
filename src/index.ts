@@ -6,11 +6,12 @@ import getSumGasUsed from "./utils/getSumGasUsed";
 import validateCalculatorOptions from "./utils/validateCalculatorOptions";
 
 /**
- * Based on 2019 methodology, see README.md for details
+ * Based on 2021 methodology, see github and carbon.fyi for details.
+ * Last updated: Mar. 7, 2021
+ *
  * TODO: host the entire emissions methodology in this repo & re-calculate the emissons factor on a rolling basis!
- * Last updated: Jan. 30, 2021
  * */
-const KG_CO2_PER_GAS = 0.0003487183523;
+const KG_CO2_PER_GAS = 0.0002873993139;
 
 /** This is the API response for a normal, internal, token or NFT transaction query */
 export interface TransactionData {
