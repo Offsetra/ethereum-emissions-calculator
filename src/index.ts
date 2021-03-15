@@ -74,6 +74,46 @@ export interface AddressEmissionsResult {
   gasUsed: number;
 }
 
+const fetchTransactions = async (
+  options: CalculatorOptions
+): Promise<TransactionData[]> => {
+  validateCalculatorOptions(options);
+  const response = await fetchJSON<EtherscanResponse>(
+    constructEtherscanURL(options)
+  );
+  if (response.status === "0" && response.message === "No transactions found") {
+    return new Array<TransactionData>();
+  }
+  if (response.status !== "1") {
+    throw new Error(
+      `Failed to calculate emissions: ${response.message}`
+    );
+    }
+  return response.result;
+};
+
+const getTransactions = async (
+  options: CalculatorOptions
+): Promise<TransactionData[]> => {
+  const transactions = await fetchTransactions(options);
+  if (transactions.length < 10000) {
+    return transactions;
+  }
+  const lastTransaction = transactions[transactions.length - 1];
+  const lastBlockNumber = Number(lastTransaction.blockNumber);
+  const selectedTransactions = transactions.filter(
+    transaction => Number(transaction.blockNumber) < (lastBlockNumber - 1)
+  );
+  const missedTransactions = await getTransactions({
+    transactionType: options.transactionType,
+    address: options.address,
+    etherscanAPIKey: options.etherscanAPIKey,
+    startBlock: lastBlockNumber,
+    endBlock: options.endBlock,
+  });
+  return selectedTransactions.concat(missedTransactions);
+};
+
 /**
  * Calculate emissions of an address. Emissions are allocated for SENT (outgoing) transactions only.
  */
@@ -81,36 +121,16 @@ export const calculateAddressEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
   validateCalculatorOptions(options);
-  const response = await fetchJSON<EtherscanResponse>(
-    constructEtherscanURL(options)
+  const transactions = await getTransactions(options);
+  const filteredTransactions = filterValidOutgoingTransactions(
+    transactions,
+    options.address,
   );
-  if (response.status === "0" && response.message === "No transactions found") {
-    return {
-      transactionType: options.transactionType,
-      kgCO2: 0,
-      transactionsCount: 0,
-      gasUsed: 0,
-    };
-  }
-  if (response.status !== "1") {
-    throw new Error(
-      `Failed to calculate address emissions: ${response.message}`
-    );
-  }
-  if (response.result.length >= 10000) {
-    throw new Error(
-      `This address has too many ${options.transactionType} transactions to count! This calculator can't handle addresses with more than 10,000 transactions of any one type.`
-    );
-  }
-  const txns = filterValidOutgoingTransactions(
-    response.result,
-    options.address
-  );
-  const totalGasUsed = getSumGasUsed(txns);
+  const totalGasUsed = getSumGasUsed(filteredTransactions);
   return {
     transactionType: options.transactionType,
     kgCO2: Math.round(totalGasUsed * KG_CO2_PER_GAS),
-    transactionsCount: txns.length,
+    transactionsCount: filteredTransactions.length,
     gasUsed: totalGasUsed,
   };
 };
@@ -121,34 +141,13 @@ export const calculateAddressEmissions = async (
 export const calculateContractEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
-  validateCalculatorOptions(options);
-  const response = await fetchJSON<EtherscanResponse>(
-    constructEtherscanURL(options)
-  );
-  if (response.status === "0" && response.message === "No transactions found") {
-    return {
-      transactionType: options.transactionType,
-      kgCO2: 0,
-      transactionsCount: 0,
-      gasUsed: 0,
-    };
-  }
-  if (response.status !== "1") {
-    throw new Error(
-      `Failed to calculate contract emissions: ${response.message}`
-    );
-  }
-  if (response.result.length >= 10000) {
-    throw new Error(
-      `This contract has too many ${options.transactionType} transactions to count! This calculator can't handle addresses with more than 10,000 transactions of any one type.`
-    );
-  }
-  const txns = filterValidTransactions(response.result);
-  const totalGasUsed = getSumGasUsed(txns);
+  const transactions = await getTransactions(options);
+  const filteredTransactions = filterValidTransactions(transactions);
+  const totalGasUsed = getSumGasUsed(filteredTransactions);
   return {
     transactionType: options.transactionType,
     kgCO2: Math.round(totalGasUsed * KG_CO2_PER_GAS),
-    transactionsCount: txns.length,
+    transactionsCount: filteredTransactions.length,
     gasUsed: totalGasUsed,
   };
 };
