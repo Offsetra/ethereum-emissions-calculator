@@ -102,7 +102,7 @@ const getTransactions = async (
   const lastTransaction = transactions[transactions.length - 1];
   const lastBlockNumber = Number(lastTransaction.blockNumber);
   const selectedTransactions = transactions.filter(
-    transaction => Number(transaction.blockNumber) < (lastBlockNumber - 1)
+    transaction => Number(transaction.blockNumber) < lastBlockNumber
   );
   const missedTransactions = await getTransactions({
     transactionType: options.transactionType,
