@@ -77,7 +77,6 @@ export interface AddressEmissionsResult {
 const fetchTransactions = async (
   options: CalculatorOptions
 ): Promise<TransactionData[]> => {
-  validateCalculatorOptions(options);
   const response = await fetchJSON<EtherscanResponse>(
     constructEtherscanURL(options)
   );
@@ -141,6 +140,7 @@ export const calculateAddressEmissions = async (
 export const calculateContractEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
+  validateCalculatorOptions(options);
   const transactions = await getTransactions(options);
   const filteredTransactions = filterValidTransactions(transactions);
   const totalGasUsed = getSumGasUsed(filteredTransactions);
