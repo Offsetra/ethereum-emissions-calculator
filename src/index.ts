@@ -68,7 +68,7 @@ export interface AddressEmissionsResult {
   transactionType: CalculatorOptions["transactionType"];
   /** The total carbon footprint for all transactions of the provided type, sent from the provided address. In Kilograms of CO2e */
   kgCO2: number;
-  /** The total number of transactions included for this query. Maximum: 1000 */
+  /** The total number of transactions included for this query. */
   transactionsCount: number;
   /** Total sum of Gas Used for all transactions */
   gasUsed: number;
