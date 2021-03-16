@@ -81,13 +81,11 @@ const fetchTransactions = async (
     constructEtherscanURL(options)
   );
   if (response.status === "0" && response.message === "No transactions found") {
-    return new Array<TransactionData>();
+    return [];
   }
   if (response.status !== "1") {
-    throw new Error(
-      `Failed to calculate emissions: ${response.message}`
-    );
-    }
+    throw new Error(`Failed to calculate emissions: ${response.message}`);
+  }
   return response.result;
 };
 
@@ -101,7 +99,7 @@ const getTransactions = async (
   const lastTransaction = transactions[transactions.length - 1];
   const lastBlockNumber = Number(lastTransaction.blockNumber);
   const selectedTransactions = transactions.filter(
-    transaction => Number(transaction.blockNumber) < lastBlockNumber
+    (transaction) => Number(transaction.blockNumber) < lastBlockNumber
   );
   const missedTransactions = await getTransactions({
     transactionType: options.transactionType,
@@ -110,7 +108,8 @@ const getTransactions = async (
     startBlock: lastBlockNumber,
     endBlock: options.endBlock,
   });
-  return selectedTransactions.concat(missedTransactions);
+  selectedTransactions.push(...missedTransactions);
+  return selectedTransactions;
 };
 
 /**
@@ -123,7 +122,7 @@ export const calculateAddressEmissions = async (
   const transactions = await getTransactions(options);
   const filteredTransactions = filterValidOutgoingTransactions(
     transactions,
-    options.address,
+    options.address
   );
   const totalGasUsed = getSumGasUsed(filteredTransactions);
   return {
