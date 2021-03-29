@@ -48,7 +48,7 @@ const emissions = await calculateAddressEmissions({
 console.log(emissions);
 // {
 //   transactionType: "eth",
-//   kgCO2: 12345`,
+//   kgCO2: 12345,
 //   transactionsCount: 69,
 //   gasUsed: 420,
 // }
@@ -72,7 +72,7 @@ const emissions = await calculateContractEmissions({
 console.log(emissions);
 // {
 //   transactionType: "eth",
-//   kgCO2: 12345`,
+//   kgCO2: 12345,
 //   transactionsCount: 69,
 //   gasUsed: 420,
 // }
