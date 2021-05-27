@@ -92,24 +92,21 @@ const fetchTransactions = async (
 const getTransactions = async (
   options: CalculatorOptions
 ): Promise<TransactionData[]> => {
-  const transactions = await fetchTransactions(options);
-  if (transactions.length < 10000) {
-    return transactions;
-  }
-  const lastTransaction = transactions[transactions.length - 1];
-  const lastBlockNumber = Number(lastTransaction.blockNumber);
-  const selectedTransactions = transactions.filter(
-    (transaction) => Number(transaction.blockNumber) < lastBlockNumber
-  );
-  const missedTransactions = await getTransactions({
-    transactionType: options.transactionType,
-    address: options.address,
-    etherscanAPIKey: options.etherscanAPIKey,
-    startBlock: lastBlockNumber,
-    endBlock: options.endBlock,
-  });
-  selectedTransactions.push(...missedTransactions);
-  return selectedTransactions;
+  let transactions;
+  let allTransactions = [];
+  do {
+    transactions = await fetchTransactions(options);
+    if (transactions.length > 0) {
+      const lastTransaction = transactions[transactions.length - 1];
+      const lastBlockNumber = Number(lastTransaction.blockNumber);
+      const selectedTransactions = transactions.filter(
+        (transaction) => Number(transaction.blockNumber) < lastBlockNumber
+      );
+      allTransactions.push(...selectedTransactions);
+      options.startBlock = lastBlockNumber;
+    }
+  } while (transactions.length >= 10000);
+  return allTransactions;
 };
 
 /**
