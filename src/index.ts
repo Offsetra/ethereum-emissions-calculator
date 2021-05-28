@@ -92,20 +92,22 @@ const fetchTransactions = async (
 const getTransactions = async (
   options: CalculatorOptions
 ): Promise<TransactionData[]> => {
-  let transactions;
-  let allTransactions = [];
-  do {
-    transactions = await fetchTransactions(options);
-    if (transactions.length > 0) {
+  const allTransactions = [];
+  let transactionsAreMissing = true;
+  while (transactionsAreMissing) {
+    let transactions = await fetchTransactions(options);
+    if (transactions.length < 10000) {
+      transactionsAreMissing = false;
+    } else {
       const lastTransaction = transactions[transactions.length - 1];
       const lastBlockNumber = Number(lastTransaction.blockNumber);
-      const selectedTransactions = transactions.filter(
+      transactions = transactions.filter(
         (transaction) => Number(transaction.blockNumber) < lastBlockNumber
       );
-      allTransactions.push(...selectedTransactions);
       options.startBlock = lastBlockNumber;
     }
-  } while (transactions.length >= 10000);
+    allTransactions.push(...transactions);
+  }
   return allTransactions;
 };
 
