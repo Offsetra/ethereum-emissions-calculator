@@ -1,6 +1,8 @@
 import { CalculatorOptions, TransactionData } from "../types";
 import { fetchTransactions } from "./fetchTransactions";
 
+const ETHERSCAN_RESULT_MAX_LENGTH = 10000;
+
 export const getTransactions = async (
   options: CalculatorOptions
 ): Promise<TransactionData[]> => {
@@ -8,18 +10,22 @@ export const getTransactions = async (
   let startBlock = options.startBlock;
   let transactionsAreMissing = true;
   while (transactionsAreMissing) {
-    let transactions = await fetchTransactions(options);
-    if (transactions.length < 10000) {
+    const transactions = await fetchTransactions({ ...options, startBlock });
+    if (transactions.length < ETHERSCAN_RESULT_MAX_LENGTH) {
       transactionsAreMissing = false;
+      allTransactions.push(...transactions);
     } else {
       const lastTransaction = transactions[transactions.length - 1];
       const lastBlockNumber = Number(lastTransaction.blockNumber);
-      transactions = transactions.filter(
-        (transaction) => Number(transaction.blockNumber) < lastBlockNumber
-      );
+      // second fetch will start at lastBlockNumber
       startBlock = lastBlockNumber;
+      // dedupe lastBlockNumber
+      allTransactions.push(
+        ...transactions.filter(
+          (txn) => Number(txn.blockNumber) < lastBlockNumber
+        )
+      );
     }
-    allTransactions.push(...transactions);
   }
   return allTransactions;
 };
