@@ -1,10 +1,10 @@
-import { TransactionData } from "..";
+import { TransactionData } from "../types";
 
 /**
  * Returns an array of transactions where;
  * `txn.from` matches the provided address (sender) and the txn.isError is not true
  */
-const filterValidOutgoingTransactions = (
+export const filterValidOutgoingTransactions = (
   transactions: TransactionData[],
   address: string
 ): TransactionData[] => {
@@ -14,5 +14,3 @@ const filterValidOutgoingTransactions = (
     return isOutgoing && succeeded;
   });
 };
-
-export default filterValidOutgoingTransactions;

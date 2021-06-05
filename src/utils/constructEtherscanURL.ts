@@ -1,4 +1,4 @@
-import { CalculatorOptions } from "..";
+import { CalculatorOptions } from "../types";
 
 export const ETHERSCAN_API_URL = "https://api.etherscan.io/api";
 
@@ -14,7 +14,7 @@ type EtherscanParams = {
   [P in ValidEtherscanParam]: string;
 };
 
-const constructEtherscanURL = (options: CalculatorOptions) => {
+export const constructEtherscanURL = (options: CalculatorOptions) => {
   const { address, etherscanAPIKey, startBlock, endBlock } = options;
   const etherscanURL = new URL(ETHERSCAN_API_URL);
   const action = {
@@ -39,5 +39,3 @@ const constructEtherscanURL = (options: CalculatorOptions) => {
   }
   return etherscanURL.toString();
 };
-
-export default constructEtherscanURL;

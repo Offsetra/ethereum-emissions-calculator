@@ -1,5 +1,5 @@
-import { TransactionData } from "..";
-import filterValidOutgoingTransactions from "./filterValidOutgoingTransactions";
+import { TransactionData } from "../types";
+import { filterValidOutgoingTransactions } from "./filterValidOutgoingTransactions";
 
 const SENDER = "0x5abfec25f74cd88437631a7731906932776356f9";
 const RECIEVER = "0x3fb1cd2cd96c6d5c0b5eb3322d807b34482481d4";

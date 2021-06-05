@@ -1,8 +1,6 @@
-import { TransactionData } from "..";
+import { TransactionData } from "../types";
 
-const getSumGasUsed = (txns: TransactionData[]) =>
+export const getSumGasUsed = (txns: TransactionData[]) =>
   txns.reduce((prev, txn) => {
     return Number(txn?.gasUsed ?? 0) + prev;
   }, 0);
-
-export default getSumGasUsed;

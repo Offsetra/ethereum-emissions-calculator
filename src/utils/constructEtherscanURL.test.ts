@@ -1,5 +1,5 @@
-import { CalculatorOptions } from "..";
-import constructEtherscanURL from "./constructEtherscanURL";
+import { CalculatorOptions } from "../types";
+import { constructEtherscanURL } from "./constructEtherscanURL";
 
 const SENDER = "0x063dd253c8da4ea9b12105781c9611b8297f5d14";
 

@@ -1,4 +1,4 @@
-import fetchJSON from "./fetchJSON";
+import { fetchJSON } from "./fetchJSON";
 
 const result = { to: "abc", from: "def" };
 
@@ -21,5 +21,4 @@ describe("fetchJSON", () => {
   test("happy path returns JSON result", async () => {
     expect(await fetchJSON("test")).toBe(result);
   });
-  // TODO: throws if !ok too lazy to test this right now
 });

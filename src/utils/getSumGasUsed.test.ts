@@ -1,5 +1,5 @@
-import { TransactionData } from "..";
-import getSumGasUsed from "./getSumGasUsed";
+import { TransactionData } from "../types";
+import { getSumGasUsed } from "./getSumGasUsed";
 
 const fixtures: TransactionData[] = [
   {

@@ -1,5 +1,5 @@
-import { CalculatorOptions } from "..";
-import validateCalculatorOptions from "./validateCalculatorOptions";
+import { CalculatorOptions } from "../types";
+import { validateCalculatorOptions } from "./validateCalculatorOptions";
 
 const SENDER = "0x063dd253c8da4ea9b12105781c9611b8297f5d14";
 

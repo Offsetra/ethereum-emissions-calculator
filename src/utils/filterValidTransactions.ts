@@ -1,10 +1,10 @@
-import { TransactionData } from "..";
+import { TransactionData } from "../types";
 
 /**
  * Returns an array of transactions where txn.isError is not true.
  * This does not care about sender/reciever relationship (see filterValidOutgoingTransactions)
  */
-const filterValidTransactions = (
+export const filterValidTransactions = (
   transactions: TransactionData[]
 ): TransactionData[] => {
   return transactions.filter((txn: TransactionData) => {
@@ -12,5 +12,3 @@ const filterValidTransactions = (
     return succeeded;
   });
 };
-
-export default filterValidTransactions;

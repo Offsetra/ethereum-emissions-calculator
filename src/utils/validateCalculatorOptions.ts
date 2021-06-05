@@ -1,6 +1,6 @@
-import { CalculatorOptions } from "..";
+import { CalculatorOptions } from "../types";
 
-const validateCalculatorOptions = ({
+export const validateCalculatorOptions = ({
   address,
   etherscanAPIKey,
 }: CalculatorOptions) => {
@@ -16,5 +16,3 @@ const validateCalculatorOptions = ({
     throw new Error("No valid Etherscan.io API key was provided");
   }
 };
-
-export default validateCalculatorOptions;
