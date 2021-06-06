@@ -5,6 +5,8 @@ import { getSumGasUsed } from "./utils/getSumGasUsed";
 import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
 
+export type { CalculatorOptions, AddressEmissionsResult };
+
 /**
  * Based on 2021 methodology, see github and carbon.fyi for details.
  * Last updated: Mar. 7, 2021
