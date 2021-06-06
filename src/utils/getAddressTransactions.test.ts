@@ -1,5 +1,5 @@
 import { CalculatorOptions } from "../types";
-import { getTransactions } from "./getTransactions";
+import { getAddressTransactions } from "./getAddressTransactions";
 import { fetchTransactions as mockFetchTransactions } from "./fetchTransactions";
 
 /**
@@ -30,7 +30,7 @@ afterEach(() => {
   jest.resetAllMocks();
 });
 
-describe("getTransactions", () => {
+describe("getAddressTransactions", () => {
   const address = "0xTEST";
   const etherscanAPIKey = "TEST_KEY";
 
@@ -45,9 +45,10 @@ describe("getTransactions", () => {
       return expected;
     });
 
-    const result = await getTransactions(options);
-    expect(result).toStrictEqual(expected);
+    const { transactions, done } = await getAddressTransactions(options);
+    expect(transactions).toStrictEqual(expected);
     expect(fetchTransactions).toHaveBeenCalledTimes(1);
+    expect(done).toBe(true);
   });
   test("fetches 9999 transactions", async () => {
     const options: CalculatorOptions = {
@@ -60,46 +61,35 @@ describe("getTransactions", () => {
       return expected;
     });
 
-    const result = await getTransactions(options);
-    expect(result).toStrictEqual(expected);
+    const { transactions, done } = await getAddressTransactions(options);
+    expect(transactions).toStrictEqual(expected);
     expect(fetchTransactions).toHaveBeenCalledTimes(1);
+    expect(done).toBe(true);
   });
-  test("fetches 11,000 transactions, refetching highest blocknumber, without duplicates", async () => {
+  test("fetches 10k transactions, filters lowest (oldest) block number", async () => {
     const options: CalculatorOptions = {
       address,
       etherscanAPIKey,
       transactionType: "eth",
     };
-    const firstBlock = generateTxnArray({
+    const newestBlockTxns = generateTxnArray({
       length: 5000,
+      fixture: txnFixture2,
+    });
+    const oldestBlockTxns = generateTxnArray({
+      length: 5000, // actually ethereum only has 70 txns per block but it doesnt matter for this fn
       fixture: txnFixture1,
     });
-    const secondBlockPartial = generateTxnArray({
-      length: 5000, // actually ethereum only has 70 txns per block but it doesnt matter for this fn
-      fixture: txnFixture2,
-    });
-    const secondBlockFull = generateTxnArray({
-      length: 6000,
-      fixture: txnFixture2,
-    });
-    const firstResult = firstBlock.concat(secondBlockPartial);
-    const secondResult = secondBlockFull;
+    const firstResult = [...newestBlockTxns, ...oldestBlockTxns];
 
-    fetchTransactions
-      .mockImplementationOnce(async () => {
-        return firstResult;
-      })
-      .mockImplementationOnce(async () => {
-        return secondResult;
-      });
-
-    const result = await getTransactions(options);
-    expect(result).toStrictEqual(firstBlock.concat(secondBlockFull));
-    expect(fetchTransactions).toHaveBeenCalledTimes(2);
-    expect(fetchTransactions).toHaveBeenLastCalledWith({
-      ...options,
-      startBlock: Number(txnFixture2.blockNumber),
+    fetchTransactions.mockImplementationOnce(async () => {
+      return firstResult;
     });
-    expect(result.length).toBe(11000);
+
+    const { transactions, done } = await getAddressTransactions(options);
+    expect(transactions).toStrictEqual([...newestBlockTxns]);
+    expect(fetchTransactions).toHaveBeenCalledTimes(1);
+    expect(transactions.length).toBe(5000);
+    expect(done).toBe(false);
   });
 });

@@ -57,4 +57,6 @@ export interface AddressEmissionsResult {
   transactionsCount: number;
   /** Total sum of Gas Used for all transactions */
   gasUsed: number;
+  /** False means the 10k limit was hit, so only the most recent 10k transactions were analyzed. */
+  done: boolean;
 }

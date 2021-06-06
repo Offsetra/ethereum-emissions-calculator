@@ -2,7 +2,7 @@ import { AddressEmissionsResult, CalculatorOptions } from "./types";
 import { filterValidOutgoingTransactions } from "./utils/filterValidOutgoingTransactions";
 import { filterValidTransactions } from "./utils/filterValidTransactions";
 import { getSumGasUsed } from "./utils/getSumGasUsed";
-import { getTransactions } from "./utils/getTransactions";
+import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
 
 /**
@@ -18,17 +18,18 @@ export const calculateAddressEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
   validateCalculatorOptions(options);
-  const transactions = await getTransactions(options);
-  const filteredTransactions = filterValidOutgoingTransactions(
+  const { transactions, done } = await getAddressTransactions(options);
+  const filteredTxns = filterValidOutgoingTransactions(
     transactions,
     options.address
   );
-  const totalGasUsed = getSumGasUsed(filteredTransactions);
+  const gasUsed = getSumGasUsed(filteredTxns);
   return {
     transactionType: options.transactionType,
-    kgCO2: Math.round(totalGasUsed * KG_CO2_PER_GAS),
-    transactionsCount: filteredTransactions.length,
-    gasUsed: totalGasUsed,
+    kgCO2: Math.round(gasUsed * KG_CO2_PER_GAS),
+    transactionsCount: filteredTxns.length,
+    gasUsed,
+    done,
   };
 };
 
@@ -39,13 +40,14 @@ export const calculateContractEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
   validateCalculatorOptions(options);
-  const transactions = await getTransactions(options);
+  const { transactions, done } = await getAddressTransactions(options);
   const filteredTransactions = filterValidTransactions(transactions);
-  const totalGasUsed = getSumGasUsed(filteredTransactions);
+  const gasUsed = getSumGasUsed(filteredTransactions);
   return {
     transactionType: options.transactionType,
-    kgCO2: Math.round(totalGasUsed * KG_CO2_PER_GAS),
+    kgCO2: Math.round(gasUsed * KG_CO2_PER_GAS),
     transactionsCount: filteredTransactions.length,
-    gasUsed: totalGasUsed,
+    gasUsed,
+    done,
   };
 };
