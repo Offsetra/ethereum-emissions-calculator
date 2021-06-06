@@ -31,6 +31,10 @@ export const calculateAddressEmissions = async (
     kgCO2: Math.round(gasUsed * KG_CO2_PER_GAS),
     transactionsCount: filteredTxns.length,
     gasUsed,
+    highestBlockNumber: Number(transactions[0].blockNumber),
+    lowestBlockNumber: Number(
+      transactions[transactions.length - 1].blockNumber
+    ),
     done,
   };
 };
@@ -50,6 +54,10 @@ export const calculateContractEmissions = async (
     kgCO2: Math.round(gasUsed * KG_CO2_PER_GAS),
     transactionsCount: filteredTransactions.length,
     gasUsed,
+    highestBlockNumber: Number(transactions[0].blockNumber),
+    lowestBlockNumber: Number(
+      transactions[transactions.length - 1].blockNumber
+    ),
     done,
   };
 };

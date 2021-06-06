@@ -59,4 +59,8 @@ export interface AddressEmissionsResult {
   gasUsed: number;
   /** False means the 10k limit was hit, so only the most recent 10k transactions were analyzed. */
   done: boolean;
+  /** The block number of the most recent transaction found in the query */
+  highestBlockNumber: number;
+  /** The block number of the oldest transaction found in the query  */
+  lowestBlockNumber: number;
 }
