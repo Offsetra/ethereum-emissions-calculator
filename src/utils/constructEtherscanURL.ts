@@ -25,7 +25,7 @@ export const constructEtherscanURL = (options: CalculatorOptions) => {
   const params: EtherscanParams = {
     action,
     module: "account",
-    sort: "asc",
+    sort: "desc",
     address: address,
     startBlock: startBlock?.toString() ?? "0",
     endBlock: endBlock?.toString() ?? "99999999",
