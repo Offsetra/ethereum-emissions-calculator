@@ -1,12 +1,10 @@
 # Ethereum Carbon Emissions Calculator
 
 Made with ♥ by [Offsetra.com](https://offsetra.com/about) for [carbon.fyi](https://carbon.fyi).
-
-License: MIT.
-
-Please cite Offsetra if you use this in your project, we really appreciate it! 🙏
-
 Questions, comments, forks and PRs all very much appreciated!
+
+License: **NON-COMMERCIAL USE ONLY**. Creative Commons BY-NC-SA.
+To request a commercial-use license contact support@offsetra.com.
 
 ## Summary
 
@@ -45,13 +43,23 @@ const emissions = await calculateAddressEmissions({
   etherscanAPIKey,
 });
 
-console.log(emissions);
-// {
-//   transactionType: "eth",
-//   kgCO2: 12345,
-//   transactionsCount: 69,
-//   gasUsed: 420,
-// }
+// returns:
+export interface AddressEmissionsResult {
+  /** The transaction type which was queried. */
+  transactionType: CalculatorOptions["transactionType"];
+  /** The total carbon footprint for all transactions of the provided type, sent from the provided address. In Kilograms of CO2e */
+  kgCO2: number;
+  /** The total number of transactions included for this query. */
+  transactionsCount: number;
+  /** Total sum of Gas Used for all transactions */
+  gasUsed: number;
+  /** False means the 10k limit was hit, so only the most recent 10k transactions were analyzed. */
+  done: boolean;
+  /** The block number of the most recent transaction found in the query */
+  highestBlockNumber: number;
+  /** The block number of the oldest transaction found in the query  */
+  lowestBlockNumber: number;
+}
 ```
 
 ### calculateContractEmissions
@@ -59,28 +67,12 @@ console.log(emissions);
 The only difference between this method and `calculateAddressEmissions`, is that this method will also calculate and add emissions from _incoming_ transactions.
 We have included this method at the request of platforms who are interested in calculating the collective impact of their contract, however for most cases we think `calculateAddressEmissions` makes more sense (to avoid double-counting the same emissions-- sender takes responsibility!)
 
-```typescript
-import { calculateContractEmissions } from "ethereum-emissions-calculator";
-import { address, etherscanAPIKey } from "data";
+## Caveats & Breaking Changes
 
-const emissions = await calculateContractEmissions({
-  transactionType: "eth", // "eth" | "erc20" | "erc721"
-  address, // 0x12345[...]
-  etherscanAPIKey,
-});
-
-console.log(emissions);
-// {
-//   transactionType: "eth",
-//   kgCO2: 12345,
-//   transactionsCount: 69,
-//   gasUsed: 420,
-// }
-```
+As of version 2.0 and greater, each invocation of `calculateAddressEmissions()` or `calculateAddressEmissions()` will return a **maximum of 10k transactions**.
+Before version 2.0, the calculator attempted to recursively fetch the remaining transactions until the entire history had been retrieved. This caused problems with huge addresses or lower-memory devices. It is now up to the developer to re-fetch the remaining transactions (the calculator now returns the `highestBlockNumber` and `lowestBlockNumber` to help you find the next chunk).
 
 ## Methodology
 
 The total emissions are derived from the amount of `gas` used for each transaction.
 See https://carbon.fyi/learn for a brief intro and link to more in-depth explainers.
-
-We would like to integrate the actuall carbon accounting methodology and hash-rate calculations into this repository at some point in the near future. Let us know if you'd like to put in a PR to help us along!
