@@ -9,9 +9,9 @@ export type { CalculatorOptions, AddressEmissionsResult };
 
 /**
  * Based on 2021 methodology, see github and carbon.fyi for details.
- * Last updated: Mar. 7, 2021
+ * Last updated: June 24, 2021
  */
-const KG_CO2_PER_GAS = 0.0002873993139;
+const KG_CO2_PER_GAS = 0.0001809589427;
 
 /**
  * Calculate emissions of an address. Emissions are allocated for SENT (outgoing) transactions only.
