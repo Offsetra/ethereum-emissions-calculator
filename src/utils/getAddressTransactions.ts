@@ -9,7 +9,7 @@ const ETHERSCAN_RESULT_MAX_LENGTH = 10000;
  * i.e. this will return ALL transactions in that block, or none, but never partial.
  */
 export const getAddressTransactions = async (
-  options: CalculatorOptions
+  options: CalculatorOptions & { isContract?: boolean }
 ): Promise<{ transactions: TransactionData[]; done: boolean }> => {
   const transactions = await fetchTransactions(options);
   if (transactions.length < ETHERSCAN_RESULT_MAX_LENGTH) {

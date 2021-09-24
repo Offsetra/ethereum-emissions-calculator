@@ -7,7 +7,7 @@ import { constructEtherscanURL } from "./constructEtherscanURL";
 import { fetchJSON } from "./fetchJSON";
 
 export const fetchTransactions = async (
-  options: CalculatorOptions
+  options: CalculatorOptions & { isContract?: boolean }
 ): Promise<TransactionData[]> => {
   const response = await fetchJSON<EtherscanResponse>(
     constructEtherscanURL(options)

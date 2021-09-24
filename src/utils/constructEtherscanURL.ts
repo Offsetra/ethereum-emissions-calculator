@@ -4,6 +4,7 @@ export const ETHERSCAN_API_URL = "https://api.etherscan.io/api";
 
 type ValidEtherscanParam =
   | "address"
+  | "contractaddress"
   | "startBlock"
   | "endBlock"
   | "apikey"
@@ -14,19 +15,26 @@ type EtherscanParams = {
   [P in ValidEtherscanParam]: string;
 };
 
-export const constructEtherscanURL = (options: CalculatorOptions) => {
-  const { address, etherscanAPIKey, startBlock, endBlock } = options;
+export const constructEtherscanURL = (
+  options: CalculatorOptions & { isContract?: boolean }
+) => {
+  const {
+    address,
+    etherscanAPIKey,
+    startBlock,
+    endBlock,
+    isContract,
+  } = options;
   const etherscanURL = new URL(ETHERSCAN_API_URL);
   const action = {
     eth: "txlist",
     erc20: "tokentx",
     erc721: "tokennfttx",
   }[options.transactionType];
-  const params: EtherscanParams = {
+  const params: Partial<EtherscanParams> = {
     action,
     module: "account",
     sort: "desc",
-    address: address,
     startBlock: startBlock?.toString() ?? "0",
     endBlock: endBlock?.toString() ?? "99999999",
     apikey: etherscanAPIKey,
@@ -34,8 +42,13 @@ export const constructEtherscanURL = (options: CalculatorOptions) => {
   for (const property in params) {
     etherscanURL.searchParams.append(
       property,
-      params[property as ValidEtherscanParam]
+      params[property as ValidEtherscanParam]!
     );
+  }
+  if (action !== "txlist" && isContract) {
+    etherscanURL.searchParams.append("contractaddress", address);
+  } else {
+    etherscanURL.searchParams.append("address", address);
   }
   return etherscanURL.toString();
 };

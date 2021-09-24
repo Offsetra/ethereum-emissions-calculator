@@ -46,7 +46,10 @@ export const calculateContractEmissions = async (
   options: CalculatorOptions
 ): Promise<AddressEmissionsResult> => {
   validateCalculatorOptions(options);
-  const { transactions, done } = await getAddressTransactions(options);
+  const { transactions, done } = await getAddressTransactions({
+    ...options,
+    isContract: true,
+  });
   const filteredTransactions = filterValidTransactions(transactions);
   const gasUsed = getSumGasUsed(filteredTransactions);
   return {
