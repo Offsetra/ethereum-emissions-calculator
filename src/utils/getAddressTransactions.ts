@@ -6,7 +6,7 @@ const ETHERSCAN_RESULT_MAX_LENGTH = 10000;
 /**
  * Fetch the most recent transactions, descending order (highest block # first)
  * Etherscan will return max 10k, so if we exceed this, we filter out the lowest block number (oldest)
- * i.e. this will return ALL transactions in that block, or none, but never partial.
+ * i.e. this will return ALL transactions in a given block, or none.
  */
 export const getAddressTransactions = async (
   options: CalculatorOptions & { isContract?: boolean }

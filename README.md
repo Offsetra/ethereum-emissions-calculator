@@ -30,7 +30,7 @@ The calculator exports two methods:
 
 `calculateAddressEmissions` will only allocate emissions for outgoing (sent) transactions.
 
-Provide an `address` and a `transactionType`, and the calculator will tell you how many emissions this represents in KG CO2e.
+Provide an `address`, and the calculator will tell you how many emissions this represents in KG CO2e.
 To calculate the sum total emissions for an address, you must combine the sum of `eth`, `erc20`, and `erc721` emissions.
 
 ```typescript
@@ -38,15 +38,12 @@ import { calculateAddressEmissions } from "ethereum-emissions-calculator";
 import { address, etherscanAPIKey } from "data";
 
 const emissions = await calculateAddressEmissions({
-  transactionType: "eth", // "eth" | "erc20" | "erc721"
   address, // 0x12345[...]
   etherscanAPIKey,
 });
 
 // returns:
 export interface AddressEmissionsResult {
-  /** The transaction type which was queried. */
-  transactionType: CalculatorOptions["transactionType"];
   /** The total carbon footprint for all transactions of the provided type, sent from the provided address. In Kilograms of CO2e */
   kgCO2: number;
   /** The total number of transactions included for this query. */

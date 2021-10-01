@@ -38,7 +38,6 @@ describe("getAddressTransactions", () => {
     const options: CalculatorOptions = {
       address,
       etherscanAPIKey,
-      transactionType: "eth",
     };
     const expected = generateTxnArray({ length: 1, fixture: txnFixture1 });
     fetchTransactions.mockImplementationOnce(async () => {
@@ -54,7 +53,6 @@ describe("getAddressTransactions", () => {
     const options: CalculatorOptions = {
       address,
       etherscanAPIKey,
-      transactionType: "eth",
     };
     const expected = generateTxnArray({ length: 9999, fixture: txnFixture1 });
     fetchTransactions.mockImplementationOnce(async () => {
@@ -70,7 +68,6 @@ describe("getAddressTransactions", () => {
     const options: CalculatorOptions = {
       address,
       etherscanAPIKey,
-      transactionType: "eth",
     };
     const newestBlockTxns = generateTxnArray({
       length: 5000,

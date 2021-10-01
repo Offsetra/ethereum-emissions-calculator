@@ -26,11 +26,7 @@ export const constructEtherscanURL = (
     isContract,
   } = options;
   const etherscanURL = new URL(ETHERSCAN_API_URL);
-  const action = {
-    eth: "txlist",
-    erc20: "tokentx",
-    erc721: "tokennfttx",
-  }[options.transactionType];
+  const action = "txlist";
   const params: Partial<EtherscanParams> = {
     action,
     module: "account",

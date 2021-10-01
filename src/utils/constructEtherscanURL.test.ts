@@ -10,7 +10,6 @@ describe("constructEtherscanURL", () => {
     const options: CalculatorOptions = {
       address: SENDER,
       etherscanAPIKey: "test-api-key",
-      transactionType: "eth",
     };
     const url = constructEtherscanURL(options);
     expect(url).toContain("action=txlist");
@@ -23,41 +22,21 @@ describe("constructEtherscanURL", () => {
     expect(url).not.toContain("contractaddress");
     expect(url).toStrictEqual(valid);
   });
-  test("supports eth, erc20, erc721", () => {
+  test("supports eth", () => {
     const options: CalculatorOptions = {
       address: SENDER,
       etherscanAPIKey: "test-api-key",
-      transactionType: "eth",
     };
     expect(constructEtherscanURL(options)).toContain("action=txlist");
     expect(constructEtherscanURL(options)).not.toContain("contractaddress");
-    expect(
-      constructEtherscanURL({ ...options, transactionType: "erc20" })
-    ).toContain("action=tokentx");
-    expect(
-      constructEtherscanURL({ ...options, transactionType: "erc721" })
-    ).toContain("action=tokennfttx");
   });
   test("uses contractaddress param", () => {
-    const options: CalculatorOptions & { isContract?: boolean } = {
+    const options: CalculatorOptions = {
       address: SENDER,
       etherscanAPIKey: "test-api-key",
-      transactionType: "eth",
       isContract: true,
     };
     expect(constructEtherscanURL(options)).toContain("action=txlist");
     expect(constructEtherscanURL(options)).not.toContain("contractaddress");
-    expect(
-      constructEtherscanURL({ ...options, transactionType: "erc20" })
-    ).toContain("action=tokentx");
-    expect(
-      constructEtherscanURL({ ...options, transactionType: "erc20" })
-    ).toContain("contractaddress");
-    expect(
-      constructEtherscanURL({ ...options, transactionType: "erc721" })
-    ).toContain("action=tokennfttx");
-    expect(
-      constructEtherscanURL({ ...options, transactionType: "erc721" })
-    ).toContain("contractaddress");
   });
 });

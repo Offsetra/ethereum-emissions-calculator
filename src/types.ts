@@ -34,14 +34,12 @@ export interface EtherscanResponse {
 }
 
 export interface CalculatorOptions {
-  /** The type of transactions you wish to query.
-   * The total wallet emissions is equal to the sum of all three queries.
-   * Must query separately due to Etherscan.io API limitations */
-  transactionType: "eth" | "erc20" | "erc721";
   /** Eth address for which you would like to calculate the CO2 emissions */
   address: string;
   /** Your Etherscan.io API Key */
   etherscanAPIKey: string;
+  /** Optional. Whether the provided address is a smart contract. */
+  isContract?: boolean;
   /** Optional. Query a specific range of blocks by providing a start block number. Default 0. */
   startBlock?: number;
   /** Optional. Query a specific range of blocks by providing an end block number. Default 99999999 (most recent block available). */
@@ -49,8 +47,6 @@ export interface CalculatorOptions {
 }
 
 export interface AddressEmissionsResult {
-  /** The transaction type which was queried. */
-  transactionType: CalculatorOptions["transactionType"];
   /** The total carbon footprint for all transactions of the provided type, sent from the provided address. In Kilograms of CO2e */
   kgCO2: number;
   /** The total number of transactions included for this query. */
