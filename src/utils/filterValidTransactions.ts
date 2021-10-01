@@ -16,7 +16,6 @@ export const filterValidTransactions = (params: Params): TransactionData[] => {
     if (
       (params.isContract || // contracts include incoming
         txn.from.toLowerCase() === params.address.toLowerCase()) && // normal address only include outgoing
-      txn.isError !== "1" &&
       prev[prev.length - 1]?.hash !== txn.hash
     ) {
       return prev.concat([txn]);

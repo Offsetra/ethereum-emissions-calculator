@@ -22,7 +22,7 @@ describe("filterValidTransactions", () => {
       })
     ).toStrictEqual([]);
   });
-  test("remove txn if isError is 1", () => {
+  test("do not remove error transactions", () => {
     const transactions = [
       {
         to: RECIEVER,
@@ -34,6 +34,7 @@ describe("filterValidTransactions", () => {
         to: RECIEVER,
         from: SENDER,
         hash: getRandomHash(),
+        isError: "0",
       },
     ] as TransactionData[];
     expect(
@@ -42,7 +43,7 @@ describe("filterValidTransactions", () => {
         isContract: false,
         address: SENDER,
       })
-    ).toHaveLength(1);
+    ).toHaveLength(2);
   });
   test("Do not remove txn if isError is 0 or undefined", () => {
     const transactions = [
@@ -141,7 +142,7 @@ describe("filterValidTransactions - isContract: true", () => {
       })
     ).toStrictEqual([]);
   });
-  test("remove txn if isError is 1", () => {
+  test("do not remove txn if isError is 1", () => {
     const transactions = [
       {
         to: RECIEVER,
@@ -161,7 +162,7 @@ describe("filterValidTransactions - isContract: true", () => {
         address: SENDER,
         isContract: true,
       })
-    ).toHaveLength(1);
+    ).toHaveLength(2);
   });
   test("Do not remove txn if isError is 0 or undefined", () => {
     const transactions = [
