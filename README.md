@@ -8,3 +8,10 @@ To request a commercial-use license contact support@offsetra.com.
 
 The total emissions are derived from the amount of `gas` used for each transaction.
 See https://carbon.fyi/learn
+
+The emission table needs periodic updating to track the most recent chain usage. Download .csv gas used data from https://etherscan.io/chart/gasused and hashrate data from https://etherscan.io/chart/hashrate
+To generate up-to-date emission data run:
+```
+ts-node src/data/generateEmissionsTable.js
+```
+
