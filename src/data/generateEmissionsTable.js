@@ -53,21 +53,25 @@ const fetchValuesUsingBlockRange = async (blockResolution) => {
         //Find index of closest csv data point
         let index = gasUsedArray.findIndex(x => x.UnixTimeStamp === closest)
 
-        //Loop through data and push values to subarrays then main arrays
-        let gasSubArray = []
-        let hashrateSubArray = []
+        //If statement to prevent empty arrays being added
+        if (previousIndex !== index) {
+            //Loop through data and push values to subarrays then main arrays
+            let gasSubArray = []
+            let hashrateSubArray = []
 
-        //Batch values into subarrays 
-        for (let j=previousIndex; j<index; j++){
-            gasSubArray.push(gasUsed[j].Value)
-            hashrateSubArray.push(hashrate[j].Value)
+            //Batch values into subarrays 
+            for (let j=previousIndex; j<index; j++){
+                gasSubArray.push(gasUsed[j].Value)
+                hashrateSubArray.push(hashrate[j].Value)
+            }
+
+            //Push subarrays into main arrays
+            timestamps.push(gasUsed[index].UnixTimeStamp)
+            gasArray.push(gasSubArray)
+            hashrateArray.push(hashrateSubArray)
         }
+        
         previousIndex = index
-
-        //Push subarrays into main arrays
-        timestamps.push(gasUsed[index].UnixTimeStamp)
-        gasArray.push(gasSubArray)
-        hashrateArray.push(hashrateSubArray)
         count++
 
     }
@@ -91,8 +95,8 @@ const fetchValuesUsingDayRange = async (dayResolution) => {
         gasSubArray.push(gasUsed[i].Value)
         hashrateSubArray.push(hashrate[i].Value)
 
-        if (i%dayResolution === 0) {
-            //Upon end of data range, push data to main arrays
+        //Upon end of data range, push data to main arrays, skip first value (i>0)
+        if (i%dayResolution === 0 && i>0) {
             gasArray.push(gasSubArray)
             hashrateArray.push(hashrateSubArray)
             timestamps.push(gasUsed[i].UnixTimeStamp)
@@ -101,6 +105,7 @@ const fetchValuesUsingDayRange = async (dayResolution) => {
             gasSubArray = []
             hashrateSubArray = []
         }
+        
     }
     return [timestamps, gasArray, hashrateArray]
 }
