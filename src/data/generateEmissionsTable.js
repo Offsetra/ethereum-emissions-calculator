@@ -129,6 +129,21 @@ const fetchBlockOrDayValues = async (blockOrDay, resolution) => {
     return result
 }
 
+const checkAverageEmissionFactor = (emissionArray) => {
+    const hardcodedEmissionFactor = 0.0001809589427;
+
+    let cumulativeEmissionFactor = 0
+
+    for (let i=0; i<emissionArray.length; i++) {
+        cumulativeEmissionFactor += emissionArray[i].emissionFactor
+    }
+
+    const averageEmissionFactor = cumulativeEmissionFactor/emissionArray.length
+
+    console.log("HARD-CODED EMISSION FACTOR = ", hardcodedEmissionFactor)
+    console.log("AVERAGE EMISSION FACTOR = ", averageEmissionFactor)
+}
+
 const generateEmissionsJSON = async (blockOrDay, resolution) => {
     //Fetch timestamps, gas data and hashrate data for relevant data ranges
     const result = await fetchBlockOrDayValues(blockOrDay, resolution)
@@ -165,13 +180,14 @@ const generateEmissionsJSON = async (blockOrDay, resolution) => {
         //Calculate emissions per gas for the previous data range
         const terahashesPerGas = (cumulativeTerahashes / cumulativeGasUsed)/gasUsedArray[i].length;
         const emissionsPerTerahash = kwhPerTerahash * emissionsPerKwh;
-        const emissionsPerGas = emissionsPerTerahash * terahashesPerGas;
+        const emissionsPerGasTons = emissionsPerTerahash * terahashesPerGas;
+        const emissionsPerGasKg = emissionsPerGasTons*1000;
 
         //Push data to array using JSON structure
-        emissionArray.push(new emissionData(timestamps[i], emissionsPerGas))
+        emissionArray.push(new emissionData(timestamps[i], emissionsPerGasKg))
     }
 
-    console.log(emissionArray)
+    checkAverageEmissionFactor(emissionArray)
 
     //Stringify results prior to saving as JSON
     const data = JSON.stringify(emissionArray)
@@ -185,5 +201,5 @@ const generateEmissionsJSON = async (blockOrDay, resolution) => {
     })
 }
 
-//generateEmissionsJSON('block', 200000)
-generateEmissionsJSON('day', 30)
+generateEmissionsJSON('block', 100000)
+//generateEmissionsJSON('day', 30)
