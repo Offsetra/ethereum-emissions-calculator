@@ -3,6 +3,7 @@ import { filterValidTransactions } from "./utils/filterValidTransactions";
 import { getSumGasUsed } from "./utils/getSumGasUsed";
 import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
+import { getTransactionEmissions } from "./utils/getTransactionEmissions";
 
 export type { CalculatorOptions, AddressEmissionsResult };
 
@@ -11,7 +12,6 @@ export type { CalculatorOptions, AddressEmissionsResult };
  * Last updated: June 24, 2021
  */
 const KG_CO2_PER_GAS = 0.0001809589427;
-console.log(KG_CO2_PER_GAS)
 
 export const calculateEmissions = async (
   options: CalculatorOptions
@@ -24,10 +24,13 @@ export const calculateEmissions = async (
     transactions,
     address,
   });
+
+  const totalEmissions = getTransactionEmissions(filteredTransactions);
+
   const gasUsed = getSumGasUsed(filteredTransactions);
 
   return {
-    kgCO2: Math.round(gasUsed * KG_CO2_PER_GAS),
+    kgCO2: Math.round(totalEmissions),
     transactionsCount: filteredTransactions.length,
     gasUsed,
     highestBlockNumber: Number(transactions[0]?.blockNumber ?? "0"),
