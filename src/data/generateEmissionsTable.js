@@ -6,8 +6,8 @@ import fs from 'fs'
 import Web3 from 'web3';
 import fetch from 'node-fetch';
 
-const web3 = new Web3("https://mainnet.infura.io/v3/2fdfb8d8e0db4f3090bec00d7a97157b"); //REMOVE PROVIDER
-const ETHERSCAN_API_KEY  = '4FH13Z3MUQTMNGACU13J4TI6DQIZAGWIZU'
+const web3 = new Web3("infura_id"); //REMOVE PROVIDER
+const ETHERSCAN_API_KEY  = 'api_key'
 
 //Download most recent files from Etherscan
 //Convert to JSON
