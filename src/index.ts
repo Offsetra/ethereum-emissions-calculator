@@ -4,6 +4,7 @@ import { getSumGasUsed } from "./utils/getSumGasUsed";
 import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
 import { getTransactionEmissions } from "./utils/getTransactionEmissions";
+import emissionFactorTable from './../emissionFactorTable.json'
 
 export type { CalculatorOptions, AddressEmissionsResult };
 
@@ -25,7 +26,9 @@ export const calculateEmissions = async (
     address,
   });
 
-  const totalEmissions = getTransactionEmissions(filteredTransactions);
+  const totalEmissions = getTransactionEmissions(filteredTransactions, emissionFactorTable);
+  console.log(filteredTransactions)
+  console.log(totalEmissions)
 
   const gasUsed = getSumGasUsed(filteredTransactions);
 

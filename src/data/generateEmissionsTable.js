@@ -161,6 +161,8 @@ const generateEmissionDataFromIndexArray = async (blockOrDay, blockResolution) =
     //Fetch index data for specified data resolution
     const indexArray = await fetchBlockOrDayIndexArray(blockOrDay, blockResolution)
 
+    console.log(gasUsed[-1]['Date(UTC)'])
+
     let valueArray = new Array()
 
     //Set up time and block arrays
@@ -244,5 +246,5 @@ const saveToJSON = (emissionArray) => {
     })
 }
 
-//generateEmissionDataFromIndexArray('block', 100000)
-generateEmissionDataFromIndexArray('day', 30)
+generateEmissionDataFromIndexArray('block', 100000)
+//generateEmissionDataFromIndexArray('day', 30)

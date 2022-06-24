@@ -60,3 +60,9 @@ export interface AddressEmissionsResult {
   /** The block number of the oldest transaction found in the query  */
   lowestBlockNumber: number;
 }
+
+export interface EmissionFactors {
+  UNIXTime: number;
+  blockNumber: number;
+  emissionFactor: number;
+}
