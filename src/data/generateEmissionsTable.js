@@ -1,7 +1,3 @@
-//const fs = require('fs');
-//const https = require('https');
-//const Web3 = require('web3');
-
 import fs from 'fs'
 import Web3 from 'web3';
 import fetch from 'node-fetch';
