@@ -4,7 +4,7 @@ import { getSumGasUsed } from "./utils/getSumGasUsed";
 import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
 import { getTransactionEmissions } from "./utils/getTransactionEmissions";
-import emissionFactorTable from './../emissionFactorTable.json'
+import emissionFactorTable from './../emissionFactorTable.json';
 
 export type { CalculatorOptions, AddressEmissionsResult };
 

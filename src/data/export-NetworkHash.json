@@ -12458,5 +12458,320 @@
    "Date(UTC)": "5/25/2022",
    "UnixTimeStamp": 1653436800,
    "Value": 1088967.6465
+ },
+ {
+   "Date(UTC)": "5/26/2022",
+   "UnixTimeStamp": 1653523200,
+   "Value": 1064456.5534
+ },
+ {
+   "Date(UTC)": "5/27/2022",
+   "UnixTimeStamp": 1653609600,
+   "Value": 1103868.8972
+ },
+ {
+   "Date(UTC)": "5/28/2022",
+   "UnixTimeStamp": 1653696000,
+   "Value": 1071542.2787
+ },
+ {
+   "Date(UTC)": "5/29/2022",
+   "UnixTimeStamp": 1653782400,
+   "Value": 1088665.6171
+ },
+ {
+   "Date(UTC)": "5/30/2022",
+   "UnixTimeStamp": 1653868800,
+   "Value": 1076536.8257
+ },
+ {
+   "Date(UTC)": "5/31/2022",
+   "UnixTimeStamp": 1653955200,
+   "Value": 1084741.261
+ },
+ {
+   "Date(UTC)": "6/1/2022",
+   "UnixTimeStamp": 1654041600,
+   "Value": 1063426.7473
+ },
+ {
+   "Date(UTC)": "6/2/2022",
+   "UnixTimeStamp": 1654128000,
+   "Value": 1075216.2913
+ },
+ {
+   "Date(UTC)": "6/3/2022",
+   "UnixTimeStamp": 1654214400,
+   "Value": 1081027.8931
+ },
+ {
+   "Date(UTC)": "6/4/2022",
+   "UnixTimeStamp": 1654300800,
+   "Value": 1080736.5454
+ },
+ {
+   "Date(UTC)": "6/5/2022",
+   "UnixTimeStamp": 1654387200,
+   "Value": 1067953.5223
+ },
+ {
+   "Date(UTC)": "6/6/2022",
+   "UnixTimeStamp": 1654473600,
+   "Value": 1039130.8261
+ },
+ {
+   "Date(UTC)": "6/7/2022",
+   "UnixTimeStamp": 1654560000,
+   "Value": 1069444.8123
+ },
+ {
+   "Date(UTC)": "6/8/2022",
+   "UnixTimeStamp": 1654646400,
+   "Value": 1078056.2869
+ },
+ {
+   "Date(UTC)": "6/9/2022",
+   "UnixTimeStamp": 1654732800,
+   "Value": 1051589.8365
+ },
+ {
+   "Date(UTC)": "6/10/2022",
+   "UnixTimeStamp": 1654819200,
+   "Value": 1059067.3095
+ },
+ {
+   "Date(UTC)": "6/11/2022",
+   "UnixTimeStamp": 1654905600,
+   "Value": 1062623.8895
+ },
+ {
+   "Date(UTC)": "6/12/2022",
+   "UnixTimeStamp": 1654992000,
+   "Value": 1060942.6495
+ },
+ {
+   "Date(UTC)": "6/13/2022",
+   "UnixTimeStamp": 1655078400,
+   "Value": 1042559.2551
+ },
+ {
+   "Date(UTC)": "6/14/2022",
+   "UnixTimeStamp": 1655164800,
+   "Value": 1007032.974
+ },
+ {
+   "Date(UTC)": "6/15/2022",
+   "UnixTimeStamp": 1655251200,
+   "Value": 961544.4888
+ },
+ {
+   "Date(UTC)": "6/16/2022",
+   "UnixTimeStamp": 1655337600,
+   "Value": 976860.627
+ },
+ {
+   "Date(UTC)": "6/17/2022",
+   "UnixTimeStamp": 1655424000,
+   "Value": 990357.0991
+ },
+ {
+   "Date(UTC)": "6/18/2022",
+   "UnixTimeStamp": 1655510400,
+   "Value": 994032.0663
+ },
+ {
+   "Date(UTC)": "6/19/2022",
+   "UnixTimeStamp": 1655596800,
+   "Value": 948768.482
+ },
+ {
+   "Date(UTC)": "6/20/2022",
+   "UnixTimeStamp": 1655683200,
+   "Value": 951603.932
+ },
+ {
+   "Date(UTC)": "6/21/2022",
+   "UnixTimeStamp": 1655769600,
+   "Value": 951648.0126
+ },
+ {
+   "Date(UTC)": "6/22/2022",
+   "UnixTimeStamp": 1655856000,
+   "Value": 946250.5064
+ },
+ {
+   "Date(UTC)": "6/23/2022",
+   "UnixTimeStamp": 1655942400,
+   "Value": 925165.0995
+ },
+ {
+   "Date(UTC)": "6/24/2022",
+   "UnixTimeStamp": 1656028800,
+   "Value": 928664.2792
+ },
+ {
+   "Date(UTC)": "6/25/2022",
+   "UnixTimeStamp": 1656115200,
+   "Value": 951264.7294
+ },
+ {
+   "Date(UTC)": "6/26/2022",
+   "UnixTimeStamp": 1656201600,
+   "Value": 909572.1972
+ },
+ {
+   "Date(UTC)": "6/27/2022",
+   "UnixTimeStamp": 1656288000,
+   "Value": 943907.9322
+ },
+ {
+   "Date(UTC)": "6/28/2022",
+   "UnixTimeStamp": 1656374400,
+   "Value": 912596.1668
+ },
+ {
+   "Date(UTC)": "6/29/2022",
+   "UnixTimeStamp": 1656460800,
+   "Value": 914229.795
+ },
+ {
+   "Date(UTC)": "6/30/2022",
+   "UnixTimeStamp": 1656547200,
+   "Value": 907696.3864
+ },
+ {
+   "Date(UTC)": "7/1/2022",
+   "UnixTimeStamp": 1656633600,
+   "Value": 913699.6861
+ },
+ {
+   "Date(UTC)": "7/2/2022",
+   "UnixTimeStamp": 1656720000,
+   "Value": 910836.3933
+ },
+ {
+   "Date(UTC)": "7/3/2022",
+   "UnixTimeStamp": 1656806400,
+   "Value": 929281.8055
+ },
+ {
+   "Date(UTC)": "7/4/2022",
+   "UnixTimeStamp": 1656892800,
+   "Value": 916029.4626
+ },
+ {
+   "Date(UTC)": "7/5/2022",
+   "UnixTimeStamp": 1656979200,
+   "Value": 925866.8559
+ },
+ {
+   "Date(UTC)": "7/6/2022",
+   "UnixTimeStamp": 1657065600,
+   "Value": 915898.3569
+ },
+ {
+   "Date(UTC)": "7/7/2022",
+   "UnixTimeStamp": 1657152000,
+   "Value": 902152.6591
+ },
+ {
+   "Date(UTC)": "7/8/2022",
+   "UnixTimeStamp": 1657238400,
+   "Value": 933428.8784
+ },
+ {
+   "Date(UTC)": "7/9/2022",
+   "UnixTimeStamp": 1657324800,
+   "Value": 906382.5003
+ },
+ {
+   "Date(UTC)": "7/10/2022",
+   "UnixTimeStamp": 1657411200,
+   "Value": 929678.6187
+ },
+ {
+   "Date(UTC)": "7/11/2022",
+   "UnixTimeStamp": 1657497600,
+   "Value": 902473.6572
+ },
+ {
+   "Date(UTC)": "7/12/2022",
+   "UnixTimeStamp": 1657584000,
+   "Value": 932550.9544
+ },
+ {
+   "Date(UTC)": "7/13/2022",
+   "UnixTimeStamp": 1657670400,
+   "Value": 885912.125
+ },
+ {
+   "Date(UTC)": "7/14/2022",
+   "UnixTimeStamp": 1657756800,
+   "Value": 903941.997
+ },
+ {
+   "Date(UTC)": "7/15/2022",
+   "UnixTimeStamp": 1657843200,
+   "Value": 914778.4239
+ },
+ {
+   "Date(UTC)": "7/16/2022",
+   "UnixTimeStamp": 1657929600,
+   "Value": 925490.4229
+ },
+ {
+   "Date(UTC)": "7/17/2022",
+   "UnixTimeStamp": 1658016000,
+   "Value": 912465.5046
+ },
+ {
+   "Date(UTC)": "7/18/2022",
+   "UnixTimeStamp": 1658102400,
+   "Value": 927345.1384
+ },
+ {
+   "Date(UTC)": "7/19/2022",
+   "UnixTimeStamp": 1658188800,
+   "Value": 941796.1407
+ },
+ {
+   "Date(UTC)": "7/20/2022",
+   "UnixTimeStamp": 1658275200,
+   "Value": 929182.437
+ },
+ {
+   "Date(UTC)": "7/21/2022",
+   "UnixTimeStamp": 1658361600,
+   "Value": 922780.5079
+ },
+ {
+   "Date(UTC)": "7/22/2022",
+   "UnixTimeStamp": 1658448000,
+   "Value": 920281.7657
+ },
+ {
+   "Date(UTC)": "7/23/2022",
+   "UnixTimeStamp": 1658534400,
+   "Value": 959451.2137
+ },
+ {
+   "Date(UTC)": "7/24/2022",
+   "UnixTimeStamp": 1658620800,
+   "Value": 943248.4951
+ },
+ {
+   "Date(UTC)": "7/25/2022",
+   "UnixTimeStamp": 1658707200,
+   "Value": 917413.4802
+ },
+ {
+   "Date(UTC)": "7/26/2022",
+   "UnixTimeStamp": 1658793600,
+   "Value": 927845.3406
+ },
+ {
+   "Date(UTC)": "7/27/2022",
+   "UnixTimeStamp": 1658880000,
+   "Value": 929397.4788
  }
 ]

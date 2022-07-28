@@ -1,13 +1,8 @@
-//const fs = require('fs');
-//const https = require('https');
-//const Web3 = require('web3');
-
 import fs from 'fs'
 import Web3 from 'web3';
-import fetch from 'node-fetch';
 
-const web3 = new Web3("infura_id"); //REMOVE PROVIDER
-const ETHERSCAN_API_KEY  = 'api_key'
+const web3 = new Web3("https://mainnet.infura.io/v3/2d2c0dfce81d47a7944bc9a4a31bc2f6"); //REMOVE PROVIDER
+const ETHERSCAN_API_KEY  = 'UE1T8UCHFVI84KHHE92AT1MSNUYD88V8QG'
 
 //Download most recent files from Etherscan
 //Convert to JSON
@@ -161,7 +156,7 @@ const generateEmissionDataFromIndexArray = async (blockOrDay, blockResolution) =
     //Fetch index data for specified data resolution
     const indexArray = await fetchBlockOrDayIndexArray(blockOrDay, blockResolution)
 
-    console.log(gasUsed[-1]['Date(UTC)'])
+    //console.log(gasUsed[-1]['Date(UTC)'])
 
     let valueArray = new Array()
 
