@@ -4,8 +4,8 @@ import Web3 from 'web3';
 //Download most recent files from Etherscan
 //Convert to JSON
 //Save to data directory
-import gasUsed from './export-GasUsed.json' //https://etherscan.io/chart/gasused
-import hashrate from './export-NetworkHash.json' //https://etherscan.io/chart/hashrate
+import gasUsed from '../data/export-GasUsed.json' //https://etherscan.io/chart/gasused
+import hashrate from '../data/export-NetworkHash.json' //https://etherscan.io/chart/hashrate
 
 const web3 = new Web3("https://mainnet.infura.io/v3/2d2c0dfce81d47a7944bc9a4a31bc2f6"); //REMOVE PROVIDER
 const ETHERSCAN_API_KEY  = 'UE1T8UCHFVI84KHHE92AT1MSNUYD88V8QG'
@@ -71,7 +71,7 @@ export const findClosest = (goal:number, array:any[]) => {
 }
 
 export const fetchIndexesFromBlockResolution = async (blockResolution:number, currentBlock:number, gas:networkData[]) => {
-    
+    console.log("Generating index array at block resolution");
     //Need to arrayify data to identify which is closest
     const [gasUsedArray, timestampArray] = arrayifyCSVData(gas)
 
@@ -112,14 +112,13 @@ export const fetchIndexesFromBlockResolution = async (blockResolution:number, cu
     //Append final value from JSON
     const finalIndex = gasUsed.length - 1
     indexArray.push(new (blockData as any)(finalIndex, gasUsed[finalIndex].UnixTimeStamp, currentBlock))
-
-    console.log(indexArray)
+    console.log(indexArray);
     return indexArray
 }
 
 const fetchIndexesFromDayResolution = async (dayResolution:number, gas:networkData[]) => {
     let indexArray = []
-    
+    console.log("Generating index array at day resolution");
     //Loop through gas used data
     for (let i=0; i<gas.length; i++){
         //If we are at the start of the day range, push that index data to array
@@ -194,8 +193,6 @@ export const generateEmissionDataFromIndexArray = async (blockOrDay:string, bloc
 
     //Fetch index data for specified data resolution
     const indexArray = await fetchBlockOrDayIndexArray(blockOrDay, blockResolution, currentBlock, gas)
-
-    //console.log(gasUsed[-1]['Date(UTC)'])
 
     let valueArray = new Array()
 
@@ -276,7 +273,7 @@ const saveToJSON = (emissionArray:emissionDataType[]) => {
     const data = JSON.stringify(emissionArray)
 
     //Save emission data to JSON
-    fs.writeFile('emissionFactorTable.json', data, (err) => {
+    fs.writeFile('src/data/emissionFactorTable.json', data, (err) => {
         if (err) {
             throw err;
         }

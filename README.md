@@ -9,9 +9,11 @@ To request a commercial-use license contact support@offsetra.com.
 The total emissions are derived from the amount of `gas` used for each transaction.
 See https://carbon.fyi/learn
 
-The emission table needs periodic updating to track the most recent chain usage. Download .csv gas used data from https://etherscan.io/chart/gasused and hashrate data from https://etherscan.io/chart/hashrate
-To generate up-to-date emission data run:
-```
-node src/data/generateEmissionsTable.ts
-```
+## Developers
 
+The emission table needs periodic updating until Ethereum goes carbon neutral.
+Download .csv gas used data from https://etherscan.io/chart/gasused and hashrate data from https://etherscan.io/chart/hashrate
+
+To generate up-to-date emission data:
+1. Install Node v18 or higher
+1. `npm run update-emissions-data`
