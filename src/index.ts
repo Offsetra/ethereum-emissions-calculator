@@ -27,8 +27,6 @@ export const calculateEmissions = async (
   });
 
   const totalEmissions = getTransactionEmissions(filteredTransactions, emissionFactorTable);
-  console.log(filteredTransactions)
-  console.log(totalEmissions)
 
   const gasUsed = getSumGasUsed(filteredTransactions);
 
