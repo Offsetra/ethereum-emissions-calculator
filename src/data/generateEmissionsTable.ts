@@ -294,7 +294,7 @@ const saveToJSON = (emissionArray:emissionDataType[]) => {
     const data = JSON.stringify(emissionArray)
 
     //Save emission data to JSON
-    fs.writeFile('emissionFactorTable.json', data, (err) => {
+    fs.writeFile('./src/data/emissionFactorTable.json', data, (err) => {
         if (err) {
             throw err;
         }

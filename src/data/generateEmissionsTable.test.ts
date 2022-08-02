@@ -2,8 +2,6 @@ import {
     arrayifyCSVData,
     findClosest,
     fetchIndexesFromBlockResolution,
-    blockData,
-    blockDataType,
     fetchIndexesFromDayResolution,
     calculateEmissionFactor,
     generateEmissionDataFromIndexArray } from './generateEmissionsTable'
@@ -82,7 +80,7 @@ describe("findClosest", () => {
 //fetchIndexesFromBlockResolution
 
 describe("fetchIndexesFromBlockResolution", () => {
-    test("return data indexes from set gas data",async () => {
+    test("return data indexes from set gas data and block resolution",async () => {
         const indexArray = await fetchIndexesFromBlockResolution(1000000, 1000000, gasJSON)
 
         expect(indexArray).toEqual(
@@ -105,7 +103,7 @@ describe("fetchIndexesFromBlockResolution", () => {
 
 //fetchIndexesFromDayResolution
 describe("fetchIndexesFromDayResolution", () => {
-    test("return data indexes from set gas data",async () => {
+    test("return data indexes from set gas data and day resolution",async () => {
         const indexArray = await fetchIndexesFromDayResolution(1000000, gasJSON)
 
         expect(indexArray).toEqual(
@@ -134,6 +132,11 @@ describe("calculateEmissionFactor", () => {
         expect(emissionsPerGasKg).toEqual(0.006223185675252866)
     }) 
 })
+
+test('node version', () => {
+    // use the node version from your Jest run config:
+    expect(process.version).toEqual('v18.7.0'); 
+  });
 
 
 /*
