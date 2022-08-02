@@ -1,0 +1,147 @@
+import { 
+    arrayifyCSVData,
+    findClosest,
+    fetchIndexesFromBlockResolution,
+    blockData,
+    blockDataType,
+    fetchIndexesFromDayResolution,
+    calculateEmissionFactor,
+    generateEmissionDataFromIndexArray } from './generateEmissionsTable'
+
+const gasJSON = [
+    {
+        "Date(UTC)": "7/26/2022",
+        "UnixTimeStamp": 1658793600,
+        "Value": 98326539812
+      },
+      {
+        "Date(UTC)": "7/27/2022",
+        "UnixTimeStamp": 1658880000,
+        "Value": 99355794116
+      }
+    ]
+
+const hashrateJSON = [
+    {
+        "Date(UTC)": "7/26/2022",
+        "UnixTimeStamp": 1658793600,
+        "Value": 927845.3406
+      },
+      {
+        "Date(UTC)": "7/27/2022",
+        "UnixTimeStamp": 1658880000,
+        "Value": 929397.4788
+      }
+]
+
+const closestArray = [2, 42, 82, 122, 162, 202, 242, 282, 322, 362]
+const closestGoal = 100
+
+const indexArray = [
+    { index: 0, UNIXTime: 1584576000, blockNumber: 9700000 },
+    { index: 1, UNIXTime: 1585958400, blockNumber: 9800000 },
+    { index: 2, UNIXTime: 1587254400, blockNumber: 9900000 },
+]
+
+
+
+//arrayifyCSVData
+describe("arrayifyCSVData", () => {
+    test("returns gas and timestamp data in array format",async () => {
+        const result = await arrayifyCSVData(gasJSON)
+
+        expect(result).toStrictEqual(
+            [
+              [{
+                "Date(UTC)": "7/26/2022",
+                "UnixTimeStamp": 1658793600,
+                "Value": 98326539812
+              },
+              {
+                "Date(UTC)": "7/27/2022",
+                "UnixTimeStamp": 1658880000,
+                "Value": 99355794116
+              }],
+              [1658793600, 1658880000]
+            ]
+        )
+    })
+})
+
+//findClosest
+describe("findClosest", () => {
+    test("find the closest value to a specified goal in an array",async () => {
+        const closest = findClosest(closestGoal, closestArray)
+
+        expect(closest).toStrictEqual(
+            82
+        )
+    })
+})
+
+//fetchIndexesFromBlockResolution
+
+describe("fetchIndexesFromBlockResolution", () => {
+    test("return data indexes from set gas data",async () => {
+        const indexArray = await fetchIndexesFromBlockResolution(1000000, 1000000, gasJSON)
+
+        expect(indexArray).toEqual(
+            [
+                {
+                     UNIXTime: 1438214400,
+                     blockNumber: 0,
+                     index: 0,
+                   },
+                   {
+                     UNIXTime: 1658880000,
+                     blockNumber: 1000000,
+                     index: 2554,
+                   }
+            ]
+        )
+    })
+})
+
+
+//fetchIndexesFromDayResolution
+describe("fetchIndexesFromDayResolution", () => {
+    test("return data indexes from set gas data",async () => {
+        const indexArray = await fetchIndexesFromDayResolution(1000000, gasJSON)
+
+        expect(indexArray).toEqual(
+            [
+                {
+                     UNIXTime: 1438214400,
+                     blockNumber: 0,
+                     index: 0,
+                   },
+                   {
+                     UNIXTime: 1658880000,
+                     blockNumber: 1000000,
+                     index: 2554,
+                   }
+            ]
+        )
+    })
+})
+
+//calculateEmissionFactor
+describe("calculateEmissionFactor", () => {
+    test("calculate emission factor from set data", async () => {
+        const emissionsPerGasKg = await calculateEmissionFactor(indexArray, 1, gasJSON, hashrateJSON)
+
+
+        expect(emissionsPerGasKg).toEqual(0.006223185675252866)
+    }) 
+})
+
+
+/*
+describe("generateEmissionDataFromIndexArray", () => {
+    test("returns emission factor JSON",async () => {
+        const result = await generateEmissionDataFromIndexArray('block', 20000000, testJSON)
+
+        expect(result).toBeCloseTo(0.00018)
+    })
+})
+*/

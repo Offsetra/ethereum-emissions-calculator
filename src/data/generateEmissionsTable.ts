@@ -1,6 +1,8 @@
 import fs from 'fs'
 import Web3 from 'web3';
 
+//import fetch from 'node-fetch'
+
 //Download most recent files from Etherscan
 //Convert to JSON
 //Save to data directory
@@ -113,11 +115,10 @@ export const fetchIndexesFromBlockResolution = async (blockResolution:number, cu
     const finalIndex = gasUsed.length - 1
     indexArray.push(new (blockData as any)(finalIndex, gasUsed[finalIndex].UnixTimeStamp, currentBlock))
 
-    console.log(indexArray)
     return indexArray
 }
 
-const fetchIndexesFromDayResolution = async (dayResolution:number, gas:networkData[]) => {
+export const fetchIndexesFromDayResolution = async (dayResolution:number, gas:networkData[]) => {
     let indexArray = []
     
     //Loop through gas used data
@@ -130,19 +131,38 @@ const fetchIndexesFromDayResolution = async (dayResolution:number, gas:networkDa
                 UNIXTimestamp = 1438270000
             }
 
+            
             //Find block number from timestamp
             //Construct etherscan URL
             const etherscanURL = 'https://api.etherscan.io/api?module=block&action=getblocknobytime&timestamp=' + UNIXTimestamp + '&closest=before&apikey=' + ETHERSCAN_API_KEY
 
             //Fetch etherscan data
             //Unable to import fetchJSON function
-            const res = await fetch(etherscanURL);
-            if (!res.ok) {
-                const json = await res.json();
-                throw json;
-            }
-            const data = await res.json();
 
+            function testFunc() {
+                console.log("TEST")
+            }
+            async function fetchEtherscanData(url:string){
+                const res = await fetch(etherscanURL)
+            
+                if (!res.ok) {
+                    const json = await res.json();
+                    throw json;
+                }
+                const data = await res.json();
+                return data
+            }
+            
+            
+
+            let data = await fetchEtherscanData(etherscanURL)
+
+            //Avoid max API call rate
+            if (data.status === '0') {
+                data = await fetchEtherscanData(etherscanURL)
+            }
+
+            
             //Convert string to int
             const blockNumber = parseInt(data.result)
             
@@ -188,14 +208,12 @@ const fetchBlockOrDayIndexArray = async (blockOrDay:string, resolution:number, c
     return result
 }
 
-export const generateEmissionDataFromIndexArray = async (blockOrDay:string, blockResolution:number, gas:networkData[]) => {
+export const generateEmissionDataFromIndexArray = async (blockOrDay:string, blockResolution:number, gas:networkData[], hashrate:networkData[]) => {
     //Use Web3 to get the most recent block number
     const currentBlock = await getCurrentBlock()
 
     //Fetch index data for specified data resolution
     const indexArray = await fetchBlockOrDayIndexArray(blockOrDay, blockResolution, currentBlock, gas)
-
-    //console.log(gasUsed[-1]['Date(UTC)'])
 
     let valueArray = new Array()
 
@@ -211,7 +229,7 @@ export const generateEmissionDataFromIndexArray = async (blockOrDay:string, bloc
         blockArray.push(indexArray[i].blockNumber)
 
         //Calculate emission factor for each data range
-        const emissionFactor = await calculateEmissionFactor(indexArray, i)
+        const emissionFactor = await calculateEmissionFactor(indexArray, i, gas, hashrate)
 
         //Push emission data to array
         valueArray.push(new (emissionData as any)(indexArray[i].UNIXTime, indexArray[i].blockNumber, emissionFactor))
@@ -224,14 +242,14 @@ export const generateEmissionDataFromIndexArray = async (blockOrDay:string, bloc
     saveToJSON(valueArray)
 }
 
-const calculateEmissionFactor = async (indexArray:any[], i:number) => {
+export const calculateEmissionFactor = async (indexArray:any[], i:number, gas:networkData[], hashrate:networkData[]) => {
 
     let cumulativeGasUsed = 0
     let cumulativeTerahashes = 0
 
     //For this data range, add up total gas used and total terahashes
     for (let j=indexArray[i].index; j<indexArray[i+1].index; j++){
-        cumulativeGasUsed += (gasUsed[j].Value)
+        cumulativeGasUsed += (gas[j].Value)
         cumulativeTerahashes += (hashrate[j].Value)*secondsInDay
     }
 
@@ -280,10 +298,10 @@ const saveToJSON = (emissionArray:emissionDataType[]) => {
         if (err) {
             throw err;
         }
-        console.log("Saved JSON data")
+        //console.log("Saved JSON data")
     })
 }
 
 //Use Web3 to find most recent block
-generateEmissionDataFromIndexArray('block', 100000, gasUsed)
-//generateEmissionDataFromIndexArray('day', 30)
+//generateEmissionDataFromIndexArray('block', 100000, gasUsed, hashrate)
+generateEmissionDataFromIndexArray('day', 30, gasUsed, hashrate)
