@@ -139,7 +139,7 @@ export const fetchIndexesFromBlockResolution = async (
   return indexArray;
 };
 
-const fetchIndexesFromDayResolution = async (
+export const fetchIndexesFromDayResolution = async (
   dayResolution: number,
   gas: networkData[]
 ) => {
@@ -149,33 +149,43 @@ const fetchIndexesFromDayResolution = async (
   for (let i = 0; i < gas.length; i++) {
     //If we are at the start of the day range, push that index data to array
     if (i % dayResolution === 0) {
-      //Catch any timestamps before block 1
+      // Catch any timestamps before block 1
       let UNIXTimestamp = gas[i].UnixTimeStamp;
       if (UNIXTimestamp < 1438270000) {
         UNIXTimestamp = 1438270000;
       }
 
-      //Find block number from timestamp
-      //Construct etherscan URL
+      // Find block number from timestamp
+      // Construct etherscan URL
       const etherscanURL =
         "https://api.etherscan.io/api?module=block&action=getblocknobytime&timestamp=" +
         UNIXTimestamp +
         "&closest=before&apikey=" +
         ETHERSCAN_API_KEY;
 
-      //Fetch etherscan data
-      //Unable to import fetchJSON function
-      const res = await fetch(etherscanURL);
-      if (!res.ok) {
-        const json = await res.json();
-        throw json;
-      }
-      const data = await res.json();
+      // Fetch etherscan data
+      async function fetchEtherscanData(url: string) {
+        const res = await fetch(etherscanURL);
 
-      //Convert string to int
+        if (!res.ok) {
+          const json = await res.json();
+          throw json;
+        }
+        const data = await res.json();
+        return data;
+      }
+
+      let data = await fetchEtherscanData(etherscanURL);
+
+      // Avoid max API call rate
+      if (data.status === "0") {
+        data = await fetchEtherscanData(etherscanURL);
+      }
+
+      // Convert string to int
       const blockNumber = parseInt(data.result);
 
-      //Push index data to array
+      // Push index data to array
       indexArray.push(
         new (blockData as any)(i, gas[i].UnixTimeStamp, blockNumber)
       );
@@ -237,7 +247,8 @@ const fetchBlockOrDayIndexArray = async (
 export const generateEmissionDataFromIndexArray = async (
   blockOrDay: string,
   blockResolution: number,
-  gas: networkData[]
+  gas: networkData[],
+  hashrate: networkData[]
 ) => {
   //Use Web3 to get the most recent block number
   const currentBlock = await getCurrentBlock();
@@ -263,7 +274,12 @@ export const generateEmissionDataFromIndexArray = async (
     blockArray.push(indexArray[i].blockNumber);
 
     //Calculate emission factor for each data range
-    const emissionFactor = await calculateEmissionFactor(indexArray, i);
+    const emissionFactor = await calculateEmissionFactor(
+      indexArray,
+      i,
+      gas,
+      hashrate
+    );
 
     //Push emission data to array
     valueArray.push(
@@ -282,13 +298,18 @@ export const generateEmissionDataFromIndexArray = async (
   saveToJSON(valueArray);
 };
 
-const calculateEmissionFactor = async (indexArray: any[], i: number) => {
+export const calculateEmissionFactor = async (
+  indexArray: any[],
+  i: number,
+  gas: networkData[],
+  hashrate: networkData[]
+) => {
   let cumulativeGasUsed = 0;
   let cumulativeTerahashes = 0;
 
   //For this data range, add up total gas used and total terahashes
   for (let j = indexArray[i].index; j < indexArray[i + 1].index; j++) {
-    cumulativeGasUsed += gasUsed[j].Value;
+    cumulativeGasUsed += gas[j].Value;
     cumulativeTerahashes += hashrate[j].Value * secondsInDay;
   }
 
@@ -341,6 +362,6 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
   });
 };
 
-//Use Web3 to find most recent block
-generateEmissionDataFromIndexArray("block", 100000, gasUsed);
-//generateEmissionDataFromIndexArray('day', 30)
+// Use Web3 to find most recent block
+generateEmissionDataFromIndexArray("block", 100000, gasUsed, hashrate);
+// generateEmissionDataFromIndexArray('day', 30)
