@@ -1,12 +1,18 @@
 import fs from "fs";
-import Web3 from "web3";
+import { ethers } from "ethers";
+
+const provider = ethers.getDefaultProvider();
+
+console.log("👌 You are using the default provider.");
+console.log(
+  "👌 This should work fine, but you may see an API rate limit warning."
+);
 
 let csvToJson = require("convert-csv-to-json");
 
-const web3 = new Web3("infura_id"); //REMOVE PROVIDER
 const ETHERSCAN_API_KEY = "etherscan_api_key";
 
-//Constants
+// Constants
 const secondsInDay = 86400;
 const kwhPerTerahash = 0.00002;
 const emissionsPerKwh = 325; //Based on Kyle Mcdonald's research
@@ -37,49 +43,49 @@ export interface emissionDataType {
 }
 
 export function blockData(
-  this: any,
   index: number,
   UNIXTime: number,
   blockNumber: number
 ) {
-  this.index = index;
-  this.UNIXTime = UNIXTime;
-  this.blockNumber = blockNumber;
+  return {
+    index,
+    UNIXTime,
+    blockNumber,
+  };
 }
 
 function emissionData(
-  this: any,
   UNIXTime: number,
   blockNumber: number,
   emissionFactor: number
 ) {
-  this.UNIXTime = UNIXTime;
-  this.blockNumber = blockNumber;
-  this.emissionFactor = emissionFactor;
+  return {
+    UNIXTime,
+    blockNumber,
+    emissionFactor,
+  };
 }
 
-const CSVtoJSON = (date: string, dataType: string) => {
+const getJSONData = (filePrefix: "GasUsed" | "NetworkHash") => {
   let inputFileName = "";
-  switch (dataType) {
-    case "gas":
-      inputFileName = "src/data/export-GasUsed-" + date + ".csv";
-      break;
-    case "hashrate":
-      inputFileName = "src/data/export-NetworkHash-" + date + ".csv";
-      break;
-    default:
-      break;
-  }
+  fs.readdirSync("src/data").forEach((p) => {
+    if (p.startsWith(filePrefix)) {
+      inputFileName = p;
+    }
+  });
+  if (!inputFileName)
+    console.error(
+      `❌ Could not find src/data/${filePrefix}-[date].csv - did you name the csv file correctly?`
+    );
+  const json = csvToJson
+    .fieldDelimiter(",")
+    .getJsonFromCsv("src/data/" + inputFileName);
 
-  let json = csvToJson.fieldDelimiter(",").getJsonFromCsv(inputFileName);
-
-  //Remove double quotations from output
+  // Remove double quotations from output
   let jsonString = JSON.stringify(json);
   jsonString = jsonString.replace(/\\"/g, "");
-  //jsonString = jsonString.replace(/""/g, '"')
-  json = JSON.parse(jsonString);
 
-  return json;
+  return JSON.parse(jsonString);
 };
 
 export const arrayifyCSVData = (gas: gasData[]) => {
@@ -115,17 +121,13 @@ export const fetchIndexesFromBlockResolution = async (
   //Need to arrayify data to identify which is closest
   const [gasUsedArray, timestampArray] = arrayifyCSVData(gas);
 
-  let nextBlock = blockResolution;
-
   let indexArray = [];
 
   for (let i = 0; i < currentBlock; i++) {
     if (i % blockResolution === 0) {
-      nextBlock += blockResolution;
-
       //Find nearest UNIX timestamp within csv data to the input block
-      const response = await web3.eth.getBlock(i);
-
+      const response = await provider.getBlock(i);
+      console.log("got block number", response.number);
       let goal = 0;
 
       if (typeof response.timestamp === "number") {
@@ -134,31 +136,20 @@ export const fetchIndexesFromBlockResolution = async (
 
       const closest = findClosest(goal, timestampArray);
 
-      /*
-            let closest = timestampArray.reduce(function(prev:number, curr:number) {
-                return (Math.abs(curr - goal) < Math.abs(prev - goal) ? curr : prev);
-            });
-            */
-
-      //Find index of closest csv data point
+      // Find index of closest csv data point
       let index = gasUsedArray.findIndex(
         (x: any) => x.UnixTimeStamp === closest
       );
 
-      indexArray.push(
-        new (blockData as any)(index, gas[index].UnixTimeStamp, i)
-      );
+      const newdata = blockData(index, gas[index].UnixTimeStamp, i);
+      indexArray.push(newdata);
     }
   }
 
   //Append final value from JSON
   const finalIndex = gas.length - 1;
   indexArray.push(
-    new (blockData as any)(
-      finalIndex,
-      gas[finalIndex].UnixTimeStamp,
-      currentBlock
-    )
+    blockData(finalIndex, gas[finalIndex].UnixTimeStamp, currentBlock)
   );
   return indexArray;
 };
@@ -210,9 +201,7 @@ export const fetchIndexesFromDayResolution = async (
       const blockNumber = parseInt(data.result);
 
       // Push index data to array
-      indexArray.push(
-        new (blockData as any)(i, gas[i].UnixTimeStamp, blockNumber)
-      );
+      indexArray.push(blockData(i, gas[i].UnixTimeStamp, blockNumber));
     }
   }
 
@@ -234,9 +223,7 @@ export const fetchIndexesFromDayResolution = async (
   const data = await res.json();
 
   const finalBlock = parseInt(data.result);
-  indexArray.push(
-    new (blockData as any)(finalIndex, finalTimestamp, finalBlock)
-  );
+  indexArray.push(blockData(finalIndex, finalTimestamp, finalBlock));
 
   return indexArray;
 };
@@ -262,22 +249,22 @@ const fetchBlockOrDayIndexArray = async (
       result = await fetchIndexesFromDayResolution(resolution, gas);
       break;
     default:
-      console.log("Please specify 'block' or 'day'");
-      break;
+      throw "Please specify 'block' or 'day'";
   }
   return result;
 };
 
 export const generateEmissionDataFromIndexArray = async (
   blockOrDay: string,
-  blockResolution: number,
-  date: string
+  blockResolution: number
 ) => {
-  //Getch gas and network hashrate data
-  const gas = CSVtoJSON(date, "gas");
-  const hashrate = CSVtoJSON(date, "hashrate");
-  //Use Web3 to get the most recent block number
-  const currentBlock = await getCurrentBlock();
+  const date = new Date().toISOString().split("T")[0];
+  console.log("Generating new emissions data");
+  // Getch gas and network hashrate data
+  const gas = getJSONData("GasUsed");
+  const hashrate = getJSONData("NetworkHash");
+  // Use Web3 to get the number of the most recently mined block
+  const currentBlock = await provider.getBlockNumber();
 
   //Fetch index data for specified data resolution
   const indexArray = await fetchBlockOrDayIndexArray(
@@ -289,7 +276,6 @@ export const generateEmissionDataFromIndexArray = async (
 
   let valueArray = new Array();
 
-  //Set up time and block arrays
   let timestampArray = [];
   let blockArray = [];
 
@@ -306,19 +292,14 @@ export const generateEmissionDataFromIndexArray = async (
       gas,
       hashrate
     );
-
-    //Push emission data to array
-    valueArray.push(
-      new (emissionData as any)(
-        indexArray[i].UNIXTime,
-        indexArray[i].blockNumber,
-        emissionFactor
-      )
+    const newData = emissionData(
+      indexArray[i].UNIXTime,
+      indexArray[i].blockNumber,
+      emissionFactor
     );
+    //Push emission data to array
+    valueArray.push(newData);
   }
-
-  //Compare calculated average emission factor to hardcoded value
-  checkAverageEmissionFactor(valueArray);
 
   //Save data to JSON file
   saveToJSON(valueArray);
@@ -355,25 +336,6 @@ export const calculateEmissionFactor = async (
   }
 };
 
-const checkAverageEmissionFactor = (emissionArray: emissionDataType[]) => {
-  const hardcodedEmissionFactor = 0.0001809589427;
-
-  let cumulativeEmissionFactor = 0;
-
-  for (let i = 0; i < emissionArray.length; i++) {
-    cumulativeEmissionFactor += emissionArray[i].emissionFactor;
-  }
-
-  const averageEmissionFactor = cumulativeEmissionFactor / emissionArray.length;
-
-  console.log("HARD-CODED EMISSION FACTOR = ", hardcodedEmissionFactor);
-  console.log("AVERAGE EMISSION FACTOR = ", averageEmissionFactor);
-};
-
-const getCurrentBlock = async () => {
-  return await web3.eth.getBlockNumber();
-};
-
 const saveToJSON = (emissionArray: emissionDataType[]) => {
   //Stringify results prior to saving as JSON
   const data = JSON.stringify(emissionArray);
@@ -390,5 +352,5 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
 //Download most recent files from Etherscan
 //Save to data directory
 //Update date of data range
-generateEmissionDataFromIndexArray("block", 100000, "08-04-2022");
-// generateEmissionDataFromIndexArray('day', 30, '08-04-2022')
+generateEmissionDataFromIndexArray("block", 100000);
+// generateEmissionDataFromIndexArray('day', 30)
