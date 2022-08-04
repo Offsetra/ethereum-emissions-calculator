@@ -1,20 +1,16 @@
 import fs from "fs";
 import Web3 from "web3";
 
-let csvToJson = require('convert-csv-to-json');
+let csvToJson = require("convert-csv-to-json");
 
-
-
-const web3 = new Web3(
-  "infura_id"
-); //REMOVE PROVIDER
+const web3 = new Web3("infura_id"); //REMOVE PROVIDER
 const ETHERSCAN_API_KEY = "etherscan_api_key";
 
 //Constants
 const secondsInDay = 86400;
 const kwhPerTerahash = 0.00002;
 const emissionsPerKwh = 325; //Based on Kyle Mcdonald's research
-const hashEfficiency = 0.4 //Based on Kyle Mcdonald's research
+const hashEfficiency = 0.4; //Based on Kyle Mcdonald's research
 
 export interface gasData {
   "Date(UTC)": string;
@@ -62,30 +58,29 @@ function emissionData(
   this.emissionFactor = emissionFactor;
 }
 
-const CSVtoJSON = (date:string, dataType:string) => {
-  let inputFileName = ''
-  switch(dataType) {
-    case "gas" :
-      inputFileName='src/data/export-GasUsed-' + date + '.csv'
-      break
-    case "hashrate" :
-      inputFileName='src/data/export-NetworkHash-' + date + '.csv'
-      break
+const CSVtoJSON = (date: string, dataType: string) => {
+  let inputFileName = "";
+  switch (dataType) {
+    case "gas":
+      inputFileName = "src/data/export-GasUsed-" + date + ".csv";
+      break;
+    case "hashrate":
+      inputFileName = "src/data/export-NetworkHash-" + date + ".csv";
+      break;
     default:
-      break
+      break;
   }
 
-
-  let json = (csvToJson.fieldDelimiter(',').getJsonFromCsv(inputFileName))
+  let json = csvToJson.fieldDelimiter(",").getJsonFromCsv(inputFileName);
 
   //Remove double quotations from output
-  let jsonString = JSON.stringify(json)
-  jsonString = jsonString.replace(/\\"/g, '')
+  let jsonString = JSON.stringify(json);
+  jsonString = jsonString.replace(/\\"/g, "");
   //jsonString = jsonString.replace(/""/g, '"')
-  json = (JSON.parse(jsonString))
-  
-  return json
-}
+  json = JSON.parse(jsonString);
+
+  return json;
+};
 
 export const arrayifyCSVData = (gas: gasData[]) => {
   //Convert JSON data to array
@@ -276,11 +271,11 @@ const fetchBlockOrDayIndexArray = async (
 export const generateEmissionDataFromIndexArray = async (
   blockOrDay: string,
   blockResolution: number,
-  date:string
+  date: string
 ) => {
   //Getch gas and network hashrate data
-  const gas = CSVtoJSON(date, 'gas')
-  const hashrate = CSVtoJSON(date, 'hashrate')
+  const gas = CSVtoJSON(date, "gas");
+  const hashrate = CSVtoJSON(date, "hashrate");
   //Use Web3 to get the most recent block number
   const currentBlock = await getCurrentBlock();
 
@@ -312,7 +307,6 @@ export const generateEmissionDataFromIndexArray = async (
       hashrate
     );
 
-
     //Push emission data to array
     valueArray.push(
       new (emissionData as any)(
@@ -341,7 +335,7 @@ export const calculateEmissionFactor = async (
 
   //For this data range, add up total gas used and total terahashes
   for (let j = indexArray[i].index; j < indexArray[i + 1].index; j++) {
-    cumulativeGasUsed += parseInt(gas[j].Value, 10)
+    cumulativeGasUsed += parseInt(gas[j].Value, 10);
     cumulativeTerahashes += (hashrate[j].Value / hashEfficiency) * secondsInDay;
   }
 
@@ -353,7 +347,7 @@ export const calculateEmissionFactor = async (
   } else {
     //Calcualate emissions per kg
     const terahashesPerGas =
-      (cumulativeTerahashes / cumulativeGasUsed) / dataRangeLength;
+      cumulativeTerahashes / cumulativeGasUsed / dataRangeLength;
     const emissionsPerTerahash = kwhPerTerahash * emissionsPerKwh;
     const emissionsPerGasKg = emissionsPerTerahash * terahashesPerGas;
 
@@ -396,7 +390,5 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
 //Download most recent files from Etherscan
 //Save to data directory
 //Update date of data range
-generateEmissionDataFromIndexArray("block", 100000, '08-04-2022');
+generateEmissionDataFromIndexArray("block", 100000, "08-04-2022");
 // generateEmissionDataFromIndexArray('day', 30, '08-04-2022')
-
-

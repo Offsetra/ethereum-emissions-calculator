@@ -15,5 +15,6 @@ The emission table needs periodic updating until Ethereum goes carbon neutral.
 Download .csv gas used data from https://etherscan.io/chart/gasused and hashrate data from https://etherscan.io/chart/hashrate
 
 To generate up-to-date emission data:
+
 1. Install Node v18 or higher
 1. `npm run update-emissions-data`
