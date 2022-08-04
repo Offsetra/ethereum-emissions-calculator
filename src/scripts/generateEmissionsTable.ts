@@ -1,11 +1,9 @@
 import fs from "fs";
 import Web3 from "web3";
 
-//Download most recent files from Etherscan
-//Convert to JSON
-//Save to data directory
-import gasUsed from "../data/export-GasUsed.json"; //https://etherscan.io/chart/gasused
-import hashrate from "../data/export-NetworkHash.json"; //https://etherscan.io/chart/hashrate
+let csvToJson = require('convert-csv-to-json');
+
+
 
 const web3 = new Web3(
   "https://mainnet.infura.io/v3/2d2c0dfce81d47a7944bc9a4a31bc2f6"
@@ -16,6 +14,12 @@ const ETHERSCAN_API_KEY = "UE1T8UCHFVI84KHHE92AT1MSNUYD88V8QG";
 const secondsInDay = 86400;
 const kwhPerTerahash = 0.00002;
 const emissionsPerKwh = 0.385; //PLACEHOLDER
+
+export interface gasData {
+  "Date(UTC)": string;
+  UnixTimeStamp: number;
+  Value: string;
+}
 
 export interface networkData {
   "Date(UTC)": string;
@@ -57,9 +61,34 @@ function emissionData(
   this.emissionFactor = emissionFactor;
 }
 
-export const arrayifyCSVData = (gas: networkData[]) => {
+const CSVtoJSON = (date:string, dataType:string) => {
+  let inputFileName = ''
+  switch(dataType) {
+    case "gas" :
+      inputFileName='src/data/export-GasUsed-' + date + '.csv'
+      break
+    case "hashrate" :
+      inputFileName='src/data/export-NetworkHash-' + date + '.csv'
+      break
+    default:
+      break
+  }
+
+
+  let json = (csvToJson.fieldDelimiter(',').getJsonFromCsv(inputFileName))
+
+  //Remove double quotations from output
+  let jsonString = JSON.stringify(json)
+  jsonString = jsonString.replace(/\\"/g, '')
+  //jsonString = jsonString.replace(/""/g, '"')
+  json = (JSON.parse(jsonString))
+  
+  return json
+}
+
+export const arrayifyCSVData = (gas: gasData[]) => {
   //Convert JSON data to array
-  const gasUsedArray: networkData[] = [];
+  const gasUsedArray: gasData[] = [];
   const timestampArray: number[] = [];
   for (let i = 0; i < gas.length; i++) {
     gasUsedArray.push(gas[i]);
@@ -84,9 +113,9 @@ export const findClosest = (goal: number, array: any[]) => {
 export const fetchIndexesFromBlockResolution = async (
   blockResolution: number,
   currentBlock: number,
-  gas: networkData[]
+  gas: gasData[]
 ) => {
-  console.log("Generating index array at block resolution");
+  console.log("Generating index array using block resolution");
   //Need to arrayify data to identify which is closest
   const [gasUsedArray, timestampArray] = arrayifyCSVData(gas);
 
@@ -121,30 +150,29 @@ export const fetchIndexesFromBlockResolution = async (
       );
 
       indexArray.push(
-        new (blockData as any)(index, gasUsed[index].UnixTimeStamp, i)
+        new (blockData as any)(index, gas[index].UnixTimeStamp, i)
       );
     }
   }
 
   //Append final value from JSON
-  const finalIndex = gasUsed.length - 1;
+  const finalIndex = gas.length - 1;
   indexArray.push(
     new (blockData as any)(
       finalIndex,
-      gasUsed[finalIndex].UnixTimeStamp,
+      gas[finalIndex].UnixTimeStamp,
       currentBlock
     )
   );
-  console.log(indexArray);
   return indexArray;
 };
 
 export const fetchIndexesFromDayResolution = async (
   dayResolution: number,
-  gas: networkData[]
+  gas: gasData[]
 ) => {
   let indexArray = [];
-  console.log("Generating index array at day resolution");
+  console.log("Generating index array using day resolution");
   //Loop through gas used data
   for (let i = 0; i < gas.length; i++) {
     //If we are at the start of the day range, push that index data to array
@@ -165,7 +193,7 @@ export const fetchIndexesFromDayResolution = async (
 
       // Fetch etherscan data
       async function fetchEtherscanData(url: string) {
-        const res = await fetch(etherscanURL);
+        const res = await fetch(url);
 
         if (!res.ok) {
           const json = await res.json();
@@ -193,8 +221,8 @@ export const fetchIndexesFromDayResolution = async (
   }
 
   //Push final index to array
-  const finalIndex = gasUsed.length - 1;
-  const finalTimestamp = gasUsed[finalIndex].UnixTimeStamp;
+  const finalIndex = gas.length - 1;
+  const finalTimestamp = gas[finalIndex].UnixTimeStamp;
 
   //Find final block number
   const res = await fetch(
@@ -221,7 +249,7 @@ const fetchBlockOrDayIndexArray = async (
   blockOrDay: string,
   resolution: number,
   currentBlock: number,
-  gas: networkData[]
+  gas: gasData[]
 ) => {
   let result = [];
 
@@ -247,9 +275,11 @@ const fetchBlockOrDayIndexArray = async (
 export const generateEmissionDataFromIndexArray = async (
   blockOrDay: string,
   blockResolution: number,
-  gas: networkData[],
-  hashrate: networkData[]
+  date:string
 ) => {
+  //Getch gas and network hashrate data
+  const gas = CSVtoJSON(date, 'gas')
+  const hashrate = CSVtoJSON(date, 'hashrate')
   //Use Web3 to get the most recent block number
   const currentBlock = await getCurrentBlock();
 
@@ -281,6 +311,7 @@ export const generateEmissionDataFromIndexArray = async (
       hashrate
     );
 
+
     //Push emission data to array
     valueArray.push(
       new (emissionData as any)(
@@ -301,7 +332,7 @@ export const generateEmissionDataFromIndexArray = async (
 export const calculateEmissionFactor = async (
   indexArray: any[],
   i: number,
-  gas: networkData[],
+  gas: gasData[],
   hashrate: networkData[]
 ) => {
   let cumulativeGasUsed = 0;
@@ -309,7 +340,7 @@ export const calculateEmissionFactor = async (
 
   //For this data range, add up total gas used and total terahashes
   for (let j = indexArray[i].index; j < indexArray[i + 1].index; j++) {
-    cumulativeGasUsed += gas[j].Value;
+    cumulativeGasUsed += parseInt(gas[j].Value, 10)
     cumulativeTerahashes += hashrate[j].Value * secondsInDay;
   }
 
@@ -362,6 +393,10 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
   });
 };
 
-// Use Web3 to find most recent block
-generateEmissionDataFromIndexArray("block", 100000, gasUsed, hashrate);
-// generateEmissionDataFromIndexArray('day', 30)
+//Download most recent files from Etherscan
+//Save to data directory
+//Update date of data range
+generateEmissionDataFromIndexArray("block", 100000, '08-03-2022');
+// generateEmissionDataFromIndexArray('day', 30, '08-03-2022')
+
+
