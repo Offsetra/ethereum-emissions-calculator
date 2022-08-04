@@ -334,13 +334,13 @@ export const calculateEmissionFactor = async (
 const saveToJSON = (emissionArray: emissionDataType[]) => {
   // Stringify results prior to saving as JSON
   const data = JSON.stringify(emissionArray, undefined, "  ");
-
+  const outputPath = "src/data/emissionFactorTable.json";
   // Save emission data to JSON
-  fs.writeFile("src/data/emissionFactorTable.json", data, (err) => {
+  fs.writeFile(outputPath, data, (err) => {
     if (err) {
       throw err;
     }
-    console.log("Saved JSON data");
+    console.log(`Saved JSON data to ${outputPath}`);
   });
 };
 
