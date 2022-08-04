@@ -19,6 +19,7 @@ export const getTransactionEmissions = (txns: filteredTransactionData[], emissio
         if(transactionBlockNumber>=emissionFactorTable[j].blockNumber && transactionBlockNumber<emissionFactorTable[j+1].blockNumber){
             //Find transaction emissions by multiplying gas used by transaction by relevant emission factor for that block range
             const transactionEmissions = parseInt(txns[i].gasUsed) * emissionFactorTable[j].emissionFactor
+
             //Add transaction emissions to total
             totalTransactionEmissions += transactionEmissions
             //Stop the loop for this transaction

@@ -13,7 +13,8 @@ const ETHERSCAN_API_KEY = "UE1T8UCHFVI84KHHE92AT1MSNUYD88V8QG";
 //Constants
 const secondsInDay = 86400;
 const kwhPerTerahash = 0.00002;
-const emissionsPerKwh = 0.385; //PLACEHOLDER
+const emissionsPerKwh = 325; //Based on Kyle Mcdonald's research
+const hashEfficiency = 0.4 //Based on Kyle Mcdonald's research
 
 export interface gasData {
   "Date(UTC)": string;
@@ -341,7 +342,7 @@ export const calculateEmissionFactor = async (
   //For this data range, add up total gas used and total terahashes
   for (let j = indexArray[i].index; j < indexArray[i + 1].index; j++) {
     cumulativeGasUsed += parseInt(gas[j].Value, 10)
-    cumulativeTerahashes += hashrate[j].Value * secondsInDay;
+    cumulativeTerahashes += (hashrate[j].Value / hashEfficiency) * secondsInDay;
   }
 
   const dataRangeLength = indexArray[i + 1].index - indexArray[i].index;
@@ -352,10 +353,9 @@ export const calculateEmissionFactor = async (
   } else {
     //Calcualate emissions per kg
     const terahashesPerGas =
-      cumulativeTerahashes / cumulativeGasUsed / dataRangeLength;
+      (cumulativeTerahashes / cumulativeGasUsed) / dataRangeLength;
     const emissionsPerTerahash = kwhPerTerahash * emissionsPerKwh;
-    const emissionsPerGasTons = emissionsPerTerahash * terahashesPerGas;
-    const emissionsPerGasKg = emissionsPerGasTons * 1000;
+    const emissionsPerGasKg = emissionsPerTerahash * terahashesPerGas;
 
     return emissionsPerGasKg;
   }
