@@ -396,7 +396,7 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
 //Download most recent files from Etherscan
 //Save to data directory
 //Update date of data range
-generateEmissionDataFromIndexArray("block", 100000, '08-03-2022');
-// generateEmissionDataFromIndexArray('day', 30, '08-03-2022')
+generateEmissionDataFromIndexArray("block", 100000, '08-04-2022');
+// generateEmissionDataFromIndexArray('day', 30, '08-04-2022')
 
 
