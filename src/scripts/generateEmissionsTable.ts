@@ -6,9 +6,9 @@ let csvToJson = require('convert-csv-to-json');
 
 
 const web3 = new Web3(
-  "https://mainnet.infura.io/v3/2d2c0dfce81d47a7944bc9a4a31bc2f6"
+  "infura_id"
 ); //REMOVE PROVIDER
-const ETHERSCAN_API_KEY = "UE1T8UCHFVI84KHHE92AT1MSNUYD88V8QG";
+const ETHERSCAN_API_KEY = "etherscan_api_key";
 
 //Constants
 const secondsInDay = 86400;
