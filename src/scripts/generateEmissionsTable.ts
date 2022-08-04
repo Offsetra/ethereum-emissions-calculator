@@ -15,9 +15,13 @@ const ETHERSCAN_API_KEY = "etherscan_api_key";
 // Constants
 const secondsInDay = 86400;
 const kwhPerTerahash = 0.00002;
-const emissionsPerKwh = 325; // Based on Kyle Mcdonald's research
-const hashEfficiency = 0.4; // Based on Kyle Mcdonald's research
-
+/** Rough average from https://kylemcdonald.github.io/ethereum-emissions/ */
+const emissionsPerKwh = 325;
+/**
+ * Rough average, not including overhead and efficiency multipliers.
+ * https://kylemcdonald.github.io/ethereum-emissions/
+ */
+const hashEfficiency = 0.4;
 export interface GasData {
   "Date(UTC)": string;
   UnixTimeStamp: number;
