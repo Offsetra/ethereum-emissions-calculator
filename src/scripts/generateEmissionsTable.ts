@@ -15,8 +15,8 @@ const ETHERSCAN_API_KEY = "etherscan_api_key";
 // Constants
 const secondsInDay = 86400;
 const kwhPerTerahash = 0.00002;
-const emissionsPerKwh = 325; //Based on Kyle Mcdonald's research
-const hashEfficiency = 0.4; //Based on Kyle Mcdonald's research
+const emissionsPerKwh = 325; // Based on Kyle Mcdonald's research
+const hashEfficiency = 0.4; // Based on Kyle Mcdonald's research
 
 export interface GasData {
   "Date(UTC)": string;
@@ -86,7 +86,7 @@ const getJSONData = (filePrefix: "GasUsed" | "NetworkHash") => {
 };
 
 export const arrayifyCSVData = (gas: GasData[]) => {
-  //Convert JSON data to array
+  // Convert JSON data to array
   const gasUsedArray: GasData[] = [];
   const timestampArray: number[] = [];
   for (let i = 0; i < gas.length; i++) {
@@ -138,7 +138,7 @@ export const fetchIndexesFromBlockResolution = async (
     }
   }
 
-  //Append final value from JSON
+  // Append final value from JSON
   const finalIndex = gas.length - 1;
   indexArray.push(
     blockData(finalIndex, gas[finalIndex].UnixTimeStamp, currentBlock)
@@ -152,9 +152,9 @@ export const fetchIndexesFromDayResolution = async (
 ) => {
   let indexArray = [];
   console.log("Generating index array using day resolution");
-  //Loop through gas used data
+  // Loop through gas used data
   for (let i = 0; i < gas.length; i++) {
-    //If we are at the start of the day range, push that index data to array
+    // If we are at the start of the day range, push that index data to array
     if (i % dayResolution === 0) {
       // Catch any timestamps before block 1
       let UNIXTimestamp = gas[i].UnixTimeStamp;
@@ -197,11 +197,11 @@ export const fetchIndexesFromDayResolution = async (
     }
   }
 
-  //Push final index to array
+  // Push final index to array
   const finalIndex = gas.length - 1;
   const finalTimestamp = gas[finalIndex].UnixTimeStamp;
 
-  //Find final block number
+  // Find final block number
   const res = await fetch(
     "https://api.etherscan.io/api?module=block&action=getblocknobytime&timestamp=" +
       finalTimestamp +
@@ -228,7 +228,7 @@ const fetchBlockOrDayIndexArray = async (
 ) => {
   let result = [];
 
-  //Calculate using day or block range and switch function accordingly
+  // Calculate using day or block range and switch function accordingly
   switch (blockOrDay) {
     case "block":
       result = await fetchIndexesFromBlockResolution(
@@ -257,7 +257,7 @@ export const generateEmissionDataFromIndexArray = async (
   // Use Web3 to get the number of the most recently mined block
   const currentBlock = await provider.getBlockNumber();
 
-  //Fetch index data for specified data resolution
+  // Fetch index data for specified data resolution
   const indexArray = await fetchBlockOrDayIndexArray(
     blockOrDay,
     blockResolution,
@@ -270,13 +270,13 @@ export const generateEmissionDataFromIndexArray = async (
   let timestampArray = [];
   let blockArray = [];
 
-  //Loop through index data
+  // Loop through index data
   for (let i = 0; i < indexArray.length - 1; i++) {
-    //Push time and block data to new arrays
+    // Push time and block data to new arrays
     timestampArray.push(indexArray[i].UNIXTime);
     blockArray.push(indexArray[i].blockNumber);
 
-    //Calculate emission factor for each data range
+    // Calculate emission factor for each data range
     const emissionFactor = await calculateEmissionFactor(
       indexArray,
       i,
@@ -288,11 +288,11 @@ export const generateEmissionDataFromIndexArray = async (
       indexArray[i].blockNumber,
       emissionFactor
     );
-    //Push emission data to array
+    // Push emission data to array
     valueArray.push(newData);
   }
 
-  //Save data to JSON file
+  // Save data to JSON file
   saveToJSON(valueArray);
 };
 
@@ -305,7 +305,7 @@ export const calculateEmissionFactor = async (
   let cumulativeGasUsed = 0;
   let cumulativeTerahashes = 0;
 
-  //For this data range, add up total gas used and total terahashes
+  // For this data range, add up total gas used and total terahashes
   for (let j = indexArray[i].index; j < indexArray[i + 1].index; j++) {
     cumulativeGasUsed += parseInt(gas[j].Value, 10);
     cumulativeTerahashes += (hashrate[j].Value / hashEfficiency) * secondsInDay;
@@ -313,11 +313,11 @@ export const calculateEmissionFactor = async (
 
   const dataRangeLength = indexArray[i + 1].index - indexArray[i].index;
 
-  //Calculate emissions per gas for the previous data range
+  // Calculate emissions per gas for the previous data range
   if (dataRangeLength === 0) {
     return 0;
   } else {
-    //Calcualate emissions per kg
+    // Calcualate emissions per kg
     const terahashesPerGas =
       cumulativeTerahashes / cumulativeGasUsed / dataRangeLength;
     const emissionsPerTerahash = kwhPerTerahash * emissionsPerKwh;
@@ -328,10 +328,10 @@ export const calculateEmissionFactor = async (
 };
 
 const saveToJSON = (emissionArray: emissionDataType[]) => {
-  //Stringify results prior to saving as JSON
-  const data = JSON.stringify(emissionArray);
+  // Stringify results prior to saving as JSON
+  const data = JSON.stringify(emissionArray, undefined, "  ");
 
-  //Save emission data to JSON
+  // Save emission data to JSON
   fs.writeFile("src/data/emissionFactorTable.json", data, (err) => {
     if (err) {
       throw err;
