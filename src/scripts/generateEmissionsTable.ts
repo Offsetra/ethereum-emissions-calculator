@@ -18,7 +18,7 @@ const kwhPerTerahash = 0.00002;
 const emissionsPerKwh = 325; //Based on Kyle Mcdonald's research
 const hashEfficiency = 0.4; //Based on Kyle Mcdonald's research
 
-export interface gasData {
+export interface GasData {
   "Date(UTC)": string;
   UnixTimeStamp: number;
   Value: string;
@@ -82,15 +82,12 @@ const getJSONData = (filePrefix: "GasUsed" | "NetworkHash") => {
     .getJsonFromCsv("src/data/" + inputFileName);
 
   // Remove double quotations from output
-  let jsonString = JSON.stringify(json);
-  jsonString = jsonString.replace(/\\"/g, "");
-
-  return JSON.parse(jsonString);
+  return JSON.parse(JSON.stringify(json).replace(/\\"/g, ""));
 };
 
-export const arrayifyCSVData = (gas: gasData[]) => {
+export const arrayifyCSVData = (gas: GasData[]) => {
   //Convert JSON data to array
-  const gasUsedArray: gasData[] = [];
+  const gasUsedArray: GasData[] = [];
   const timestampArray: number[] = [];
   for (let i = 0; i < gas.length; i++) {
     gasUsedArray.push(gas[i]);
@@ -115,26 +112,21 @@ export const findClosest = (goal: number, array: any[]) => {
 export const fetchIndexesFromBlockResolution = async (
   blockResolution: number,
   currentBlock: number,
-  gas: gasData[]
+  gas: GasData[]
 ) => {
   console.log("Generating index array using block resolution");
-  //Need to arrayify data to identify which is closest
+  // Need to arrayify data to identify which is closest
   const [gasUsedArray, timestampArray] = arrayifyCSVData(gas);
 
   let indexArray = [];
 
   for (let i = 0; i < currentBlock; i++) {
     if (i % blockResolution === 0) {
-      //Find nearest UNIX timestamp within csv data to the input block
+      // Find nearest UNIX timestamp within csv data to the input block
       const response = await provider.getBlock(i);
       console.log("got block number", response.number);
-      let goal = 0;
 
-      if (typeof response.timestamp === "number") {
-        goal = response.timestamp;
-      }
-
-      const closest = findClosest(goal, timestampArray);
+      const closest = findClosest(response.timestamp, timestampArray);
 
       // Find index of closest csv data point
       let index = gasUsedArray.findIndex(
@@ -156,7 +148,7 @@ export const fetchIndexesFromBlockResolution = async (
 
 export const fetchIndexesFromDayResolution = async (
   dayResolution: number,
-  gas: gasData[]
+  gas: GasData[]
 ) => {
   let indexArray = [];
   console.log("Generating index array using day resolution");
@@ -232,7 +224,7 @@ const fetchBlockOrDayIndexArray = async (
   blockOrDay: string,
   resolution: number,
   currentBlock: number,
-  gas: gasData[]
+  gas: GasData[]
 ) => {
   let result = [];
 
@@ -258,7 +250,6 @@ export const generateEmissionDataFromIndexArray = async (
   blockOrDay: string,
   blockResolution: number
 ) => {
-  const date = new Date().toISOString().split("T")[0];
   console.log("Generating new emissions data");
   // Getch gas and network hashrate data
   const gas = getJSONData("GasUsed");
@@ -308,7 +299,7 @@ export const generateEmissionDataFromIndexArray = async (
 export const calculateEmissionFactor = async (
   indexArray: any[],
   i: number,
-  gas: gasData[],
+  gas: GasData[],
   hashrate: networkData[]
 ) => {
   let cumulativeGasUsed = 0;
@@ -349,8 +340,5 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
   });
 };
 
-//Download most recent files from Etherscan
-//Save to data directory
-//Update date of data range
 generateEmissionDataFromIndexArray("block", 100000);
 // generateEmissionDataFromIndexArray('day', 30)
