@@ -1,0 +1,734 @@
+[
+  {
+    "timestamp": 1438214400,
+    "emissionsFactor": 0
+  },
+  {
+    "timestamp": 1439424000,
+    "emissionsFactor": 0.00001768898179180189
+  },
+  {
+    "timestamp": 1440633600,
+    "emissionsFactor": 0.00008441624908890524
+  },
+  {
+    "timestamp": 1441843200,
+    "emissionsFactor": 0.00006851611689970258
+  },
+  {
+    "timestamp": 1443052800,
+    "emissionsFactor": 0.00006020323531273587
+  },
+  {
+    "timestamp": 1444262400,
+    "emissionsFactor": 0.000057193732657772903
+  },
+  {
+    "timestamp": 1445472000,
+    "emissionsFactor": 0.00004580879575761291
+  },
+  {
+    "timestamp": 1446681600,
+    "emissionsFactor": 0.00005025317201799889
+  },
+  {
+    "timestamp": 1447891200,
+    "emissionsFactor": 0.000050065619557137204
+  },
+  {
+    "timestamp": 1449100800,
+    "emissionsFactor": 0.000058286085104819124
+  },
+  {
+    "timestamp": 1450310400,
+    "emissionsFactor": 0.000047430430663428576
+  },
+  {
+    "timestamp": 1451520000,
+    "emissionsFactor": 0.00001918314618853383
+  },
+  {
+    "timestamp": 1452729600,
+    "emissionsFactor": 0.00002684065148784041
+  },
+  {
+    "timestamp": 1453939200,
+    "emissionsFactor": 0.000033290405665536
+  },
+  {
+    "timestamp": 1455148800,
+    "emissionsFactor": 0.00003341725693399479
+  },
+  {
+    "timestamp": 1456358400,
+    "emissionsFactor": 0.00003309519700970446
+  },
+  {
+    "timestamp": 1457568000,
+    "emissionsFactor": 0.00003776816844727017
+  },
+  {
+    "timestamp": 1458777600,
+    "emissionsFactor": 0.00003633250456469455
+  },
+  {
+    "timestamp": 1459987200,
+    "emissionsFactor": 0.0000420331607820448
+  },
+  {
+    "timestamp": 1461196800,
+    "emissionsFactor": 0.0000553669582583937
+  },
+  {
+    "timestamp": 1462406400,
+    "emissionsFactor": 0.000057618377004506284
+  },
+  {
+    "timestamp": 1463616000,
+    "emissionsFactor": 0.000051366384563686115
+  },
+  {
+    "timestamp": 1464825600,
+    "emissionsFactor": 0.00005353069610336888
+  },
+  {
+    "timestamp": 1466035200,
+    "emissionsFactor": 0.00006875127768175452
+  },
+  {
+    "timestamp": 1467244800,
+    "emissionsFactor": 0.000051503902327448306
+  },
+  {
+    "timestamp": 1468454400,
+    "emissionsFactor": 0.00007638137615793776
+  },
+  {
+    "timestamp": 1469664000,
+    "emissionsFactor": 0.00007787156009013288
+  },
+  {
+    "timestamp": 1470873600,
+    "emissionsFactor": 0.00007058681015192946
+  },
+  {
+    "timestamp": 1472083200,
+    "emissionsFactor": 0.00008905662022928923
+  },
+  {
+    "timestamp": 1473292800,
+    "emissionsFactor": 0.00009255791824288571
+  },
+  {
+    "timestamp": 1474502400,
+    "emissionsFactor": 0.00009381142013126405
+  },
+  {
+    "timestamp": 1475712000,
+    "emissionsFactor": 0.0000741444372170984
+  },
+  {
+    "timestamp": 1476921600,
+    "emissionsFactor": 0.00011027496353685571
+  },
+  {
+    "timestamp": 1478131200,
+    "emissionsFactor": 0.0001351016677446465
+  },
+  {
+    "timestamp": 1479340800,
+    "emissionsFactor": 0.0000992011308942329
+  },
+  {
+    "timestamp": 1480550400,
+    "emissionsFactor": 0.0000777551765235991
+  },
+  {
+    "timestamp": 1481760000,
+    "emissionsFactor": 0.0001157247697969192
+  },
+  {
+    "timestamp": 1482969600,
+    "emissionsFactor": 0.00012383928185284712
+  },
+  {
+    "timestamp": 1484179200,
+    "emissionsFactor": 0.00011719531198882744
+  },
+  {
+    "timestamp": 1485388800,
+    "emissionsFactor": 0.00013321758313934964
+  },
+  {
+    "timestamp": 1486598400,
+    "emissionsFactor": 0.0001399269485192804
+  },
+  {
+    "timestamp": 1487808000,
+    "emissionsFactor": 0.0001307990193893435
+  },
+  {
+    "timestamp": 1489017600,
+    "emissionsFactor": 0.0001539248752884124
+  },
+  {
+    "timestamp": 1490227200,
+    "emissionsFactor": 0.00013543106759933416
+  },
+  {
+    "timestamp": 1491436800,
+    "emissionsFactor": 0.00014821379540229848
+  },
+  {
+    "timestamp": 1492646400,
+    "emissionsFactor": 0.00017330504317443824
+  },
+  {
+    "timestamp": 1493856000,
+    "emissionsFactor": 0.0001627392338730998
+  },
+  {
+    "timestamp": 1495065600,
+    "emissionsFactor": 0.0001353367463132325
+  },
+  {
+    "timestamp": 1496275200,
+    "emissionsFactor": 0.0000899342139143451
+  },
+  {
+    "timestamp": 1497484800,
+    "emissionsFactor": 0.00009606004153618927
+  },
+  {
+    "timestamp": 1498694400,
+    "emissionsFactor": 0.00010515869916012494
+  },
+  {
+    "timestamp": 1499904000,
+    "emissionsFactor": 0.0001257262889061478
+  },
+  {
+    "timestamp": 1501113600,
+    "emissionsFactor": 0.00015753927360622318
+  },
+  {
+    "timestamp": 1502323200,
+    "emissionsFactor": 0.00016816004801385745
+  },
+  {
+    "timestamp": 1503532800,
+    "emissionsFactor": 0.00012943392536063006
+  },
+  {
+    "timestamp": 1504742400,
+    "emissionsFactor": 0.00014950545260487342
+  },
+  {
+    "timestamp": 1505952000,
+    "emissionsFactor": 0.00014768082973072512
+  },
+  {
+    "timestamp": 1507161600,
+    "emissionsFactor": 0.00016970205557952455
+  },
+  {
+    "timestamp": 1508371200,
+    "emissionsFactor": 0.00016166221562345388
+  },
+  {
+    "timestamp": 1509580800,
+    "emissionsFactor": 0.00012621760649046064
+  },
+  {
+    "timestamp": 1510790400,
+    "emissionsFactor": 0.00012629286000082927
+  },
+  {
+    "timestamp": 1512000000,
+    "emissionsFactor": 0.00011557126254054332
+  },
+  {
+    "timestamp": 1513209600,
+    "emissionsFactor": 0.00009167482328334824
+  },
+  {
+    "timestamp": 1514419200,
+    "emissionsFactor": 0.00009145561268061495
+  },
+  {
+    "timestamp": 1515628800,
+    "emissionsFactor": 0.00010204497413556167
+  },
+  {
+    "timestamp": 1516838400,
+    "emissionsFactor": 0.00011776859782847149
+  },
+  {
+    "timestamp": 1518048000,
+    "emissionsFactor": 0.00014163527846638952
+  },
+  {
+    "timestamp": 1519257600,
+    "emissionsFactor": 0.00016003199799646174
+  },
+  {
+    "timestamp": 1520467200,
+    "emissionsFactor": 0.00017095164955859593
+  },
+  {
+    "timestamp": 1521676800,
+    "emissionsFactor": 0.00019145614751328574
+  },
+  {
+    "timestamp": 1522886400,
+    "emissionsFactor": 0.0002060019707340924
+  },
+  {
+    "timestamp": 1524096000,
+    "emissionsFactor": 0.00017471825718614608
+  },
+  {
+    "timestamp": 1525305600,
+    "emissionsFactor": 0.00016757341269152396
+  },
+  {
+    "timestamp": 1526515200,
+    "emissionsFactor": 0.00017062208823212085
+  },
+  {
+    "timestamp": 1527724800,
+    "emissionsFactor": 0.00016899248631363053
+  },
+  {
+    "timestamp": 1528934400,
+    "emissionsFactor": 0.0001694164947115609
+  },
+  {
+    "timestamp": 1530144000,
+    "emissionsFactor": 0.0001818926020965987
+  },
+  {
+    "timestamp": 1531353600,
+    "emissionsFactor": 0.00017284337768171874
+  },
+  {
+    "timestamp": 1532563200,
+    "emissionsFactor": 0.0001682360987209276
+  },
+  {
+    "timestamp": 1533772800,
+    "emissionsFactor": 0.0001805907861443172
+  },
+  {
+    "timestamp": 1534982400,
+    "emissionsFactor": 0.00017988080091129534
+  },
+  {
+    "timestamp": 1536192000,
+    "emissionsFactor": 0.00017414955686771984
+  },
+  {
+    "timestamp": 1537401600,
+    "emissionsFactor": 0.00016127305295732605
+  },
+  {
+    "timestamp": 1538611200,
+    "emissionsFactor": 0.00016590919289446326
+  },
+  {
+    "timestamp": 1539820800,
+    "emissionsFactor": 0.00018478976732410756
+  },
+  {
+    "timestamp": 1541030400,
+    "emissionsFactor": 0.00017948642794203068
+  },
+  {
+    "timestamp": 1542240000,
+    "emissionsFactor": 0.00018000922244915915
+  },
+  {
+    "timestamp": 1543449600,
+    "emissionsFactor": 0.0001607188947296668
+  },
+  {
+    "timestamp": 1544659200,
+    "emissionsFactor": 0.00012653409532156112
+  },
+  {
+    "timestamp": 1545868800,
+    "emissionsFactor": 0.00012250087696332186
+  },
+  {
+    "timestamp": 1547078400,
+    "emissionsFactor": 0.00014248007813596618
+  },
+  {
+    "timestamp": 1548288000,
+    "emissionsFactor": 0.00014652107630880754
+  },
+  {
+    "timestamp": 1549497600,
+    "emissionsFactor": 0.00012725250501294157
+  },
+  {
+    "timestamp": 1550707200,
+    "emissionsFactor": 0.00012630997121560809
+  },
+  {
+    "timestamp": 1551916800,
+    "emissionsFactor": 0.00011517878390706532
+  },
+  {
+    "timestamp": 1553126400,
+    "emissionsFactor": 0.00009899745155474703
+  },
+  {
+    "timestamp": 1554336000,
+    "emissionsFactor": 0.00008676595797850722
+  },
+  {
+    "timestamp": 1555545600,
+    "emissionsFactor": 0.00009581902385062635
+  },
+  {
+    "timestamp": 1556755200,
+    "emissionsFactor": 0.0000976849739838377
+  },
+  {
+    "timestamp": 1557964800,
+    "emissionsFactor": 0.00009145621058747411
+  },
+  {
+    "timestamp": 1559174400,
+    "emissionsFactor": 0.00009180874041554897
+  },
+  {
+    "timestamp": 1560384000,
+    "emissionsFactor": 0.0000927319140155634
+  },
+  {
+    "timestamp": 1561593600,
+    "emissionsFactor": 0.00009303502026885922
+  },
+  {
+    "timestamp": 1562803200,
+    "emissionsFactor": 0.00010482951314015952
+  },
+  {
+    "timestamp": 1564012800,
+    "emissionsFactor": 0.00011276693068238966
+  },
+  {
+    "timestamp": 1565222400,
+    "emissionsFactor": 0.00010725570428479126
+  },
+  {
+    "timestamp": 1566432000,
+    "emissionsFactor": 0.0001104591534324579
+  },
+  {
+    "timestamp": 1567641600,
+    "emissionsFactor": 0.00009772706282073564
+  },
+  {
+    "timestamp": 1568851200,
+    "emissionsFactor": 0.00009702020181847344
+  },
+  {
+    "timestamp": 1570060800,
+    "emissionsFactor": 0.00008700788478276965
+  },
+  {
+    "timestamp": 1571270400,
+    "emissionsFactor": 0.00011502660011480245
+  },
+  {
+    "timestamp": 1572480000,
+    "emissionsFactor": 0.00011361747103129727
+  },
+  {
+    "timestamp": 1573689600,
+    "emissionsFactor": 0.00010614206312613541
+  },
+  {
+    "timestamp": 1574899200,
+    "emissionsFactor": 0.00009680476758257475
+  },
+  {
+    "timestamp": 1576108800,
+    "emissionsFactor": 0.00010578969196906847
+  },
+  {
+    "timestamp": 1577318400,
+    "emissionsFactor": 0.00009808010866570412
+  },
+  {
+    "timestamp": 1578528000,
+    "emissionsFactor": 0.00010267065072582685
+  },
+  {
+    "timestamp": 1579737600,
+    "emissionsFactor": 0.00009885211701874991
+  },
+  {
+    "timestamp": 1580947200,
+    "emissionsFactor": 0.00009477703344965078
+  },
+  {
+    "timestamp": 1582156800,
+    "emissionsFactor": 0.00008799103947918204
+  },
+  {
+    "timestamp": 1583366400,
+    "emissionsFactor": 0.00009784713265753985
+  },
+  {
+    "timestamp": 1584576000,
+    "emissionsFactor": 0.0000866131334261464
+  },
+  {
+    "timestamp": 1585785600,
+    "emissionsFactor": 0.00008777188597976354
+  },
+  {
+    "timestamp": 1586995200,
+    "emissionsFactor": 0.00008373391874439013
+  },
+  {
+    "timestamp": 1588204800,
+    "emissionsFactor": 0.00008053708882835025
+  },
+  {
+    "timestamp": 1589414400,
+    "emissionsFactor": 0.00008002670177121866
+  },
+  {
+    "timestamp": 1590624000,
+    "emissionsFactor": 0.0000782639082501875
+  },
+  {
+    "timestamp": 1591833600,
+    "emissionsFactor": 0.00007898710315103727
+  },
+  {
+    "timestamp": 1593043200,
+    "emissionsFactor": 0.00007346721675885686
+  },
+  {
+    "timestamp": 1594252800,
+    "emissionsFactor": 0.00006803969881526397
+  },
+  {
+    "timestamp": 1595462400,
+    "emissionsFactor": 0.00006748358258239375
+  },
+  {
+    "timestamp": 1596672000,
+    "emissionsFactor": 0.00006577250566659366
+  },
+  {
+    "timestamp": 1597881600,
+    "emissionsFactor": 0.00006834708155058696
+  },
+  {
+    "timestamp": 1599091200,
+    "emissionsFactor": 0.00007217817885574274
+  },
+  {
+    "timestamp": 1600300800,
+    "emissionsFactor": 0.00007884437747533047
+  },
+  {
+    "timestamp": 1601510400,
+    "emissionsFactor": 0.00008330074229940336
+  },
+  {
+    "timestamp": 1602720000,
+    "emissionsFactor": 0.000085961746778609
+  },
+  {
+    "timestamp": 1603929600,
+    "emissionsFactor": 0.00008616508414444079
+  },
+  {
+    "timestamp": 1605139200,
+    "emissionsFactor": 0.00008685144446019486
+  },
+  {
+    "timestamp": 1606348800,
+    "emissionsFactor": 0.00008915888357156944
+  },
+  {
+    "timestamp": 1607558400,
+    "emissionsFactor": 0.00009296519995747121
+  },
+  {
+    "timestamp": 1608768000,
+    "emissionsFactor": 0.00009309957308405543
+  },
+  {
+    "timestamp": 1609977600,
+    "emissionsFactor": 0.00009678633073110477
+  },
+  {
+    "timestamp": 1611187200,
+    "emissionsFactor": 0.00010567397403099727
+  },
+  {
+    "timestamp": 1612396800,
+    "emissionsFactor": 0.00011480127875152622
+  },
+  {
+    "timestamp": 1613606400,
+    "emissionsFactor": 0.00012618586663723318
+  },
+  {
+    "timestamp": 1614816000,
+    "emissionsFactor": 0.00013463816959721398
+  },
+  {
+    "timestamp": 1616025600,
+    "emissionsFactor": 0.0001419490660197614
+  },
+  {
+    "timestamp": 1617235200,
+    "emissionsFactor": 0.0001525866034944133
+  },
+  {
+    "timestamp": 1618444800,
+    "emissionsFactor": 0.00016818143157801713
+  },
+  {
+    "timestamp": 1619654400,
+    "emissionsFactor": 0.0001608907195970739
+  },
+  {
+    "timestamp": 1620864000,
+    "emissionsFactor": 0.00016111539839367483
+  },
+  {
+    "timestamp": 1622073600,
+    "emissionsFactor": 0.00017114131880785854
+  },
+  {
+    "timestamp": 1623283200,
+    "emissionsFactor": 0.000168933679835745
+  },
+  {
+    "timestamp": 1624492800,
+    "emissionsFactor": 0.00015940173057453816
+  },
+  {
+    "timestamp": 1625702400,
+    "emissionsFactor": 0.00013964038455961222
+  },
+  {
+    "timestamp": 1626912000,
+    "emissionsFactor": 0.0001453568678305269
+  },
+  {
+    "timestamp": 1628121600,
+    "emissionsFactor": 0.00015592379497198655
+  },
+  {
+    "timestamp": 1629331200,
+    "emissionsFactor": 0.00015703289882089365
+  },
+  {
+    "timestamp": 1630540800,
+    "emissionsFactor": 0.00016702598526171613
+  },
+  {
+    "timestamp": 1631750400,
+    "emissionsFactor": 0.00017960389696181184
+  },
+  {
+    "timestamp": 1632960000,
+    "emissionsFactor": 0.00018603754178902855
+  },
+  {
+    "timestamp": 1634169600,
+    "emissionsFactor": 0.00019442907124043836
+  },
+  {
+    "timestamp": 1635379200,
+    "emissionsFactor": 0.00020122496977133768
+  },
+  {
+    "timestamp": 1636588800,
+    "emissionsFactor": 0.00021380511184446654
+  },
+  {
+    "timestamp": 1637798400,
+    "emissionsFactor": 0.00022824412116116674
+  },
+  {
+    "timestamp": 1639008000,
+    "emissionsFactor": 0.00023446670156754065
+  },
+  {
+    "timestamp": 1640217600,
+    "emissionsFactor": 0.00023921042848029197
+  },
+  {
+    "timestamp": 1641427200,
+    "emissionsFactor": 0.00024555363366398085
+  },
+  {
+    "timestamp": 1642636800,
+    "emissionsFactor": 0.00025022840709300754
+  },
+  {
+    "timestamp": 1643846400,
+    "emissionsFactor": 0.00025783084274329146
+  },
+  {
+    "timestamp": 1645056000,
+    "emissionsFactor": 0.00026218708662471347
+  },
+  {
+    "timestamp": 1646265600,
+    "emissionsFactor": 0.0002622616750998815
+  },
+  {
+    "timestamp": 1647475200,
+    "emissionsFactor": 0.0002614223250568044
+  },
+  {
+    "timestamp": 1648684800,
+    "emissionsFactor": 0.00026670126750811076
+  },
+  {
+    "timestamp": 1649894400,
+    "emissionsFactor": 0.00027106674734547916
+  },
+  {
+    "timestamp": 1651104000,
+    "emissionsFactor": 0.00027577643874175065
+  },
+  {
+    "timestamp": 1652313600,
+    "emissionsFactor": 0.00028625407388341555
+  },
+  {
+    "timestamp": 1653523200,
+    "emissionsFactor": 0.0002966616015507648
+  },
+  {
+    "timestamp": 1654732800,
+    "emissionsFactor": 0.0002990181777343825
+  },
+  {
+    "timestamp": 1655942400,
+    "emissionsFactor": 0.0002928268927354046
+  },
+  {
+    "timestamp": 1657152000,
+    "emissionsFactor": 0.0002679597558502609
+  },
+  {
+    "timestamp": 1658361600,
+    "emissionsFactor": 0.00023921697826715505
+  }
+]

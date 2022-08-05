@@ -61,8 +61,9 @@ export interface AddressEmissionsResult {
   lowestBlockNumber: number;
 }
 
-export interface EmissionFactors {
-  UNIXTime: number;
-  blockNumber: number;
-  emissionFactor: number;
+export interface EmissionsFactor {
+  /** Unix seconds */
+  timestamp: number;
+  /** Grams co2 per gas */
+  emissionsFactor: number;
 }

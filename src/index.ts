@@ -1,18 +1,16 @@
-import { AddressEmissionsResult, CalculatorOptions } from "./types";
+import {
+  AddressEmissionsResult,
+  CalculatorOptions,
+  EmissionsFactor,
+} from "./types";
 import { filterValidTransactions } from "./utils/filterValidTransactions";
 import { getSumGasUsed } from "./utils/getSumGasUsed";
 import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
 import { getTransactionEmissions } from "./utils/getTransactionEmissions";
-import emissionFactorTable from "./data/emissionFactorTable.json";
+import emissionFactorTable from "./data/emissionsFactorTable.json";
 
 export type { CalculatorOptions, AddressEmissionsResult };
-
-/**
- * Based on 2021 methodology, see github and carbon.fyi for details.
- * Last updated: June 24, 2021
- */
-const KG_CO2_PER_GAS = 0.0001809589427;
 
 export const calculateEmissions = async (
   options: CalculatorOptions
@@ -28,7 +26,7 @@ export const calculateEmissions = async (
 
   const totalEmissions = getTransactionEmissions(
     filteredTransactions,
-    emissionFactorTable as any
+    emissionFactorTable as EmissionsFactor[]
   );
 
   const gasUsed = getSumGasUsed(filteredTransactions);
