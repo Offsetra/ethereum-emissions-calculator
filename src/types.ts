@@ -67,3 +67,9 @@ export interface EmissionsFactor {
   /** Grams co2 per gas */
   emissionsFactor: number;
 }
+
+export interface CSVRecord {
+  "Date(UTC)": string;
+  UnixTimeStamp: string;
+  Value: string;
+}

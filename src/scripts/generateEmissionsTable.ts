@@ -1,5 +1,6 @@
 import fs from "fs";
-import { EmissionsFactor } from "../types";
+import { CSVRecord, EmissionsFactor } from "../types";
+import { createDailyEmissionsTable } from "../utils/createDailyEmissionsTable";
 
 let csvToJson = require("convert-csv-to-json");
 
@@ -7,20 +8,14 @@ let csvToJson = require("convert-csv-to-json");
  * gco2 per kwh
  * Rough average from https://kylemcdonald.github.io/ethereum-emissions/
  * */
-const emissionsPerKwh = 325;
+const GCO2_PER_KWH = 325;
 /**
  * MH/s/W
  * Rough mid-point, not including overhead and efficiency multipliers.
  * "hashing efficiency [...] doubled from around 0.17 MH/s/W to 0.44MH/s/W"
  * https://kylemcdonald.github.io/ethereum-emissions/
  */
-const hashEfficiency = 0.3;
-
-interface CSVRecord {
-  "Date(UTC)": string;
-  UnixTimeStamp: string;
-  Value: string;
-}
+const HASH_EFFICIENCY = 0.3;
 
 const getJSONData = <T extends "GasUsed" | "NetworkHash">(
   filePrefix: T
@@ -43,20 +38,6 @@ const getJSONData = <T extends "GasUsed" | "NetworkHash">(
   return JSON.parse(JSON.stringify(json).replace(/\\"/g, ""));
 };
 
-export const calculateEmissionsFactor = (params: {
-  dayGasUsed: number;
-  dayHashrate: number;
-}): number => {
-  if (!params.dayGasUsed) return 0;
-  const megahashRate = params.dayHashrate * 1000; // convert GH/s to MH/s
-  const wattConsumption = megahashRate / hashEfficiency;
-  const kilowattConsumption = wattConsumption / 1000;
-  const kwhConsumption = kilowattConsumption * 24;
-  const kwhPerGas = kwhConsumption / params.dayGasUsed;
-  // KG co2 per gas for this day:
-  return (kwhPerGas * emissionsPerKwh) / 1000;
-};
-
 const saveToJSON = (emissionsFactorTable: EmissionsFactor[]): void => {
   // Stringify results prior to saving as JSON
   const data = JSON.stringify(emissionsFactorTable, undefined, "  ");
@@ -69,24 +50,6 @@ const saveToJSON = (emissionsFactorTable: EmissionsFactor[]): void => {
     console.log(`Saved JSON data to ${outputPath}`);
   });
 };
-
-/** Given an array of daily gasused and hashrates
- * return an array of emissions factors for each day */
-export const createDailyEmissionsTable = (params: {
-  gasData: CSVRecord[];
-  hashrateData: CSVRecord[];
-}): EmissionsFactor[] =>
-  params.hashrateData.map((dayHashrate, index) => {
-    const dayGasUsed = params.gasData[index];
-    const emissionsFactor = calculateEmissionsFactor({
-      dayGasUsed: Number(dayGasUsed.Value),
-      dayHashrate: Number(dayHashrate.Value),
-    });
-    return {
-      timestamp: parseInt(dayHashrate.UnixTimeStamp),
-      emissionsFactor: emissionsFactor,
-    };
-  });
 
 /**
  * Condense and interpolate the array to the given resolution in days
@@ -142,6 +105,8 @@ export const generateEmissionsTable = (params: {
   const dailyEmissionsFactors = createDailyEmissionsTable({
     gasData,
     hashrateData,
+    hashEfficiency: HASH_EFFICIENCY,
+    emissionsPerKwh: GCO2_PER_KWH,
   });
   const data = interpolateEmissionsFactors({
     dailyEmissionsFactors,
