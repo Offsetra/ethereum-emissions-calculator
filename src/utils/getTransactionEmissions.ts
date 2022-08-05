@@ -1,37 +1,20 @@
-import { EmissionFactors, TransactionData } from "../types";
-
-interface filteredTransactionData {
-  blockNumber: string;
-  from: string;
-  to: string;
-  gasUsed: string;
-  hash: string;
-}
+import { EmissionsFactor, TransactionData } from "../types";
 
 export const getTransactionEmissions = (
-  txns: filteredTransactionData[],
-  emissionFactorTable: EmissionFactors[]
+  txns: TransactionData[],
+  emissionsFactorTable: EmissionsFactor[]
 ) => {
-  let totalTransactionEmissions = 0;
-  //Loop through all transactions
-  for (let i = 0; i < txns.length; i++) {
-    const transactionBlockNumber = parseFloat(txns[i].blockNumber);
-    //Find closest block number from JSON
-    for (let j = 0; j < emissionFactorTable.length; j++) {
-      if (
-        transactionBlockNumber >= emissionFactorTable[j].blockNumber &&
-        transactionBlockNumber < emissionFactorTable[j + 1].blockNumber
-      ) {
-        //Find transaction emissions by multiplying gas used by transaction by relevant emission factor for that block range
-        const transactionEmissions =
-          parseInt(txns[i].gasUsed) * emissionFactorTable[j].emissionFactor;
-
-        //Add transaction emissions to total
-        totalTransactionEmissions += transactionEmissions;
-        //Stop the loop for this transaction
-        break;
-      }
+  let datePointer = 0;
+  return txns.reduce((prev, tx) => {
+    const notLast = datePointer < emissionsFactorTable.length - 1;
+    const txnIsOlder =
+      parseInt(tx.timeStamp) > emissionsFactorTable[datePointer].timestamp;
+    while (notLast && txnIsOlder) {
+      datePointer++;
     }
-  }
-  return totalTransactionEmissions;
+    return (
+      prev +
+      parseInt(tx.gasUsed) * emissionsFactorTable[datePointer].emissionsFactor
+    );
+  }, 0);
 };
