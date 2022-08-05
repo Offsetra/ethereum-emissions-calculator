@@ -1,14 +1,14 @@
 import fs from "fs";
 import Web3 from "web3";
+import { EtherscanResponse, TransactionData } from "../types";
 
 let csvToJson = require('convert-csv-to-json');
 
+//import { fetchEtherscanData } from "../utils/fetchEtherscanData";
+import { fetchJSON } from "../utils/fetchJSON";
 
-
-const web3 = new Web3(
-  "infura_id"
-); //REMOVE PROVIDER
-const ETHERSCAN_API_KEY = "etherscan_api_key";
+const web3 = new Web3('https://mainnet.infura.io/v3/847555e037034236bf0020e3d9986525'); //REMOVE PROVIDER
+const ETHERSCAN_API_KEY = "JTH4MFPK7YAX47QVIGTGK54MTPCYXJV34C";
 
 //Constants
 const secondsInDay = 86400;
@@ -26,6 +26,12 @@ export interface networkData {
   "Date(UTC)": string;
   UnixTimeStamp: number;
   Value: number;
+}
+
+export interface EtherscanBlockNumberResponse {
+  status: "0" | "1";
+  message: string;
+  result: string;
 }
 
 export interface blockDataType {
@@ -83,6 +89,7 @@ const CSVtoJSON = (date:string, dataType:string) => {
   jsonString = jsonString.replace(/\\"/g, '')
   //jsonString = jsonString.replace(/""/g, '"')
   json = (JSON.parse(jsonString))
+  
   
   return json
 }
@@ -192,27 +199,35 @@ export const fetchIndexesFromDayResolution = async (
         "&closest=before&apikey=" +
         ETHERSCAN_API_KEY;
 
-      // Fetch etherscan data
-      async function fetchEtherscanData(url: string) {
-        const res = await fetch(url);
-
-        if (!res.ok) {
-          const json = await res.json();
-          throw json;
+        async function fetchEtherscanData(url: string) {
+          const res = await fetch(url);
+  
+          if (!res.ok) {
+            const json = await res.json();
+            throw json;
+          }
+          const data = await res.json();
+          return data;
         }
-        const data = await res.json();
-        return data;
-      }
 
-      let data = await fetchEtherscanData(etherscanURL);
+      // Fetch etherscan data
+      let response = await fetchJSON<EtherscanBlockNumberResponse>(etherscanURL);
 
       // Avoid max API call rate
-      if (data.status === "0") {
-        data = await fetchEtherscanData(etherscanURL);
+      if (response.status === "0" && response.result === "Max rate limit reached") {
+        response = await fetchJSON<EtherscanBlockNumberResponse>(etherscanURL);
+      }
+      else if (response.status === "0" && response.message === "No transactions found") {
+        return [];
+      }
+      else if (response.status !== "1") {
+        throw new Error(`Failed to calculate emissions: ${response.message}`);
       }
 
+      
+
       // Convert string to int
-      const blockNumber = parseInt(data.result);
+      const blockNumber = parseInt(response.result);
 
       // Push index data to array
       indexArray.push(
@@ -225,20 +240,29 @@ export const fetchIndexesFromDayResolution = async (
   const finalIndex = gas.length - 1;
   const finalTimestamp = gas[finalIndex].UnixTimeStamp;
 
-  //Find final block number
-  const res = await fetch(
-    "https://api.etherscan.io/api?module=block&action=getblocknobytime&timestamp=" +
-      finalTimestamp +
-      "&closest=before&apikey=" +
-      ETHERSCAN_API_KEY
-  );
-  if (!res.ok) {
-    const json = await res.json();
-    throw json;
-  }
-  const data = await res.json();
+  const etherscanURL= "https://api.etherscan.io/api?module=block&action=getblocknobytime&timestamp=" +
+  finalTimestamp +
+  "&closest=before&apikey=" +
+  ETHERSCAN_API_KEY
 
-  const finalBlock = parseInt(data.result);
+
+
+  //Find final block number
+  let response = await fetchJSON<EtherscanBlockNumberResponse>(etherscanURL);
+
+  // Avoid max API call rate
+  if (response.status === "0" && response.result === "Max rate limit reached") {
+    response = await fetchJSON<EtherscanBlockNumberResponse>(etherscanURL);
+  }
+  else if (response.status === "0" && response.message === "No transactions found") {
+    return [];
+  }
+  else if (response.status !== "1") {
+    throw new Error(`Failed to calculate emissions: ${response.message}`);
+  }
+
+
+  const finalBlock = parseInt(response.result);
   indexArray.push(
     new (blockData as any)(finalIndex, finalTimestamp, finalBlock)
   );
@@ -396,7 +420,7 @@ const saveToJSON = (emissionArray: emissionDataType[]) => {
 //Download most recent files from Etherscan
 //Save to data directory
 //Update date of data range
-generateEmissionDataFromIndexArray("block", 100000, '08-04-2022');
-// generateEmissionDataFromIndexArray('day', 30, '08-04-2022')
+//generateEmissionDataFromIndexArray("block", 100000, '08-04-2022');
+generateEmissionDataFromIndexArray('day', 30, '08-04-2022')
 
 
