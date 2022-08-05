@@ -4,7 +4,6 @@ import {
   EmissionsFactor,
 } from "./types";
 import { filterValidTransactions } from "./utils/filterValidTransactions";
-import { getSumGasUsed } from "./utils/getSumGasUsed";
 import { getAddressTransactions } from "./utils/getAddressTransactions";
 import { validateCalculatorOptions } from "./utils/validateCalculatorOptions";
 import { getTransactionEmissions } from "./utils/getTransactionEmissions";
@@ -17,19 +16,19 @@ export const calculateEmissions = async (
 ): Promise<AddressEmissionsResult> => {
   validateCalculatorOptions(options);
   const { isContract = false, address } = options;
+
   const { transactions, done } = await getAddressTransactions(options);
+
   const filteredTransactions = filterValidTransactions({
     isContract,
     transactions,
     address,
   });
 
-  const totalEmissions = getTransactionEmissions(
+  const [totalEmissions, gasUsed] = getTransactionEmissions(
     filteredTransactions,
     emissionFactorTable as EmissionsFactor[]
   );
-
-  const gasUsed = getSumGasUsed(filteredTransactions);
 
   return {
     kgCO2: Math.round(totalEmissions),
