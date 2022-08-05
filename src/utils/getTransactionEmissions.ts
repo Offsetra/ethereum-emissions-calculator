@@ -1,5 +1,6 @@
 import { EmissionsFactor, TransactionData } from "../types";
 
+/** returns [emissionsInKGCO2, gasUsed] */
 export const getTransactionEmissions = (
   txns: TransactionData[],
   emissionsFactorTable: EmissionsFactor[]
@@ -7,10 +8,12 @@ export const getTransactionEmissions = (
   let datePointer = 0;
   return txns.reduce(
     (prev, tx) => {
-      const notLast = datePointer < emissionsFactorTable.length - 1;
       const txnIsOlder =
         parseInt(tx.timeStamp) > emissionsFactorTable[datePointer].timestamp;
-      while (notLast && txnIsOlder) {
+      while (txnIsOlder) {
+        if (datePointer === emissionsFactorTable.length - 1) {
+          break;
+        }
         datePointer++;
       }
       return [
