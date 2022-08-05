@@ -1,767 +1,767 @@
 [
   {
-    "UNIXTime": "1438214400",
+    "UNIXTime": 0,
     "blockNumber": 0,
     "emissionFactor": 0.0001506590889281367
   },
   {
-    "UNIXTime": "1439769600",
+    "UNIXTime": 1439799138,
     "blockNumber": 100000,
-    "emissionFactor": 0.0001815805949344052
+    "emissionFactor": 0.00019322799159420497
   },
   {
-    "UNIXTime": "1441670400",
+    "UNIXTime": 1441661589,
     "blockNumber": 200000,
-    "emissionFactor": 0.0001633609185679892
+    "emissionFactor": 0.00016217560639388476
   },
   {
-    "UNIXTime": "1443398400",
+    "UNIXTime": 1443389251,
     "blockNumber": 300000,
-    "emissionFactor": 0.00012680682212671805
+    "emissionFactor": 0.00012274743570335383
   },
   {
-    "UNIXTime": "1445126400",
+    "UNIXTime": 1445130204,
     "blockNumber": 400000,
-    "emissionFactor": 0.00012905507872841635
+    "emissionFactor": 0.00013716281252629123
   },
   {
-    "UNIXTime": "1446854400",
+    "UNIXTime": 1446832865,
     "blockNumber": 500000,
-    "emissionFactor": 0.00012545474135512824
+    "emissionFactor": 0.00012272903667986647
   },
   {
-    "UNIXTime": "1448582400",
+    "UNIXTime": 1448548070,
     "blockNumber": 600000,
-    "emissionFactor": 0.00009538361548900177
+    "emissionFactor": 0.0000929016770569189
   },
   {
-    "UNIXTime": "1450224000",
+    "UNIXTime": 1450260368,
     "blockNumber": 700000,
     "emissionFactor": 0.000052818748580038195
   },
   {
-    "UNIXTime": "1451952000",
+    "UNIXTime": 1451973805,
     "blockNumber": 800000,
     "emissionFactor": 0.00006571771442459069
   },
   {
-    "UNIXTime": "1453680000",
+    "UNIXTime": 1453685405,
     "blockNumber": 900000,
-    "emissionFactor": 0.0000771466661525623
+    "emissionFactor": 0.00008077821444359301
   },
   {
-    "UNIXTime": "1455408000",
+    "UNIXTime": 1455404053,
     "blockNumber": 1000000,
-    "emissionFactor": 0.00008997916141425218
+    "emissionFactor": 0.00008916997631891073
   },
   {
-    "UNIXTime": "1457136000",
+    "UNIXTime": 1457127728,
     "blockNumber": 1100000,
-    "emissionFactor": 0.00010832234880328946
+    "emissionFactor": 0.00010276403755346034
   },
   {
-    "UNIXTime": "1458691200",
+    "UNIXTime": 1458700607,
     "blockNumber": 1200000,
-    "emissionFactor": 0.00012755868603756533
+    "emissionFactor": 0.00013434389917546034
   },
   {
-    "UNIXTime": "1460160000",
+    "UNIXTime": 1460132674,
     "blockNumber": 1300000,
-    "emissionFactor": 0.00018935690953728886
+    "emissionFactor": 0.00017604669543020844
   },
   {
-    "UNIXTime": "1461542400",
+    "UNIXTime": 1461568385,
     "blockNumber": 1400000,
-    "emissionFactor": 0.0001721460025942651
+    "emissionFactor": 0.00018445734989916158
   },
   {
-    "UNIXTime": "1463011200",
+    "UNIXTime": 1463003133,
     "blockNumber": 1500000,
-    "emissionFactor": 0.00015634570249761255
+    "emissionFactor": 0.00016387376883095087
   },
   {
-    "UNIXTime": "1464480000",
+    "UNIXTime": 1464437749,
     "blockNumber": 1600000,
-    "emissionFactor": 0.00021370689190964573
+    "emissionFactor": 0.00018825659165815764
   },
   {
-    "UNIXTime": "1465862400",
+    "UNIXTime": 1465869449,
     "blockNumber": 1700000,
-    "emissionFactor": 0.00010403500122371857
+    "emissionFactor": 0.0001122514951765416
   },
   {
-    "UNIXTime": "1467331200",
+    "UNIXTime": 1467304690,
     "blockNumber": 1800000,
-    "emissionFactor": 0.0002638470141330886
+    "emissionFactor": 0.00022406439397754682
   },
   {
-    "UNIXTime": "1468713600",
+    "UNIXTime": 1468735359,
     "blockNumber": 1900000,
-    "emissionFactor": 0.00021033669394097403
+    "emissionFactor": 0.0002238738570411979
   },
   {
-    "UNIXTime": "1470182400",
+    "UNIXTime": 1470173578,
     "blockNumber": 2000000,
-    "emissionFactor": 0.0002666066888074854
+    "emissionFactor": 0.00024797469933143877
   },
   {
-    "UNIXTime": "1471564800",
+    "UNIXTime": 1471600261,
     "blockNumber": 2100000,
-    "emissionFactor": 0.00026818205182833205
+    "emissionFactor": 0.0002925719953313026
   },
   {
-    "UNIXTime": "1473033600",
+    "UNIXTime": 1473030561,
     "blockNumber": 2200000,
-    "emissionFactor": 0.0003035072591222754
+    "emissionFactor": 0.00027774178317879685
   },
   {
-    "UNIXTime": "1474416000",
+    "UNIXTime": 1474458061,
     "blockNumber": 2300000,
     "emissionFactor": 0.00021661219673743375
   },
   {
-    "UNIXTime": "1475884800",
+    "UNIXTime": 1475896666,
     "blockNumber": 2400000,
-    "emissionFactor": 0.0003364914968326666
+    "emissionFactor": 0.0003557566218496418
   },
   {
-    "UNIXTime": "1477353600",
+    "UNIXTime": 1477324790,
     "blockNumber": 2500000,
-    "emissionFactor": 0.0004020816713242477
+    "emissionFactor": 0.00037721197400737586
   },
   {
-    "UNIXTime": "1478736000",
+    "UNIXTime": 1478765346,
     "blockNumber": 2600000,
-    "emissionFactor": 0.0002664721987478627
+    "emissionFactor": 0.0002962855409832605
   },
   {
-    "UNIXTime": "1480204800",
+    "UNIXTime": 1480195305,
     "blockNumber": 2700000,
-    "emissionFactor": 0.0002627441670285603
+    "emissionFactor": 0.00023950787894224843
   },
   {
-    "UNIXTime": "1481587200",
+    "UNIXTime": 1481622328,
     "blockNumber": 2800000,
-    "emissionFactor": 0.00037550313850349325
+    "emissionFactor": 0.00040520976874682544
   },
   {
-    "UNIXTime": "1483056000",
+    "UNIXTime": 1483051090,
     "blockNumber": 2900000,
-    "emissionFactor": 0.0004048685805149752
+    "emissionFactor": 0.00037564762367629486
   },
   {
-    "UNIXTime": "1484438400",
+    "UNIXTime": 1484475035,
     "blockNumber": 3000000,
-    "emissionFactor": 0.00043312094938624025
+    "emissionFactor": 0.0004567774736743057
   },
   {
-    "UNIXTime": "1485907200",
+    "UNIXTime": 1485904756,
     "blockNumber": 3100000,
-    "emissionFactor": 0.00041238160433527455
+    "emissionFactor": 0.00041278404652229266
   },
   {
-    "UNIXTime": "1487376000",
+    "UNIXTime": 1487334651,
     "blockNumber": 3200000,
-    "emissionFactor": 0.0004841256682995025
+    "emissionFactor": 0.00045629124729795186
   },
   {
-    "UNIXTime": "1488758400",
+    "UNIXTime": 1488769200,
     "blockNumber": 3300000,
-    "emissionFactor": 0.00043663918885632707
+    "emissionFactor": 0.00046176102356598026
   },
   {
-    "UNIXTime": "1490227200",
+    "UNIXTime": 1490212301,
     "blockNumber": 3400000,
-    "emissionFactor": 0.0004746979742449285
+    "emissionFactor": 0.0004665271223870707
   },
   {
-    "UNIXTime": "1491696000",
+    "UNIXTime": 1491667208,
     "blockNumber": 3500000,
-    "emissionFactor": 0.0005393024478488316
+    "emissionFactor": 0.0005471960361105212
   },
   {
-    "UNIXTime": "1493164800",
+    "UNIXTime": 1493152619,
     "blockNumber": 3600000,
-    "emissionFactor": 0.00044706342992119086
+    "emissionFactor": 0.0004513418854717048
   },
   {
-    "UNIXTime": "1494720000",
+    "UNIXTime": 1494679592,
     "blockNumber": 3700000,
-    "emissionFactor": 0.00027499253384469973
+    "emissionFactor": 0.0002844429220830793
   },
   {
-    "UNIXTime": "1496275200",
+    "UNIXTime": 1496262791,
     "blockNumber": 3800000,
-    "emissionFactor": 0.0002798675596077389
+    "emissionFactor": 0.0002753796162458477
   },
   {
-    "UNIXTime": "1497916800",
+    "UNIXTime": 1497906023,
     "blockNumber": 3900000,
-    "emissionFactor": 0.0003068823844941437
+    "emissionFactor": 0.0002993663828110844
   },
   {
-    "UNIXTime": "1499644800",
+    "UNIXTime": 1499633567,
     "blockNumber": 4000000,
-    "emissionFactor": 0.00038313308232848113
+    "emissionFactor": 0.0003831660505866468
   },
   {
-    "UNIXTime": "1501545600",
+    "UNIXTime": 1501511212,
     "blockNumber": 4100000,
-    "emissionFactor": 0.0003111567060710513
+    "emissionFactor": 0.00031107588169820475
   },
   {
-    "UNIXTime": "1503619200",
+    "UNIXTime": 1503608908,
     "blockNumber": 4200000,
-    "emissionFactor": 0.0002828424815175886
+    "emissionFactor": 0.0002827263898692381
   },
   {
-    "UNIXTime": "1506038400",
+    "UNIXTime": 1506036497,
     "blockNumber": 4300000,
-    "emissionFactor": 0.0002975394443417342
+    "emissionFactor": 0.00028775753321001404
   },
   {
-    "UNIXTime": "1508544000",
+    "UNIXTime": 1508562677,
     "blockNumber": 4400000,
     "emissionFactor": 0.0004167888350024755
   },
   {
-    "UNIXTime": "1509926400",
+    "UNIXTime": 1509953783,
     "blockNumber": 4500000,
     "emissionFactor": 0.0004124656616290927
   },
   {
-    "UNIXTime": "1511308800",
+    "UNIXTime": 1511344523,
     "blockNumber": 4600000,
     "emissionFactor": 0.0003302525949615347
   },
   {
-    "UNIXTime": "1512777600",
+    "UNIXTime": 1512785595,
     "blockNumber": 4700000,
     "emissionFactor": 0.0002781073945323573
   },
   {
-    "UNIXTime": "1514246400",
+    "UNIXTime": 1514284151,
     "blockNumber": 4800000,
     "emissionFactor": 0.0003087855911361613
   },
   {
-    "UNIXTime": "1515801600",
+    "UNIXTime": 1515822538,
     "blockNumber": 4900000,
-    "emissionFactor": 0.00037213277211411235
+    "emissionFactor": 0.00039218580645462565
   },
   {
-    "UNIXTime": "1517356800",
+    "UNIXTime": 1517319693,
     "blockNumber": 5000000,
-    "emissionFactor": 0.0005168934557357034
+    "emissionFactor": 0.0004827461671914256
   },
   {
-    "UNIXTime": "1518739200",
+    "UNIXTime": 1518774582,
     "blockNumber": 5100000,
     "emissionFactor": 0.0005258214842427868
   },
   {
-    "UNIXTime": "1520208000",
+    "UNIXTime": 1520240763,
     "blockNumber": 5200000,
     "emissionFactor": 0.0005976654901834365
   },
   {
-    "UNIXTime": "1521676800",
+    "UNIXTime": 1521705200,
     "blockNumber": 5300000,
-    "emissionFactor": 0.0006348983100869781
+    "emissionFactor": 0.0006763553160655467
   },
   {
-    "UNIXTime": "1523145600",
+    "UNIXTime": 1523144644,
     "blockNumber": 5400000,
-    "emissionFactor": 0.0005367820855108894
+    "emissionFactor": 0.0005415917652959408
   },
   {
-    "UNIXTime": "1524614400",
+    "UNIXTime": 1524611221,
     "blockNumber": 5500000,
-    "emissionFactor": 0.0005434485115557483
+    "emissionFactor": 0.0005120824750122617
   },
   {
-    "UNIXTime": "1526083200",
+    "UNIXTime": 1526117029,
     "blockNumber": 5600000,
     "emissionFactor": 0.0005083118998806753
   },
   {
-    "UNIXTime": "1527638400",
+    "UNIXTime": 1527643015,
     "blockNumber": 5700000,
-    "emissionFactor": 0.0005138779370644638
+    "emissionFactor": 0.0005438426195293985
   },
   {
-    "UNIXTime": "1529193600",
+    "UNIXTime": 1529166467,
     "blockNumber": 5800000,
-    "emissionFactor": 0.0005644305322676856
+    "emissionFactor": 0.0005651920812966591
   },
   {
-    "UNIXTime": "1530662400",
+    "UNIXTime": 1530646642,
     "blockNumber": 5900000,
-    "emissionFactor": 0.0005407035624437053
+    "emissionFactor": 0.0005411890768997923
   },
   {
-    "UNIXTime": "1532131200",
+    "UNIXTime": 1532118564,
     "blockNumber": 6000000,
-    "emissionFactor": 0.0005656749098316593
+    "emissionFactor": 0.0005635923670460813
   },
   {
-    "UNIXTime": "1533600000",
+    "UNIXTime": 1533578575,
     "blockNumber": 6100000,
-    "emissionFactor": 0.0005656539157407047
+    "emissionFactor": 0.0005665731571889613
   },
   {
-    "UNIXTime": "1535068800",
+    "UNIXTime": 1535039951,
     "blockNumber": 6200000,
-    "emissionFactor": 0.0005479798293062883
+    "emissionFactor": 0.0005503356595084496
   },
   {
-    "UNIXTime": "1536537600",
+    "UNIXTime": 1536495403,
     "blockNumber": 6300000,
-    "emissionFactor": 0.0005417568601455609
+    "emissionFactor": 0.0005097757721103311
   },
   {
-    "UNIXTime": "1537920000",
+    "UNIXTime": 1537922897,
     "blockNumber": 6400000,
     "emissionFactor": 0.0005902181015464936
   },
   {
-    "UNIXTime": "1539302400",
+    "UNIXTime": 1539330275,
     "blockNumber": 6500000,
-    "emissionFactor": 0.0005759652002788053
+    "emissionFactor": 0.0006112782191044806
   },
   {
-    "UNIXTime": "1540771200",
+    "UNIXTime": 1540740577,
     "blockNumber": 6600000,
-    "emissionFactor": 0.0006091810150913107
+    "emissionFactor": 0.0005741335201450902
   },
   {
-    "UNIXTime": "1542153600",
+    "UNIXTime": 1542156560,
     "blockNumber": 6700000,
     "emissionFactor": 0.0005354668278245469
   },
   {
-    "UNIXTime": "1543536000",
+    "UNIXTime": 1543575859,
     "blockNumber": 6800000,
-    "emissionFactor": 0.00039987579987150497
+    "emissionFactor": 0.0004254530800826543
   },
   {
-    "UNIXTime": "1545004800",
+    "UNIXTime": 1545003100,
     "blockNumber": 6900000,
-    "emissionFactor": 0.00040351500573657855
+    "emissionFactor": 0.0004016713949772576
   },
   {
-    "UNIXTime": "1546473600",
+    "UNIXTime": 1546466952,
     "blockNumber": 7000000,
-    "emissionFactor": 0.00044858495251801745
+    "emissionFactor": 0.0004463158734864513
   },
   {
-    "UNIXTime": "1548028800",
+    "UNIXTime": 1548012002,
     "blockNumber": 7100000,
-    "emissionFactor": 0.00034545372037041064
+    "emissionFactor": 0.0003484351457215006
   },
   {
-    "UNIXTime": "1549756800",
+    "UNIXTime": 1549752194,
     "blockNumber": 7200000,
-    "emissionFactor": 0.00030092056609980824
+    "emissionFactor": 0.0002879302289623486
   },
   {
-    "UNIXTime": "1551657600",
+    "UNIXTime": 1551662535,
     "blockNumber": 7300000,
-    "emissionFactor": 0.0003345876696938585
+    "emissionFactor": 0.00035978679130051916
   },
   {
-    "UNIXTime": "1553040000",
+    "UNIXTime": 1553008742,
     "blockNumber": 7400000,
-    "emissionFactor": 0.0003129183483054885
+    "emissionFactor": 0.00029360273075196367
   },
   {
-    "UNIXTime": "1554336000",
+    "UNIXTime": 1554358137,
     "blockNumber": 7500000,
-    "emissionFactor": 0.00032057139375359843
+    "emissionFactor": 0.0003413899213234221
   },
   {
-    "UNIXTime": "1555718400",
+    "UNIXTime": 1555701653,
     "blockNumber": 7600000,
-    "emissionFactor": 0.0003516921582318034
+    "emissionFactor": 0.0003296332136815089
   },
   {
-    "UNIXTime": "1557014400",
+    "UNIXTime": 1557047080,
     "blockNumber": 7700000,
     "emissionFactor": 0.00030574436476328375
   },
   {
-    "UNIXTime": "1558396800",
+    "UNIXTime": 1558397321,
     "blockNumber": 7800000,
-    "emissionFactor": 0.00031179679214906773
+    "emissionFactor": 0.0003327098153339611
   },
   {
-    "UNIXTime": "1559779200",
+    "UNIXTime": 1559748180,
     "blockNumber": 7900000,
-    "emissionFactor": 0.00032723841790813153
+    "emissionFactor": 0.0003069846606844113
   },
   {
-    "UNIXTime": "1561075200",
+    "UNIXTime": 1561100149,
     "blockNumber": 8000000,
-    "emissionFactor": 0.00033939191226429864
+    "emissionFactor": 0.0003605050138904296
   },
   {
-    "UNIXTime": "1562457600",
+    "UNIXTime": 1562446275,
     "blockNumber": 8100000,
-    "emissionFactor": 0.00039779930148028963
+    "emissionFactor": 0.00037220698671688597
   },
   {
-    "UNIXTime": "1563753600",
+    "UNIXTime": 1563792449,
     "blockNumber": 8200000,
-    "emissionFactor": 0.00036556804832670715
+    "emissionFactor": 0.00039173420443703916
   },
   {
-    "UNIXTime": "1565136000",
+    "UNIXTime": 1565133760,
     "blockNumber": 8300000,
-    "emissionFactor": 0.0003946747709684482
+    "emissionFactor": 0.00036817513838621583
   },
   {
-    "UNIXTime": "1566432000",
+    "UNIXTime": 1566474986,
     "blockNumber": 8400000,
     "emissionFactor": 0.0003281175173935781
   },
   {
-    "UNIXTime": "1567814400",
+    "UNIXTime": 1567820847,
     "blockNumber": 8500000,
-    "emissionFactor": 0.0003173213669221116
+    "emissionFactor": 0.0003413087320660386
   },
   {
-    "UNIXTime": "1569196800",
+    "UNIXTime": 1569168482,
     "blockNumber": 8600000,
-    "emissionFactor": 0.0003366940783484191
+    "emissionFactor": 0.00031340779327277833
   },
   {
-    "UNIXTime": "1570492800",
+    "UNIXTime": 1570519385,
     "blockNumber": 8700000,
     "emissionFactor": 0.00039496676310164715
   },
   {
-    "UNIXTime": "1571875200",
+    "UNIXTime": 1571879059,
     "blockNumber": 8800000,
     "emissionFactor": 0.0003625677237540491
   },
   {
-    "UNIXTime": "1573257600",
+    "UNIXTime": 1573268850,
     "blockNumber": 8900000,
-    "emissionFactor": 0.00031594828457312996
+    "emissionFactor": 0.0003378702573497935
   },
   {
-    "UNIXTime": "1574726400",
+    "UNIXTime": 1574706444,
     "blockNumber": 9000000,
-    "emissionFactor": 0.0003052367176727006
+    "emissionFactor": 0.0003034059082980791
   },
   {
-    "UNIXTime": "1576281600",
+    "UNIXTime": 1576239700,
     "blockNumber": 9100000,
-    "emissionFactor": 0.0002839382851682999
+    "emissionFactor": 0.00026963213192506994
   },
   {
-    "UNIXTime": "1577923200",
+    "UNIXTime": 1577953849,
     "blockNumber": 9200000,
-    "emissionFactor": 0.0003319062793837113
+    "emissionFactor": 0.0003560143051087519
   },
   {
-    "UNIXTime": "1579305600",
+    "UNIXTime": 1579280624,
     "blockNumber": 9300000,
-    "emissionFactor": 0.0003526896427780175
+    "emissionFactor": 0.0003290314702431918
   },
   {
-    "UNIXTime": "1580601600",
+    "UNIXTime": 1580606033,
     "blockNumber": 9400000,
     "emissionFactor": 0.0003151205056564461
   },
   {
-    "UNIXTime": "1581897600",
+    "UNIXTime": 1581934143,
     "blockNumber": 9500000,
-    "emissionFactor": 0.0003232743013664004
+    "emissionFactor": 0.0003447195239081881
   },
   {
-    "UNIXTime": "1583280000",
+    "UNIXTime": 1583262508,
     "blockNumber": 9600000,
-    "emissionFactor": 0.0003131328681483326
+    "emissionFactor": 0.0002953554612469415
   },
   {
-    "UNIXTime": "1584576000",
+    "UNIXTime": 1584592505,
     "blockNumber": 9700000,
-    "emissionFactor": 0.0002943706363519002
+    "emissionFactor": 0.00031473972826495195
   },
   {
-    "UNIXTime": "1585958400",
+    "UNIXTime": 1585929737,
     "blockNumber": 9800000,
-    "emissionFactor": 0.00030010514946936104
+    "emissionFactor": 0.0002815327459601113
   },
   {
-    "UNIXTime": "1587254400",
+    "UNIXTime": 1587261633,
     "blockNumber": 9900000,
-    "emissionFactor": 0.00027240253436648155
+    "emissionFactor": 0.00029031092196879786
   },
   {
-    "UNIXTime": "1588636800",
+    "UNIXTime": 1588598533,
     "blockNumber": 10000000,
-    "emissionFactor": 0.00028376156799201995
+    "emissionFactor": 0.0002666362585719237
   },
   {
-    "UNIXTime": "1589932800",
+    "UNIXTime": 1589939554,
     "blockNumber": 10100000,
-    "emissionFactor": 0.0002640966011011725
+    "emissionFactor": 0.00028127261166324946
   },
   {
-    "UNIXTime": "1591315200",
+    "UNIXTime": 1591282421,
     "blockNumber": 10200000,
-    "emissionFactor": 0.0002804630362734592
+    "emissionFactor": 0.00026337964328602726
   },
   {
-    "UNIXTime": "1592611200",
+    "UNIXTime": 1592620823,
     "blockNumber": 10300000,
-    "emissionFactor": 0.00022794484925708384
+    "emissionFactor": 0.00024318842836148572
   },
   {
-    "UNIXTime": "1593993600",
+    "UNIXTime": 1593960035,
     "blockNumber": 10400000,
-    "emissionFactor": 0.00024506021844530304
+    "emissionFactor": 0.00022959020392867972
   },
   {
-    "UNIXTime": "1595289600",
+    "UNIXTime": 1595296768,
     "blockNumber": 10500000,
-    "emissionFactor": 0.00022139620997714692
+    "emissionFactor": 0.00023622516716192098
   },
   {
-    "UNIXTime": "1596672000",
+    "UNIXTime": 1596634124,
     "blockNumber": 10600000,
-    "emissionFactor": 0.0002463362309442364
+    "emissionFactor": 0.0002453297789295922
   },
   {
-    "UNIXTime": "1597968000",
+    "UNIXTime": 1597965203,
     "blockNumber": 10700000,
-    "emissionFactor": 0.0002620453995404059
+    "emissionFactor": 0.00024497194835604313
   },
   {
-    "UNIXTime": "1599264000",
+    "UNIXTime": 1599290487,
     "blockNumber": 10800000,
-    "emissionFactor": 0.00027025452159318427
+    "emissionFactor": 0.0002877597879156347
   },
   {
-    "UNIXTime": "1600646400",
+    "UNIXTime": 1600615026,
     "blockNumber": 10900000,
-    "emissionFactor": 0.0003024064005935451
+    "emissionFactor": 0.0002831148055469156
   },
   {
-    "UNIXTime": "1601942400",
+    "UNIXTime": 1601957824,
     "blockNumber": 11000000,
-    "emissionFactor": 0.00029194267002134906
+    "emissionFactor": 0.0003115065665482531
   },
   {
-    "UNIXTime": "1603324800",
+    "UNIXTime": 1603289620,
     "blockNumber": 11100000,
-    "emissionFactor": 0.0003109114330740512
+    "emissionFactor": 0.0003110482233169513
   },
   {
-    "UNIXTime": "1604620800",
+    "UNIXTime": 1604616056,
     "blockNumber": 11200000,
-    "emissionFactor": 0.00031612380367259215
+    "emissionFactor": 0.0002958819122235012
   },
   {
-    "UNIXTime": "1605916800",
+    "UNIXTime": 1605942238,
     "blockNumber": 11300000,
-    "emissionFactor": 0.00031123696488550504
+    "emissionFactor": 0.0003315996055522043
   },
   {
-    "UNIXTime": "1607299200",
+    "UNIXTime": 1607268400,
     "blockNumber": 11400000,
-    "emissionFactor": 0.0003347347889954132
+    "emissionFactor": 0.0003139910712116141
   },
   {
-    "UNIXTime": "1608595200",
+    "UNIXTime": 1608596869,
     "blockNumber": 11500000,
     "emissionFactor": 0.00034652058352775764
   },
   {
-    "UNIXTime": "1609891200",
+    "UNIXTime": 1609922671,
     "blockNumber": 11600000,
-    "emissionFactor": 0.000356368838055456
+    "emissionFactor": 0.00037925391542377505
   },
   {
-    "UNIXTime": "1611273600",
+    "UNIXTime": 1611247827,
     "blockNumber": 11700000,
-    "emissionFactor": 0.0004175820004719386
+    "emissionFactor": 0.000390055101811435
   },
   {
-    "UNIXTime": "1612569600",
+    "UNIXTime": 1612578268,
     "blockNumber": 11800000,
     "emissionFactor": 0.0004606295261000753
   },
   {
-    "UNIXTime": "1613865600",
+    "UNIXTime": 1613907178,
     "blockNumber": 11900000,
-    "emissionFactor": 0.0004616801550221825
+    "emissionFactor": 0.0004913351749421159
   },
   {
-    "UNIXTime": "1615248000",
+    "UNIXTime": 1615234816,
     "blockNumber": 12000000,
-    "emissionFactor": 0.0005235761174749419
+    "emissionFactor": 0.0004900102135217353
   },
   {
-    "UNIXTime": "1616544000",
+    "UNIXTime": 1616567660,
     "blockNumber": 12100000,
-    "emissionFactor": 0.0005411494685617672
+    "emissionFactor": 0.0005744856467431448
   },
   {
-    "UNIXTime": "1617926400",
+    "UNIXTime": 1617895961,
     "blockNumber": 12200000,
-    "emissionFactor": 0.000602096129995305
+    "emissionFactor": 0.0005654038704925771
   },
   {
-    "UNIXTime": "1619222400",
+    "UNIXTime": 1619228194,
     "blockNumber": 12300000,
     "emissionFactor": 0.0005663532329008681
   },
   {
-    "UNIXTime": "1620518400",
+    "UNIXTime": 1620561103,
     "blockNumber": 12400000,
-    "emissionFactor": 0.0005746250604812677
+    "emissionFactor": 0.0006135334679745311
   },
   {
-    "UNIXTime": "1621900800",
+    "UNIXTime": 1621898262,
     "blockNumber": 12500000,
-    "emissionFactor": 0.0006073635328252239
+    "emissionFactor": 0.0005692002635754797
   },
   {
-    "UNIXTime": "1623196800",
+    "UNIXTime": 1623236934,
     "blockNumber": 12600000,
     "emissionFactor": 0.0005359681624095635
   },
   {
-    "UNIXTime": "1624579200",
+    "UNIXTime": 1624579680,
     "blockNumber": 12700000,
-    "emissionFactor": 0.00047429393963825304
+    "emissionFactor": 0.0005040541244160609
   },
   {
-    "UNIXTime": "1625961600",
+    "UNIXTime": 1625924808,
     "blockNumber": 12800000,
-    "emissionFactor": 0.000528530270027046
+    "emissionFactor": 0.000495796195301857
   },
   {
-    "UNIXTime": "1627257600",
+    "UNIXTime": 1627277650,
     "blockNumber": 12900000,
-    "emissionFactor": 0.000531145111786103
+    "emissionFactor": 0.0005659139027823903
   },
   {
-    "UNIXTime": "1628640000",
+    "UNIXTime": 1628632419,
     "blockNumber": 13000000,
-    "emissionFactor": 0.0005795645412259187
+    "emissionFactor": 0.000543105741360567
   },
   {
-    "UNIXTime": "1629936000",
+    "UNIXTime": 1629968146,
     "blockNumber": 13100000,
-    "emissionFactor": 0.0005878881771587369
+    "emissionFactor": 0.0006254733957521527
   },
   {
-    "UNIXTime": "1631318400",
+    "UNIXTime": 1631303063,
     "blockNumber": 13200000,
-    "emissionFactor": 0.0006641546191680438
+    "emissionFactor": 0.000621890395332311
   },
   {
-    "UNIXTime": "1632614400",
+    "UNIXTime": 1632639885,
     "blockNumber": 13300000,
-    "emissionFactor": 0.0006481067677833373
+    "emissionFactor": 0.0006897454338855768
   },
   {
-    "UNIXTime": "1633996800",
+    "UNIXTime": 1633991799,
     "blockNumber": 13400000,
-    "emissionFactor": 0.000678668731936025
+    "emissionFactor": 0.0006761800471442826
   },
   {
-    "UNIXTime": "1635379200",
+    "UNIXTime": 1635345781,
     "blockNumber": 13500000,
-    "emissionFactor": 0.0007724946173617167
+    "emissionFactor": 0.0007233370742739269
   },
   {
-    "UNIXTime": "1636675200",
+    "UNIXTime": 1636702284,
     "blockNumber": 13600000,
     "emissionFactor": 0.0007672047863297452
   },
   {
-    "UNIXTime": "1638057600",
+    "UNIXTime": 1638070201,
     "blockNumber": 13700000,
     "emissionFactor": 0.0007997052021770811
   },
   {
-    "UNIXTime": "1639440000",
+    "UNIXTime": 1639440039,
     "blockNumber": 13800000,
     "emissionFactor": 0.000870451725466223
   },
   {
-    "UNIXTime": "1640736000",
+    "UNIXTime": 1640777987,
     "blockNumber": 13900000,
-    "emissionFactor": 0.0008391170471051778
+    "emissionFactor": 0.0008938358076768636
   },
   {
-    "UNIXTime": "1642118400",
+    "UNIXTime": 1642114795,
     "blockNumber": 14000000,
-    "emissionFactor": 0.0009170865294093385
+    "emissionFactor": 0.0008595572863045175
   },
   {
-    "UNIXTime": "1643414400",
+    "UNIXTime": 1643450273,
     "blockNumber": 14100000,
-    "emissionFactor": 0.0008804754968658021
+    "emissionFactor": 0.0009377518087019952
   },
   {
-    "UNIXTime": "1644796800",
+    "UNIXTime": 1644784417,
     "blockNumber": 14200000,
-    "emissionFactor": 0.0009449563931190395
+    "emissionFactor": 0.000886809183851639
   },
   {
-    "UNIXTime": "1646092800",
+    "UNIXTime": 1646123109,
     "blockNumber": 14300000,
-    "emissionFactor": 0.0008833351789508186
+    "emissionFactor": 0.0009419220232494541
   },
   {
-    "UNIXTime": "1647475200",
+    "UNIXTime": 1647466065,
     "blockNumber": 14400000,
-    "emissionFactor": 0.0009601201220444096
+    "emissionFactor": 0.0008993346292803425
   },
   {
-    "UNIXTime": "1648771200",
+    "UNIXTime": 1648811420,
     "blockNumber": 14500000,
     "emissionFactor": 0.0009154129782625235
   },
   {
-    "UNIXTime": "1650153600",
+    "UNIXTime": 1650160464,
     "blockNumber": 14600000,
-    "emissionFactor": 0.0009387125045281412
+    "emissionFactor": 0.0010001594190457614
   },
   {
-    "UNIXTime": "1651536000",
+    "UNIXTime": 1651517664,
     "blockNumber": 14700000,
-    "emissionFactor": 0.0009857684758660334
+    "emissionFactor": 0.0009821380233156268
   },
   {
-    "UNIXTime": "1652918400",
+    "UNIXTime": 1652893017,
     "blockNumber": 14800000,
-    "emissionFactor": 0.0010016092834611112
+    "emissionFactor": 0.0010023319299578455
   },
   {
-    "UNIXTime": "1654300800",
+    "UNIXTime": 1654299392,
     "blockNumber": 14900000,
-    "emissionFactor": 0.0009405957622676282
+    "emissionFactor": 0.000888429853983746
   },
   {
-    "UNIXTime": "1655769600",
+    "UNIXTime": 1655778500,
     "blockNumber": 15000000,
     "emissionFactor": 0.0008479802632407006
   },
   {
-    "UNIXTime": "1657238400",
+    "UNIXTime": 1657257464,
     "blockNumber": 15100000,
-    "emissionFactor": 0.0008104788997093115
+    "emissionFactor": 0.0008620643722383089
   },
   {
-    "UNIXTime": "1658620800",
+    "UNIXTime": 1658593955,
     "blockNumber": 15200000,
-    "emissionFactor": 0.0013196908168576606
+    "emissionFactor": 0.0012023947390127573
   }
 ]

@@ -28,7 +28,7 @@ export interface GasData {
   Value: string;
 }
 
-export interface networkData {
+export interface HashrateData {
   "Date(UTC)": string;
   UnixTimeStamp: number;
   Value: number;
@@ -113,39 +113,36 @@ export const findClosest = (goal: number, array: any[]) => {
   return closest;
 };
 
+/**
+ * We have gas used for each day, but we don't know the block numbers.
+ * For the given blockResolution, fetch the block data and merge with most recent csv gas record.
+ */
 export const fetchIndexesFromBlockResolution = async (
   blockResolution: number,
-  currentBlock: number,
-  gas: GasData[]
+  latestBlock: number,
+  gasData: GasData[]
 ) => {
   console.log("Generating index array using block resolution");
-  // Need to arrayify data to identify which is closest
-  const [gasUsedArray, timestampArray] = arrayifyCSVData(gas);
 
   let indexArray = [];
 
-  for (let i = 0; i < currentBlock; i++) {
-    if (i % blockResolution === 0) {
-      // Find nearest UNIX timestamp within csv data to the input block
-      const response = await provider.getBlock(i);
-      console.log("got block number", response.number);
-
-      const closest = findClosest(response.timestamp, timestampArray);
-
-      // Find index of closest csv data point
-      let index = gasUsedArray.findIndex(
-        (x: any) => x.UnixTimeStamp === closest
-      );
-
-      const newdata = blockData(index, gas[index].UnixTimeStamp, i);
-      indexArray.push(newdata);
+  for (let i = 0; i < latestBlock; i += blockResolution) {
+    const block = await provider.getBlock(i);
+    // find first day in gas csv that is older than the given block
+    let gasDataIndex = gasData.findIndex((_day, index) => {
+      return gasData[index + 1].UnixTimeStamp > block.timestamp; // both are in seconds since epoch
+    });
+    if (gasDataIndex === -1) {
+      // if the block is older than every record in the csv, use the last record
+      gasDataIndex = gasData.length - 1;
     }
-  }
 
+    indexArray.push(blockData(gasDataIndex, block.timestamp, i));
+  }
   // Append final value from JSON
-  const finalIndex = gas.length - 1;
+  const finalIndex = gasData.length - 1;
   indexArray.push(
-    blockData(finalIndex, gas[finalIndex].UnixTimeStamp, currentBlock)
+    blockData(finalIndex, gasData[finalIndex].UnixTimeStamp, latestBlock)
   );
   return indexArray;
 };
@@ -228,7 +225,7 @@ const fetchBlockOrDayIndexArray = async (
   blockOrDay: string,
   resolution: number,
   currentBlock: number,
-  gas: GasData[]
+  gasData: GasData[]
 ) => {
   let result = [];
 
@@ -238,11 +235,11 @@ const fetchBlockOrDayIndexArray = async (
       result = await fetchIndexesFromBlockResolution(
         resolution,
         currentBlock,
-        gas
+        gasData
       );
       break;
     case "day":
-      result = await fetchIndexesFromDayResolution(resolution, gas);
+      result = await fetchIndexesFromDayResolution(resolution, gasData);
       break;
     default:
       throw "Please specify 'block' or 'day'";
@@ -256,8 +253,8 @@ export const generateEmissionDataFromIndexArray = async (
 ) => {
   console.log("Generating new emissions data");
   // Getch gas and network hashrate data
-  const gas = getJSONData("GasUsed");
-  const hashrate = getJSONData("NetworkHash");
+  const gasData = getJSONData("GasUsed");
+  const hashrateData = getJSONData("NetworkHash");
   // Use Web3 to get the number of the most recently mined block
   const currentBlock = await provider.getBlockNumber();
 
@@ -266,7 +263,7 @@ export const generateEmissionDataFromIndexArray = async (
     blockOrDay,
     blockResolution,
     currentBlock,
-    gas
+    gasData
   );
 
   let valueArray = new Array();
@@ -284,8 +281,8 @@ export const generateEmissionDataFromIndexArray = async (
     const emissionFactor = await calculateEmissionFactor(
       indexArray,
       i,
-      gas,
-      hashrate
+      gasData,
+      hashrateData
     );
     const newData = emissionData(
       indexArray[i].UNIXTime,
@@ -303,16 +300,17 @@ export const generateEmissionDataFromIndexArray = async (
 export const calculateEmissionFactor = async (
   indexArray: any[],
   i: number,
-  gas: GasData[],
-  hashrate: networkData[]
+  gasData: GasData[],
+  hashrateData: HashrateData[]
 ) => {
   let cumulativeGasUsed = 0;
   let cumulativeTerahashes = 0;
 
   // For this data range, add up total gas used and total terahashes
   for (let j = indexArray[i].index; j < indexArray[i + 1].index; j++) {
-    cumulativeGasUsed += parseInt(gas[j].Value, 10);
-    cumulativeTerahashes += (hashrate[j].Value / hashEfficiency) * secondsInDay;
+    cumulativeGasUsed += parseInt(gasData[j].Value, 10);
+    cumulativeTerahashes +=
+      (hashrateData[j].Value / hashEfficiency) * secondsInDay;
   }
 
   const dataRangeLength = indexArray[i + 1].index - indexArray[i].index;
@@ -321,7 +319,7 @@ export const calculateEmissionFactor = async (
   if (dataRangeLength === 0) {
     return 0;
   } else {
-    // Calcualate emissions per kg
+    // Calculate emissions per kg
     const terahashesPerGas =
       cumulativeTerahashes / cumulativeGasUsed / dataRangeLength;
     const emissionsPerTerahash = kwhPerTerahash * emissionsPerKwh;
