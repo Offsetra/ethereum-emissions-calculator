@@ -60,3 +60,16 @@ export interface AddressEmissionsResult {
   /** The block number of the oldest transaction found in the query  */
   lowestBlockNumber: number;
 }
+
+export interface EmissionsFactor {
+  /** Unix seconds */
+  timestamp: number;
+  /** Grams co2 per gas */
+  emissionsFactor: number;
+}
+
+export interface CSVRecord {
+  "Date(UTC)": string;
+  UnixTimeStamp: string;
+  Value: string;
+}
