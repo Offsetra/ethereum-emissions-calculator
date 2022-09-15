@@ -730,5 +730,25 @@
   {
     "timestamp": 1658361600,
     "emissionsFactor": 0.00023921697826715505
+  },
+  {
+    "timestamp": 1659571200,
+    "emissionsFactor": 0.0002441398171262817
+  },
+  {
+    "timestamp": 1660780800,
+    "emissionsFactor": 0.0002465433478612572
+  },
+  {
+    "timestamp": 1661990400,
+    "emissionsFactor": 0.0002473976222064128
+  },
+  {
+    "timestamp": 1661990400,
+    "emissionsFactor": 0.0002473976222064128
+  },
+  {
+    "timestamp": 1663259101,
+    "emissionsFactor": 0
   }
 ]
