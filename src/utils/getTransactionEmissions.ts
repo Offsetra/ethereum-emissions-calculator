@@ -16,12 +16,20 @@ export const getTransactionEmissions = (
         }
         datePointer++;
       }
-      return [
+      const val: [number, number] = [
         prev[0] +
           parseInt(tx.gasUsed) *
             emissionsFactorTable[datePointer].emissionsFactor,
         prev[1] + parseInt(tx.gasUsed),
       ];
+      console.log(
+        "fetched value",
+        val,
+        tx.timeStamp,
+        emissionsFactorTable[datePointer].timestamp,
+        emissionsFactorTable[datePointer].emissionsFactor
+      );
+      return val;
     },
     [0, 0]
   );
