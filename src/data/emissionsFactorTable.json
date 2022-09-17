@@ -749,6 +749,6 @@
   },
   {
     "timestamp": 1663259101,
-    "emissionsFactor": 0
+    "emissionsFactor": 0.0000001
   }
 ]
