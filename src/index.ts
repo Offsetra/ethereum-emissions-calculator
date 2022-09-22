@@ -31,7 +31,7 @@ export const calculateEmissions = async (
   );
 
   return {
-    kgCO2: Math.round(totalEmissions),
+    kgCO2: Number(totalEmissions.toFixed(3)), // nearest gram
     transactionsCount: filteredTransactions.length,
     gasUsed,
     highestBlockNumber: Number(transactions[0]?.blockNumber ?? "0"),
