@@ -29,7 +29,6 @@ export const calculateEmissions = async (
     filteredTransactions,
     emissionFactorTable as EmissionsFactor[]
   );
-
   return {
     kgCO2: Number(totalEmissions.toFixed(3)), // nearest gram
     transactionsCount: filteredTransactions.length,

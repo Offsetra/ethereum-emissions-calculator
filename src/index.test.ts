@@ -101,14 +101,14 @@ describe("calculateEmissions", () => {
           to: address2,
           gasUsed: "100000",
           hash: "test1",
-          timeStamp: "1661990400", // emissionsFactor: 0.0002473976222064128
+          timeStamp: "1663200000", // emissionsFactor: 0.0002522790155063084
         },
         {
           blockNumber: 15590000,
           from: address,
           to: address2,
           gasUsed: "100000",
-          timeStamp: "1663200000", // emissionsFactor: 0.0002522790155063084
+          timeStamp: "1661990400", // emissionsFactor: 0.0002473976222064128
         },
       ],
       done: true,
@@ -121,7 +121,7 @@ describe("calculateEmissions", () => {
       startBlock: 0,
       endBlock: 999,
     });
-
+    // 25.2279015506 + 24.7397622206 = 49.9676637712
     expect(result).toStrictEqual({
       done: true,
       gasUsed: 200000,
@@ -140,14 +140,14 @@ describe("calculateEmissions", () => {
           to: address2,
           gasUsed: "100000",
           hash: "test1",
-          timeStamp: "1661990400", // emissionsFactor: 0.0002473976222064128
+          timeStamp: "1663286401", // emissionsFactor: 0
         },
         {
           blockNumber: 15590000,
           from: address,
           to: address2,
           gasUsed: "100000",
-          timeStamp: "1663286401", // emissionsFactor: 0.0
+          timeStamp: "1658361599", // emissionsFactor: 0.00023921697826715505
         },
       ],
       done: true,
@@ -165,7 +165,7 @@ describe("calculateEmissions", () => {
       done: true,
       gasUsed: 200000,
       highestBlockNumber: 15591851,
-      kgCO2: 24.74,
+      kgCO2: 23.922,
       lowestBlockNumber: 15590000,
       transactionsCount: 2,
     });

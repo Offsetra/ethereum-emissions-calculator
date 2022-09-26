@@ -9,17 +9,19 @@ export const getTransactionEmissions = (
   txns: TransactionData[],
   emissionsFactorTable: EmissionsFactor[]
 ): [number, number] => {
-  let datePointer = 0;
+  // start at the newest emissions factor (last entry)
+  let datePointer = emissionsFactorTable.length - 1;
   return txns.reduce(
     (prev, tx) => {
-      // if the timestamp is older, try the next entry
+      // if the proceeding emissionsFactor.timestamp is still older than the transaction, decrement
       while (
-        parseInt(tx.timeStamp) > emissionsFactorTable[datePointer].timestamp
+        emissionsFactorTable[datePointer - 1]?.timestamp >=
+        parseInt(tx.timeStamp)
       ) {
-        if (datePointer === emissionsFactorTable.length - 1) {
+        if (datePointer === 0) {
           break;
         }
-        datePointer++;
+        datePointer--;
       }
       const txnEmissions =
         parseInt(tx.gasUsed) *
