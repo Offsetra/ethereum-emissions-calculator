@@ -20,7 +20,7 @@ export const getAddressTransactions = async (
     done: false, // we can't rely on the txn count for completeness (it might be slightly less than 10k after filtering)
     transactions: transactions.filter(
       // filter out the lowest block number because we don't know if we captured all of that blocks txns.
-      (txn) => txn.blockNumber > lowestBlockNumber
+      (txn) => parseInt(txn.blockNumber) > parseInt(lowestBlockNumber)
     ),
   };
 };
