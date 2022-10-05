@@ -1,6 +1,7 @@
 import { CalculatorOptions } from "../types";
 import { getAddressTransactions } from "./getAddressTransactions";
 import { fetchTransactions as mockFetchTransactions } from "./fetchTransactions";
+import { ETHERSCAN_RESULT_MAX_LENGTH } from "./constructEtherscanURL";
 
 /**
  * TODOS:
@@ -49,12 +50,15 @@ describe("getAddressTransactions", () => {
     expect(fetchTransactions).toHaveBeenCalledTimes(1);
     expect(done).toBe(true);
   });
-  test("fetches 9999 transactions", async () => {
+  test("fetches less than max transactions", async () => {
     const options: CalculatorOptions = {
       address,
       etherscanAPIKey,
     };
-    const expected = generateTxnArray({ length: 9999, fixture: txnFixture1 });
+    const expected = generateTxnArray({
+      length: ETHERSCAN_RESULT_MAX_LENGTH - 1, // 4999
+      fixture: txnFixture1,
+    });
     fetchTransactions.mockImplementationOnce(async () => {
       return expected;
     });
@@ -64,17 +68,17 @@ describe("getAddressTransactions", () => {
     expect(fetchTransactions).toHaveBeenCalledTimes(1);
     expect(done).toBe(true);
   });
-  test("fetches 10k transactions, filters lowest (oldest) block number", async () => {
+  test("fetches max transactions, filters lowest (oldest) block number", async () => {
     const options: CalculatorOptions = {
       address,
       etherscanAPIKey,
     };
     const newestBlockTxns = generateTxnArray({
-      length: 5000,
+      length: ETHERSCAN_RESULT_MAX_LENGTH / 2,
       fixture: txnFixture2,
     });
     const oldestBlockTxns = generateTxnArray({
-      length: 5000, // actually ethereum only has 70 txns per block but it doesnt matter for this fn
+      length: ETHERSCAN_RESULT_MAX_LENGTH / 2, // actually ethereum only has 70 txns per block but it doesnt matter for this fn
       fixture: txnFixture1,
     });
     const firstResult = [...newestBlockTxns, ...oldestBlockTxns];
@@ -86,7 +90,7 @@ describe("getAddressTransactions", () => {
     const { transactions, done } = await getAddressTransactions(options);
     expect(transactions).toStrictEqual([...newestBlockTxns]);
     expect(fetchTransactions).toHaveBeenCalledTimes(1);
-    expect(transactions.length).toBe(5000);
+    expect(transactions.length).toBe(ETHERSCAN_RESULT_MAX_LENGTH / 2);
     expect(done).toBe(false);
   });
 });

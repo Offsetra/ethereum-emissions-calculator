@@ -6,7 +6,7 @@ const SENDER = "0x063dd253c8da4ea9b12105781c9611b8297f5d14";
 describe("constructEtherscanURL", () => {
   test("constructs valid string with default params", () => {
     const valid =
-      "https://api.etherscan.io/api?action=txlist&module=account&sort=desc&startBlock=0&endBlock=99999999&apikey=test-api-key&address=0x063dd253c8da4ea9b12105781c9611b8297f5d14";
+      "https://api.etherscan.io/api?action=txlist&module=account&sort=desc&startBlock=0&endBlock=99999999&apikey=test-api-key&page=1&offset=5000&address=0x063dd253c8da4ea9b12105781c9611b8297f5d14";
     const options: CalculatorOptions = {
       address: SENDER,
       etherscanAPIKey: "test-api-key",

@@ -1,7 +1,6 @@
 import { CalculatorOptions, TransactionData } from "../types";
+import { ETHERSCAN_RESULT_MAX_LENGTH } from "./constructEtherscanURL";
 import { fetchTransactions } from "./fetchTransactions";
-
-const ETHERSCAN_RESULT_MAX_LENGTH = 10000;
 
 /**
  * Fetch the most recent transactions, descending order (highest block # first)

@@ -1,6 +1,7 @@
 import { CalculatorOptions } from "../types";
 
 export const ETHERSCAN_API_URL = "https://api.etherscan.io/api";
+export const ETHERSCAN_RESULT_MAX_LENGTH = 5000;
 
 type ValidEtherscanParam =
   | "address"
@@ -10,7 +11,9 @@ type ValidEtherscanParam =
   | "apikey"
   | "module"
   | "action"
-  | "sort";
+  | "sort"
+  | "page"
+  | "offset";
 type EtherscanParams = {
   [P in ValidEtherscanParam]: string;
 };
@@ -34,6 +37,8 @@ export const constructEtherscanURL = (
     startBlock: startBlock?.toString() ?? "0",
     endBlock: endBlock?.toString() ?? "99999999",
     apikey: etherscanAPIKey,
+    page: "1",
+    offset: ETHERSCAN_RESULT_MAX_LENGTH.toString(),
   };
   for (const property in params) {
     etherscanURL.searchParams.append(
