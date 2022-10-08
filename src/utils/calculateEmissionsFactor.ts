@@ -11,7 +11,7 @@ export const calculateEmissionsFactor = (params: {
   if (!params.dayGasUsed) return 0;
   const wattConsumption = params.dayHashrate / params.hashEfficiency; // instantaneous consumption of network
   const kilowattConsumption = wattConsumption / 1000; // to kilowatt consumption
-  const kwhConsumption = kilowattConsumption * 24; // to total daily kwh consumption
-  const kwhPerGas = kwhConsumption / params.dayGasUsed;
+  const kwhPerDayConsumption = kilowattConsumption * 24; // to total daily kwh consumption
+  const kwhPerGas = kwhPerDayConsumption / params.dayGasUsed;
   return (kwhPerGas * params.emissionsPerKwh) / 1000;
 };
